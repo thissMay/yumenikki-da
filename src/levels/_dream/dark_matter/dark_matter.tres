@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bbwejk6xrbqbn"]
+[gd_resource type="TileSet" format=3 uid="uid://bbwejk6xrbqbn"]
 
 [ext_resource type="Texture2D" uid="uid://cpnmrcwqrmfp7" path="res://src/levels/_dream/dark_matter/sprites/shrooms.png" id="1_w6gov"]
 

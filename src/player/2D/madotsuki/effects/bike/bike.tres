@@ -1,6 +1,5 @@
-[gd_resource type="Resource" load_steps=6 format=3 uid="uid://w1ycqdwy7pk8"]
+[gd_resource type="Resource" format=3 uid="uid://w1ycqdwy7pk8"]
 
-[ext_resource type="Resource" uid="uid://fbyv4ifpj1q5" path="res://src/player/2D/madotsuki/effects/_none/_behaviour.tres" id="1_xkknp"]
 [ext_resource type="Texture2D" uid="uid://cxuiuvus52slt" path="res://src/player/inventory/menu/eff_cosmetic.png" id="2_61rg1"]
 [ext_resource type="Script" uid="uid://dsxob3mx1taax" path="res://src/player/2D/madotsuki/effects/bike/pl_eff_bike.gd" id="3_61rg1"]
 [ext_resource type="Script" uid="uid://jf85vmwx4pj" path="res://src/player/2D/scripts/pl_variables.gd" id="4_xkknp"]
@@ -19,6 +18,10 @@ metadata/_custom_type_script = "uid://jf85vmwx4pj"
 [resource]
 script = ExtResource("3_61rg1")
 name = "Bike"
+desc = null
 icon = ExtResource("2_61rg1")
+skip_equip_animation = null
+skip_deequip_animation = null
 variables = SubResource("Resource_61rg1")
+player_component_prefab = null
 metadata/_custom_type_script = "uid://cycsi2jsiuie0"

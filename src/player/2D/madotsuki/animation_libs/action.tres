@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=7 format=3 uid="uid://yubpgajftv6v"]
+[gd_resource type="AnimationLibrary" format=3 uid="uid://yubpgajftv6v"]
 
 [ext_resource type="Texture2D" uid="uid://b7wes4n6knano" path="res://src/player/2D/madotsuki/display/medamaude/teleport.png" id="1_0b4jl"]
 [ext_resource type="AudioStream" uid="uid://du5x1lok1mk78" path="res://src/audio/se/se_cloth_foley_3.wav" id="2_jwcw0"]

@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://b7vdcqrtnh77e"]
+[gd_resource type="TileSet" format=3 uid="uid://b7vdcqrtnh77e"]
 
 [ext_resource type="Texture2D" uid="uid://oicnl35egh3r" path="res://src/levels/_dream/colourful_irises/sprites/blood_tiles.png" id="1_aaqd1"]
 

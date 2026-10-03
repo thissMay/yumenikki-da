@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=14 format=3 uid="uid://b6b68ymed8ei7"]
+[gd_resource type="TileSet" format=3 uid="uid://b6b68ymed8ei7"]
 
 [ext_resource type="Texture2D" uid="uid://bgxj3fto4j2vl" path="res://src/levels/__ignore/tile_atlas/neo_lobby_tileset.png" id="1_qnhuh"]
 [ext_resource type="PackedScene" uid="uid://dqmxnyvau3174" path="res://src/entities/sentients/neon/bird.tscn" id="2_x6sfd"]

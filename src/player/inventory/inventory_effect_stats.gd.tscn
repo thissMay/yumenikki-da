@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://demusraqmvy5s"]
+[gd_scene format=3 uid="uid://demusraqmvy5s"]
 
 [ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://src/global_theme.tres" id="1_cjy1q"]
 [ext_resource type="Script" uid="uid://dgxld1rmdcf3y" path="res://src/player/inventory/effect_stats_window.gd" id="2_2csn3"]
@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bthea7xsvafa5" path="res://src/player/inventory/stats_neutral.png" id="5_2csn3"]
 [ext_resource type="Texture2D" uid="uid://baxoxweqyowud" path="res://src/player/hud/stats_noise.png" id="7_m5a7d"]
 
-[node name="effect_stats_window" type="Control" node_paths=PackedStringArray("walk_speed", "sprint_speed", "sneak_speed", "exhaust_speed", "can_sprint", "stamina_regen", "stamina_decay", "walk_noise", "sprint_noise", "sneak_noise")]
+[node name="effect_stats_window" type="Control" unique_id=1497147448 node_paths=PackedStringArray("walk_speed", "sprint_speed", "sneak_speed", "exhaust_speed", "can_sprint", "walk_noise", "sprint_noise", "sneak_noise")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,13 +26,11 @@ sprint_speed = NodePath("stats_container/margin/vbox/sprint_speed")
 sneak_speed = NodePath("stats_container/margin/vbox/sneak_speed")
 exhaust_speed = NodePath("stats_container/margin/vbox/exhaust_speed")
 can_sprint = NodePath("stats_container/margin/vbox/can_sprint")
-stamina_regen = NodePath("stats_container/margin/vbox/stamina_regen")
-stamina_decay = NodePath("stats_container/margin/vbox/stamina_decay")
 walk_noise = NodePath("stats_container/margin/vbox/walk_noise")
 sprint_noise = NodePath("stats_container/margin/vbox/sprint_noise")
 sneak_noise = NodePath("stats_container/margin/vbox/sneak_noise")
 
-[node name="stats_container" type="NinePatchRect" parent="."]
+[node name="stats_container" type="NinePatchRect" parent="." unique_id=353079815]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,7 +43,7 @@ patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
 
-[node name="margin" type="MarginContainer" parent="stats_container"]
+[node name="margin" type="MarginContainer" parent="stats_container" unique_id=1129613040]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,164 +56,136 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="vbox" type="VBoxContainer" parent="stats_container/margin"]
+[node name="vbox" type="VBoxContainer" parent="stats_container/margin" unique_id=285334632]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="stats_mobility" type="TextureRect" parent="stats_container/margin/vbox"]
+[node name="stats_mobility" type="TextureRect" parent="stats_container/margin/vbox" unique_id=1084239606]
 layout_mode = 2
 texture = ExtResource("3_2csn3")
 stretch_mode = 2
 
-[node name="walk_speed" type="HBoxContainer" parent="stats_container/margin/vbox"]
+[node name="walk_speed" type="HBoxContainer" parent="stats_container/margin/vbox" unique_id=1848131538]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="text" type="Label" parent="stats_container/margin/vbox/walk_speed"]
+[node name="text" type="Label" parent="stats_container/margin/vbox/walk_speed" unique_id=1505084081]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Walk Speed: 	xx"
 tab_stops = PackedFloat32Array(18)
 
-[node name="icon" type="TextureRect" parent="stats_container/margin/vbox/walk_speed"]
+[node name="icon" type="TextureRect" parent="stats_container/margin/vbox/walk_speed" unique_id=1883524001]
 layout_mode = 2
 texture = ExtResource("5_2csn3")
 
-[node name="sprint_speed" type="HBoxContainer" parent="stats_container/margin/vbox"]
+[node name="sprint_speed" type="HBoxContainer" parent="stats_container/margin/vbox" unique_id=595177770]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="text" type="Label" parent="stats_container/margin/vbox/sprint_speed"]
+[node name="text" type="Label" parent="stats_container/margin/vbox/sprint_speed" unique_id=1517794936]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Sprint Speed: 	xx"
 tab_stops = PackedFloat32Array(18)
 
-[node name="icon" type="TextureRect" parent="stats_container/margin/vbox/sprint_speed"]
+[node name="icon" type="TextureRect" parent="stats_container/margin/vbox/sprint_speed" unique_id=1840436064]
 layout_mode = 2
 texture = ExtResource("5_2csn3")
 
-[node name="sneak_speed" type="HBoxContainer" parent="stats_container/margin/vbox"]
+[node name="sneak_speed" type="HBoxContainer" parent="stats_container/margin/vbox" unique_id=1101681723]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="text" type="Label" parent="stats_container/margin/vbox/sneak_speed"]
+[node name="text" type="Label" parent="stats_container/margin/vbox/sneak_speed" unique_id=2134935100]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Sneak Speed: 	xx"
 tab_stops = PackedFloat32Array(18)
 
-[node name="icon" type="TextureRect" parent="stats_container/margin/vbox/sneak_speed"]
+[node name="icon" type="TextureRect" parent="stats_container/margin/vbox/sneak_speed" unique_id=940440793]
 layout_mode = 2
 texture = ExtResource("5_2csn3")
 
-[node name="exhaust_speed" type="HBoxContainer" parent="stats_container/margin/vbox"]
+[node name="exhaust_speed" type="HBoxContainer" parent="stats_container/margin/vbox" unique_id=141132135]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="text" type="Label" parent="stats_container/margin/vbox/exhaust_speed"]
+[node name="text" type="Label" parent="stats_container/margin/vbox/exhaust_speed" unique_id=1075450507]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Exhaust Speed: 	xx"
 tab_stops = PackedFloat32Array(18)
 
-[node name="icon" type="TextureRect" parent="stats_container/margin/vbox/exhaust_speed"]
+[node name="icon" type="TextureRect" parent="stats_container/margin/vbox/exhaust_speed" unique_id=1504438656]
 layout_mode = 2
 texture = ExtResource("5_2csn3")
 
-[node name="split" type="HSplitContainer" parent="stats_container/margin/vbox"]
+[node name="split" type="HSplitContainer" parent="stats_container/margin/vbox" unique_id=1145931595]
 layout_mode = 2
 
-[node name="stats_stamina" type="TextureRect" parent="stats_container/margin/vbox"]
+[node name="stats_stamina" type="TextureRect" parent="stats_container/margin/vbox" unique_id=1188346163]
 layout_mode = 2
 texture = ExtResource("4_m5a7d")
 stretch_mode = 2
 
-[node name="can_sprint" type="HBoxContainer" parent="stats_container/margin/vbox"]
+[node name="can_sprint" type="HBoxContainer" parent="stats_container/margin/vbox" unique_id=1917794366]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="text" type="Label" parent="stats_container/margin/vbox/can_sprint"]
+[node name="text" type="Label" parent="stats_container/margin/vbox/can_sprint" unique_id=1341117721]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Can Sprint: 	xx"
 tab_stops = PackedFloat32Array(18)
 
-[node name="icon" type="TextureRect" parent="stats_container/margin/vbox/can_sprint"]
+[node name="icon" type="TextureRect" parent="stats_container/margin/vbox/can_sprint" unique_id=1205412942]
 layout_mode = 2
 texture = ExtResource("5_2csn3")
 
-[node name="stamina_regen" type="HBoxContainer" parent="stats_container/margin/vbox"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="text" type="Label" parent="stats_container/margin/vbox/stamina_regen"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-text = "Stamina Regen: 	xx"
-tab_stops = PackedFloat32Array(18)
-
-[node name="icon" type="TextureRect" parent="stats_container/margin/vbox/stamina_regen"]
-layout_mode = 2
-texture = ExtResource("5_2csn3")
-
-[node name="stamina_decay" type="HBoxContainer" parent="stats_container/margin/vbox"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="text" type="Label" parent="stats_container/margin/vbox/stamina_decay"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-text = "Stamina Decay: 	xx"
-tab_stops = PackedFloat32Array(18)
-
-[node name="icon" type="TextureRect" parent="stats_container/margin/vbox/stamina_decay"]
-layout_mode = 2
-texture = ExtResource("5_2csn3")
-
-[node name="stats_noise" type="TextureRect" parent="stats_container/margin/vbox"]
+[node name="stats_noise" type="TextureRect" parent="stats_container/margin/vbox" unique_id=60886267]
 layout_mode = 2
 texture = ExtResource("7_m5a7d")
 stretch_mode = 2
 
-[node name="walk_noise" type="HBoxContainer" parent="stats_container/margin/vbox"]
+[node name="walk_noise" type="HBoxContainer" parent="stats_container/margin/vbox" unique_id=2067672263]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="text" type="Label" parent="stats_container/margin/vbox/walk_noise"]
+[node name="text" type="Label" parent="stats_container/margin/vbox/walk_noise" unique_id=803552410]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Walk Noise: 	xx"
 tab_stops = PackedFloat32Array(18)
 
-[node name="icon" type="TextureRect" parent="stats_container/margin/vbox/walk_noise"]
+[node name="icon" type="TextureRect" parent="stats_container/margin/vbox/walk_noise" unique_id=1576026108]
 layout_mode = 2
 texture = ExtResource("5_2csn3")
 
-[node name="sprint_noise" type="HBoxContainer" parent="stats_container/margin/vbox"]
+[node name="sprint_noise" type="HBoxContainer" parent="stats_container/margin/vbox" unique_id=1570190643]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="text" type="Label" parent="stats_container/margin/vbox/sprint_noise"]
+[node name="text" type="Label" parent="stats_container/margin/vbox/sprint_noise" unique_id=1409324990]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Sprint Noise: 	xx"
 tab_stops = PackedFloat32Array(18)
 
-[node name="icon" type="TextureRect" parent="stats_container/margin/vbox/sprint_noise"]
+[node name="icon" type="TextureRect" parent="stats_container/margin/vbox/sprint_noise" unique_id=1684870551]
 layout_mode = 2
 texture = ExtResource("5_2csn3")
 
-[node name="sneak_noise" type="HBoxContainer" parent="stats_container/margin/vbox"]
+[node name="sneak_noise" type="HBoxContainer" parent="stats_container/margin/vbox" unique_id=1983978300]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="text" type="Label" parent="stats_container/margin/vbox/sneak_noise"]
+[node name="text" type="Label" parent="stats_container/margin/vbox/sneak_noise" unique_id=876097751]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Sneak Noise: 	xx"
 tab_stops = PackedFloat32Array(18)
 
-[node name="icon" type="TextureRect" parent="stats_container/margin/vbox/sneak_noise"]
+[node name="icon" type="TextureRect" parent="stats_container/margin/vbox/sneak_noise" unique_id=189749138]
 layout_mode = 2
 texture = ExtResource("5_2csn3")

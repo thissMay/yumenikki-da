@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://bqmlmtywcj6oe"]
+[gd_resource type="TileSet" format=3 uid="uid://bqmlmtywcj6oe"]
 
 [ext_resource type="Texture2D" uid="uid://ctncgfgi4x2m6" path="res://src/levels/_dream/fly_swarm/sprites/fly-1_tilemap.png" id="1_yxx64"]
 [ext_resource type="Texture2D" uid="uid://b1mrnr8jtll7o" path="res://src/levels/_dream/fly_swarm/sprites/fly-2_tilemap.png" id="2_uhpxr"]

@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dyssxbp7xitvm"]
+[gd_resource type="TileSet" format=3 uid="uid://dyssxbp7xitvm"]
 
 [ext_resource type="Texture2D" uid="uid://dasj7w4xgw8ld" path="res://src/levels/__ignore/tile_atlas/_footstep_material.png" id="1_kynu1"]
 

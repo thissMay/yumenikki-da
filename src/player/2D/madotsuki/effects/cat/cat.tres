@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PLEffect" load_steps=6 format=3 uid="uid://b3ej66fhp7a0e"]
+[gd_resource type="Resource" script_class="PLEffect" format=3 uid="uid://b3ej66fhp7a0e"]
 
 [ext_resource type="Resource" uid="uid://fbyv4ifpj1q5" path="res://src/player/2D/madotsuki/effects/_none/_behaviour.tres" id="1_5a2w6"]
 [ext_resource type="Texture2D" uid="uid://cxuiuvus52slt" path="res://src/player/inventory/menu/eff_cosmetic.png" id="2_y2gw5"]

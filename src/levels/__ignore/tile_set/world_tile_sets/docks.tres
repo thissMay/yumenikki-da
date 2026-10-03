@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cydwtbt1yg005"]
+[gd_resource type="TileSet" format=3 uid="uid://cydwtbt1yg005"]
 
 [ext_resource type="Texture2D" uid="uid://cc8p4w6y6yb75" path="res://src/levels/__ignore/tile_atlas/docs.png" id="1_ca1uo"]
 

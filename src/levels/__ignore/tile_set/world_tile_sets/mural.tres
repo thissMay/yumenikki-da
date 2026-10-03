@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://duslvgx5e3hdu"]
+[gd_resource type="TileSet" format=3 uid="uid://duslvgx5e3hdu"]
 
 [ext_resource type="Texture2D" uid="uid://bb6vbhx8j6pb2" path="res://src/levels/__ignore/tile_atlas/mural_world.png" id="1_2ipxt"]
 

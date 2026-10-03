@@ -6,13 +6,10 @@ extends Player
 
 # - dependencies.
 @export_category("Top-down Exclusive")
-@export var stamina_fsm: FSM
 @export var can_pinch: bool = true
 
 var audio_listener: AudioListener2D
 var sound_player: AudioStreamPlayer
-
-var disable_stamina_drain: bool = false
 
 # - trait components
 var global_components: SBComponentReceiver
@@ -46,16 +43,12 @@ func _ready() -> void:
 	Utils.connect_to_signal(get_behaviour()._interact, quered_interact)
 func _enter() -> void:
 	super()
-	if GameManager.global_player_components != null: 
-		global_components = GameManager.global_player_components
-		global_components._setup(self)
 
 func dependency_components() -> void:	
 	audio_listener = $audio_listener
 	sound_player = $sound_player
 func dependency_setup() -> void:
 	fsm.		_setup(self)			# --- fsm; 
-	stamina_fsm._setup(self)			# --- stm fsm; 
 
 func _update(_delta: float) -> void:	
 	super(_delta)

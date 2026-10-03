@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://kvpgesrkih4v"]
+[gd_resource type="TileSet" format=3 uid="uid://kvpgesrkih4v"]
 
 [ext_resource type="Texture2D" uid="uid://du7w17a3jgpn2" path="res://src/levels/__ignore/tile_atlas/upper_abyss.png" id="1_8m5ps"]
 

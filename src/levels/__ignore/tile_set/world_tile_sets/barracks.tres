@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=10 format=3 uid="uid://b67lflhmdyfdh"]
+[gd_resource type="TileSet" format=3 uid="uid://b67lflhmdyfdh"]
 
 [ext_resource type="Texture2D" uid="uid://vinvsfic06gi" path="res://src/levels/__ignore/tile_atlas/barracks.png" id="1_78s8b"]
 [ext_resource type="Texture2D" uid="uid://bv10k72pseu62" path="res://src/levels/_dream/dense_woods_b/eye_big.png" id="2_4kfsj"]
@@ -136,8 +136,10 @@ _bundled = {
 "conn_count": 0,
 "conns": PackedInt32Array(),
 "editable_instances": [],
+"id_paths": [],
 "names": PackedStringArray("settlement_eye", "Node2D", "eye", "position", "texture", "hframes", "script", "frame_dimensions", "frame_h_count", "frame_v_count", "metadata/_custom_type_script", "Sprite2D", "ComponentReceiver", "affector", "independent", "Node", "LookAt", "r", "VisibleOnScreenEnabler2D"),
 "node_count": 5,
+"node_ids": PackedInt32Array(),
 "node_paths": [],
 "nodes": PackedInt32Array(-1, -1, 1, 0, -1, 0, 0, 0, 0, 11, 2, -1, 8, 3, 0, 4, 1, 5, 2, 6, 3, 7, 4, 8, 2, 9, 2, 10, 5, 0, 1, 0, 15, 12, -1, 4, 6, 6, 1073741837, 7, 14, 8, 10, 9, 0, 2, 0, 15, 16, -1, 3, 6, 10, 17, 11, 10, 12, 0, 0, 0, 18, 18, -1, 1, 3, 0, 0),
 "variants": [Vector2(8, -8), ExtResource("2_4kfsj"), 2, ExtResource("3_ym7ot"), Vector2i(32, 32), "uid://dlvvx5cthl4bp", ExtResource("4_1wgqq"), NodePath(".."), true, "uid://ctbtfitoggtku", ExtResource("5_wao5m"), 4.0, "uid://cx4t46m5wt82v"],

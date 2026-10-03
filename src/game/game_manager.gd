@@ -12,7 +12,6 @@ static var bloom: bool = false
 
 static var global_screen_effect: WorldEnvironment
 static var global_components: ComponentReceiver
-static var global_player_components: SBComponentReceiver
 
 static var instance: GameManager
 
@@ -48,7 +47,6 @@ func _setup() -> void:
 	game_fsm 				= get_node("game_fsm")
 	state_handle			= get_node("state_handle")
 	
-	global_player_components= get_node("global_player_components")
 	global_components 		= get_node("global_components")
 	global_screen_effect 	= get_node("global_screen_effect")
 	

@@ -8,13 +8,17 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="YUME NIKKI - demake"
 config/version="0.0.0"
 config/tags=PackedStringArray("concept", "fangame", "wip")
 run/main_scene="uid://l35l1wxusycr"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 run/max_fps=60
 config/icon="uid://bkfvddho8eetw"
 config/windows_native_icon="res://game_icon.ico"
@@ -27,13 +31,13 @@ general/3d_panning_strength=1.0
 
 [autoload]
 
-Game="*res://src/game/game.gd"
-SceneManager="*res://src/autoloads/scene_manager.gd"
-Music="*res://src/autoloads/bgm_player_music.gd"
-Ambience="*res://src/autoloads/bgm_player_amb.gd"
-AudioService="*res://src/autoloads/audio_service.gd"
-NodeSaveService="*res://src/systems/save/node_save_service.gd"
-Utils="*res://src/systems/utils/utils.gd"
+Game="*uid://s8exb3p56o1o"
+SceneManager="*uid://crvymmbd1s00h"
+Music="*uid://xt4g4n5bsqau"
+Ambience="*uid://dtwg6a1rohxp4"
+AudioService="*uid://dk4vlf7ervpgs"
+NodeSaveService="*uid://j13s8ehd4488"
+Utils="*uid://be3ebjrt2wqmt"
 
 [debug]
 
@@ -45,6 +49,10 @@ window/size/viewport_width=480
 window/size/viewport_height=270
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
+
+[dotnet]
+
+project/assembly_name="YUME NIKKI - demake"
 
 [editor_plugins]
 
@@ -187,10 +195,10 @@ environment/ssao/quality=0
 environment/ssil/quality=0
 anti_aliasing/screen_space_roughness_limiter/enabled=false
 environment/glow/upscale_mode=0
-environment/screen_space_reflection/roughness_quality=0
 environment/subsurface_scattering/subsurface_scattering_quality=0
 environment/volumetric_fog/use_filter=0
 environment/defaults/default_clear_color=Color(0.31802, 0.31802, 0.31802, 1)
+environment/screen_space_reflection/roughness_quality=0
 
 [shader_globals]
 
