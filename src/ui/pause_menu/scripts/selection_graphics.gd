@@ -20,6 +20,6 @@ func _ready() -> void:
 	cam_reduction.toggled.connect(	func(_truth: bool): 
 		CameraHolder.motion_reduction = _truth)
 	bloom.toggled.connect(			func(_truth: bool): 
-		GameManager.global_screen_effect.environment.glow_enabled = _truth
-		GameManager.bloom = _truth)
+		Game.global_screen_effect.environment.glow_enabled = _truth
+		Game.bloom = _truth)
 		

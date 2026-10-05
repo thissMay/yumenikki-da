@@ -18,7 +18,7 @@ config/name="YUME NIKKI - demake"
 config/version="0.0.0"
 config/tags=PackedStringArray("concept", "fangame", "wip")
 run/main_scene="uid://l35l1wxusycr"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 run/max_fps=60
 config/icon="uid://bkfvddho8eetw"
 config/windows_native_icon="res://game_icon.ico"
@@ -31,17 +31,12 @@ general/3d_panning_strength=1.0
 
 [autoload]
 
-Game="*uid://s8exb3p56o1o"
+Utils="*uid://be3ebjrt2wqmt"
+GameBootstrapper="*uid://s8exb3p56o1o"
+Global="*uid://cnshp56dbcnrv"
 SceneManager="*uid://crvymmbd1s00h"
-Music="*uid://xt4g4n5bsqau"
-Ambience="*uid://dtwg6a1rohxp4"
 AudioService="*uid://dk4vlf7ervpgs"
 NodeSaveService="*uid://j13s8ehd4488"
-Utils="*uid://be3ebjrt2wqmt"
-
-[debug]
-
-settings/stdout/verbose_stdout=true
 
 [display]
 

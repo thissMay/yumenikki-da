@@ -12,8 +12,8 @@ const ZERO_VOLUME = -50
 	set(_is_affected):
 		affected_by_timescale = _is_affected
 		match _is_affected:
-			true: Game.true_time_scale_changed.connect(set_timescale_factor)
-			false: Game.true_time_scale_changed.disconnect(set_timescale_factor)
+			true: Global.true_time_scale_changed.connect(set_timescale_factor)
+			false: Global.true_time_scale_changed.disconnect(set_timescale_factor)
 var timescale_factor: float = 0
 
 func _ready() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=4 uid="uid://bwnkls72smobx"]
+[gd_scene format=4 uid="uid://bwnkls72smobx"]
 
 [ext_resource type="Script" uid="uid://b1ofr4umso5jf" path="res://src/systems/scenes/game/game_scene.gd" id="1_euwtw"]
 [ext_resource type="Texture2D" uid="uid://b405u21xqpgib" path="res://src/levels/_dream/melancholy_meadows/sprites/bg_far.png" id="2_g85wj"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://b0qn4i2rch4o6" path="res://src/images/rain_drop.png" id="5_ldcx7"]
 [ext_resource type="PackedScene" uid="uid://bku0eqinjwowa" path="res://src/levels/__ignore/door.tscn" id="5_y5lum"]
 [ext_resource type="Script" uid="uid://bhphmk5huga7w" path="res://src/systems/sequencing/event/actors/change_default_footstep.gd" id="6_4w7n5"]
-[ext_resource type="Script" uid="uid://d3r72epfndsge" path="res://src/autoloads/panorama_system.gd" id="6_rxk0l"]
 [ext_resource type="PackedScene" uid="uid://ryhx8o46er7i" path="res://src/player/2D/madotsuki/madotsuki.tscn" id="7_3ko4r"]
 [ext_resource type="Shader" uid="uid://dqxrs4a4y611c" path="res://src/shaders/panorama/linear.gdshader" id="7_hbw2p"]
 [ext_resource type="Resource" uid="uid://buu266lqaqu16" path="res://src/audio/footsteps/grass.tres" id="7_ldcx7"]
@@ -231,7 +230,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("NoiseTexture2D_ehtqx")
-script = ExtResource("6_rxk0l")
+
 
 [node name="camera_handler" parent="." node_paths=PackedStringArray("initial_target") instance=ExtResource("2_goouj")]
 position = Vector2(-208, 256)

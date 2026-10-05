@@ -111,13 +111,3 @@ class Instance:
 		if pl_exists(): return _pl.is_moving
 		return pl_exists()
 # --- 
-func set_values(_val: SBVariables) -> void: 
-	if _val == null: 
-		values = PLVariables.new()
-		values.resource_name = "pl_variables"
-		values.resource_local_to_scene = true
-		return
-	
-	values = _val.duplicate()
-	values.resource_name = "pl_variables"
-	values.resource_local_to_scene = true

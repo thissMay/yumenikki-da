@@ -1,7 +1,5 @@
-@tool
-
 class_name SentientBase
-extends Entity
+extends CharacterBody2D
 
 @export var values: SBVariables = SBVariables.new():
 	get = get_values,
@@ -35,10 +33,6 @@ const WALK_NOISE_MULTI: 	float = 1
 const SPRINT_NOISE_MULTI: 	float = 2.2
 const SNEAK_NOISE_MULTI: 	float = 0.3
 
-# - components (sprites).
-@export var sprite_renderer: Sprite2D
-@export var shadow_renderer: Sprite2D 
-
 # - direction
 enum compass_headings {
 	NORTH = 0,
@@ -55,15 +49,21 @@ var direction: Vector2 = Vector2(0, 1):
 var lerped_direction: Vector2 = Vector2.DOWN
 
 # - mobility
-var speed: 				float = 0
+var speed: 				float = 0: 
+	get: return self.velocity.length()
+var real_speed:
+	get: return self.get_real_velocity().length();
+	
 var speed_multiplier: 	float = 1
 
 # - noise
-var noise: 			float = 0
+var noise: 			float = 0:
+	get: return (self.speed / self.MAX_SPEED) * noise_multi
 var noise_multi: 	float = 1
 
 # - flags
-var is_moving: 		bool = false
+var is_moving: 		bool = false:
+	get: return speed > 0
 
 # - initial.
 func _ready() -> void:
@@ -99,14 +99,9 @@ func _physics_update(_delta: float) -> void:
 	(self as SentientBase).move_and_slide()
 	components._physics_update(_delta)
 func _update(_delta: float) -> void:
-	speed 		= self.velocity.length()
-	is_moving 	= speed > 0	
-	noise 		= (self.speed / self.MAX_SPEED) * noise_multi
-	
 	components._update(_delta)
 	handle_desired_velocity(vel_input)
-func _sb_input(_event: InputEvent) -> void: 
-	pass
+func _sb_input(_event: InputEvent) -> void: pass
 
 # - speed handling.
 func handle_velocity() -> void:

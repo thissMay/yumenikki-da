@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmrcvsmoim6ds"]
+[gd_scene format=3 uid="uid://cmrcvsmoim6ds"]
 
-[ext_resource type="Script" uid="uid://d3bdvqoc4cp3l" path="res://src/systems/tools/ADT/stack/ui_stack_node.gd" id="1_284qf"]
+[ext_resource type="Script" uid="uid://d3bdvqoc4cp3l" path="res://src/helpers/collections/stack/ui_stack_node.gd" id="1_284qf"]
 [ext_resource type="Texture2D" uid="uid://cutsad1ra2hkr" path="res://src/images/ui/pause_menu_options.png" id="2_284qf"]
-[ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://src/global_theme.tres" id="3_8x2b2"]
+[ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://themes/global_theme.tres" id="3_8x2b2"]
 [ext_resource type="Script" uid="uid://dhvrb58iweuo0" path="res://src/ui/gui/gui_button.gd" id="4_4ded1"]
 [ext_resource type="Shader" uid="uid://bhdcejnx8m6be" path="res://src/shaders/ui/button_texture_grad_mask.gdshader" id="5_kkv46"]
-[ext_resource type="LabelSettings" uid="uid://dbxux4dchsxxt" path="res://src/global_label_settings.tres" id="6_1gbbf"]
+[ext_resource type="LabelSettings" uid="uid://dbxux4dchsxxt" path="res://themes/global_label_settings.tres" id="6_1gbbf"]
 [ext_resource type="Script" uid="uid://sptd6yjcf24k" path="res://src/ui/abstract_button.gd" id="7_mdc0a"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7bwuw"]

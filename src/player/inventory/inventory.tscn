@@ -1,8 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://bl24ldxfxb508"]
+[gd_scene format=3 uid="uid://bl24ldxfxb508"]
 
 [ext_resource type="Texture2D" uid="uid://bthqacspvj0dv" path="res://src/player/inventory/menu/petal_wheel.png" id="1_1btln"]
 [ext_resource type="Texture2D" uid="uid://x8um7uotrwnv" path="res://src/player/inventory/menu/what.png" id="1_hnmhd"]
-[ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://src/global_theme.tres" id="1_jwvlf"]
+[ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://themes/global_theme.tres" id="1_jwvlf"]
 [ext_resource type="Texture2D" uid="uid://cs08f133r86y2" path="res://src/player/inventory/menu/mado.png" id="2_3hyeo"]
 [ext_resource type="Script" uid="uid://c26ss6y7br14h" path="res://src/player/inventory/pl_inventory.gd" id="2_6jr1t"]
 [ext_resource type="Shader" uid="uid://cqc638thw4csm" path="res://src/shaders/masks/multiply.gdshader" id="2_f6805"]
@@ -24,7 +24,7 @@
 
 [sub_resource type="GDScript" id="GDScript_8vhxa"]
 resource_name = "pink_petal"
-script/source = "extends State
+script/source = "extends LegacyState
 
 @export var section: Control
 @export var mado: Sprite2D
@@ -95,7 +95,7 @@ func handle_animation_exit() -> void:
 
 [sub_resource type="GDScript" id="GDScript_ssbrt"]
 resource_name = "white_petal"
-script/source = "extends State
+script/source = "extends LegacyState
 
 @export var section: Control
 @export var mado: Sprite2D
@@ -184,7 +184,7 @@ colors = PackedColorArray(0.30652142, 0.18194738, 0.40326485, 1, 1, 1, 1, 1)
 gradient = SubResource("Gradient_3gg6c")
 fill_from = Vector2(1, 1)
 
-[node name="inventory" type="Control" node_paths=PackedStringArray("fsm", "display", "item_container", "favourite_icon")]
+[node name="inventory" type="Control" unique_id=1870866390 node_paths=PackedStringArray("fsm", "display", "item_container", "favourite_icon")]
 clip_contents = true
 custom_minimum_size = Vector2(480, 270)
 layout_mode = 3
@@ -201,7 +201,7 @@ display = NodePath("display")
 item_container = NodePath("display/pink_petal_effects/inv_container/margin/items")
 favourite_icon = NodePath("display/pink_petal_effects/favourite_icon")
 
-[node name="inventory_fsm" type="Node" parent="." node_paths=PackedStringArray("white_petal", "pink_petal", "white_petal_button", "pink_petal_button", "deequip_prompt", "effect_indicator", "initial_state")]
+[node name="inventory_fsm" type="Node" parent="." unique_id=2087946985 node_paths=PackedStringArray("white_petal", "pink_petal", "white_petal_button", "pink_petal_button", "deequip_prompt", "effect_indicator", "initial_state")]
 script = ExtResource("3_im28w")
 white_petal = NodePath("../display/white_petal_stats")
 pink_petal = NodePath("../display/pink_petal_effects")
@@ -212,7 +212,7 @@ effect_indicator = NodePath("../display/pink_petal_effects/deequip/texture_rende
 initial_state = NodePath("PINK_PETAL")
 metadata/_custom_type_script = "uid://co5edhtkgx3g8"
 
-[node name="PINK_PETAL" type="Node" parent="inventory_fsm" node_paths=PackedStringArray("section", "mado", "effects", "container", "items_container", "spr_petal_wheel", "overlay_modulate", "transitions")]
+[node name="PINK_PETAL" type="Node" parent="inventory_fsm" unique_id=12055926 node_paths=PackedStringArray("section", "mado", "effects", "container", "items_container", "spr_petal_wheel", "overlay_modulate")]
 script = SubResource("GDScript_8vhxa")
 section = NodePath("../../display/pink_petal_effects")
 mado = NodePath("../../display/pink_petal_effects/mado")
@@ -221,10 +221,9 @@ container = NodePath("../../display/pink_petal_effects/inv_container")
 items_container = NodePath("../../display/pink_petal_effects/inv_container/margin/items")
 spr_petal_wheel = NodePath("../../display/spr_petal_wheel")
 overlay_modulate = NodePath("../../display/multiply_modulate")
-transitions = [NodePath("../WHITE_PETAL")]
 metadata/_custom_type_script = "uid://r0etyaq71dla"
 
-[node name="WHITE_PETAL" type="Node" parent="inventory_fsm" node_paths=PackedStringArray("section", "mado", "stats", "container", "spr_petal_wheel", "overlay_modulate", "transitions")]
+[node name="WHITE_PETAL" type="Node" parent="inventory_fsm" unique_id=1496976500 node_paths=PackedStringArray("section", "mado", "stats", "container", "spr_petal_wheel", "overlay_modulate")]
 script = SubResource("GDScript_ssbrt")
 section = NodePath("../../display/white_petal_stats")
 mado = NodePath("../../display/white_petal_stats/mado")
@@ -232,10 +231,9 @@ stats = NodePath("../../display/white_petal_stats/stats")
 container = NodePath("../../display/white_petal_stats/stats_container")
 spr_petal_wheel = NodePath("../../display/spr_petal_wheel")
 overlay_modulate = NodePath("../../display/multiply_modulate")
-transitions = [NodePath("../PINK_PETAL")]
 metadata/_custom_type_script = "uid://r0etyaq71dla"
 
-[node name="display" type="Control" parent="."]
+[node name="display" type="Control" parent="." unique_id=4391683]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -243,7 +241,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="bw_invert" type="TextureRect" parent="display"]
+[node name="bw_invert" type="TextureRect" parent="display" unique_id=230545064]
 material = SubResource("ShaderMaterial_8vhxa")
 clip_contents = true
 layout_mode = 1
@@ -256,7 +254,7 @@ texture = SubResource("PlaceholderTexture2D_qtnvx")
 expand_mode = 2
 stretch_mode = 1
 
-[node name="multiply_modulate" type="ColorRect" parent="display"]
+[node name="multiply_modulate" type="ColorRect" parent="display" unique_id=1300849539]
 material = SubResource("ShaderMaterial_x31xm")
 clip_contents = true
 layout_mode = 1
@@ -267,13 +265,13 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.975233, 0.589056, 0.846138, 1)
 
-[node name="spr_petal_wheel" type="Sprite2D" parent="display"]
+[node name="spr_petal_wheel" type="Sprite2D" parent="display" unique_id=376396168]
 modulate = Color(1, 1, 1, 0.490196)
 clip_children = 2
 position = Vector2(0, 135)
 texture = ExtResource("1_1btln")
 
-[node name="pink_petal_effects" type="Control" parent="display"]
+[node name="pink_petal_effects" type="Control" parent="display" unique_id=1227477010]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -281,7 +279,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="inv_container" type="NinePatchRect" parent="display/pink_petal_effects"]
+[node name="inv_container" type="NinePatchRect" parent="display/pink_petal_effects" unique_id=1919350928]
 layout_mode = 0
 offset_left = 184.0
 offset_top = 80.0
@@ -293,7 +291,7 @@ patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
 
-[node name="margin" type="MarginContainer" parent="display/pink_petal_effects/inv_container"]
+[node name="margin" type="MarginContainer" parent="display/pink_petal_effects/inv_container" unique_id=1840247002]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -306,26 +304,26 @@ theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
-[node name="items" type="GridContainer" parent="display/pink_petal_effects/inv_container/margin"]
+[node name="items" type="GridContainer" parent="display/pink_petal_effects/inv_container/margin" unique_id=354358595]
 layout_mode = 2
 mouse_filter = 2
 columns = 3
 
-[node name="mado" type="Sprite2D" parent="display/pink_petal_effects"]
+[node name="mado" type="Sprite2D" parent="display/pink_petal_effects" unique_id=1846836069]
 position = Vector2(8, 40)
 texture = ExtResource("2_3hyeo")
 centered = false
 
-[node name="effects" type="Sprite2D" parent="display/pink_petal_effects"]
+[node name="effects" type="Sprite2D" parent="display/pink_petal_effects" unique_id=827034984]
 position = Vector2(192, 32)
 texture = ExtResource("3_qqfc2")
 centered = false
 
-[node name="favourite_icon" type="Sprite2D" parent="display/pink_petal_effects"]
+[node name="favourite_icon" type="Sprite2D" parent="display/pink_petal_effects" unique_id=1353806436]
 position = Vector2(190, 72)
 texture = ExtResource("19_3gg6c")
 
-[node name="deequip" type="Control" parent="display/pink_petal_effects" node_paths=PackedStringArray("texture_renderer", "button")]
+[node name="deequip" type="Control" parent="display/pink_petal_effects" unique_id=717426593 node_paths=PackedStringArray("texture_renderer", "button")]
 custom_minimum_size = Vector2(36, 48)
 anchors_preset = 0
 offset_left = 142.0
@@ -342,7 +340,7 @@ hover_cell = 1
 press_cell = 1
 metadata/_custom_type_script = "uid://bqp8xu5yrv1tn"
 
-[node name="texture_renderer" type="Sprite2D" parent="display/pink_petal_effects/deequip"]
+[node name="texture_renderer" type="Sprite2D" parent="display/pink_petal_effects/deequip" unique_id=837686858]
 position = Vector2(-6, 0)
 texture = ExtResource("20_l1wax")
 centered = false
@@ -353,7 +351,7 @@ frame_dimensions = Vector2i(48, 48)
 frame_h_count = 2
 progress = 1
 
-[node name="button" type="Control" parent="display/pink_petal_effects/deequip" node_paths=PackedStringArray("button")]
+[node name="button" type="Control" parent="display/pink_petal_effects/deequip" unique_id=1954792660 node_paths=PackedStringArray("button")]
 anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -361,8 +359,7 @@ mouse_filter = 1
 script = ExtResource("15_kisvh")
 button = NodePath("button")
 
-[node name="button" type="BaseButton" parent="display/pink_petal_effects/deequip/button"]
-_import_path = NodePath("")
+[node name="button" type="BaseButton" parent="display/pink_petal_effects/deequip/button" unique_id=1511924175]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -404,6 +401,7 @@ grow_vertical = 1
 rotation = 0.0
 scale = Vector2(1, 1)
 pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
 size_flags_horizontal = 1
 size_flags_vertical = 1
 size_flags_stretch_ratio = 1.0
@@ -443,7 +441,7 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = null
 
-[node name="white_petal_stats" type="Control" parent="display"]
+[node name="white_petal_stats" type="Control" parent="display" unique_id=1855979060]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -452,18 +450,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="stats_container" parent="display/white_petal_stats" instance=ExtResource("17_6jr1t")]
+[node name="stats_container" parent="display/white_petal_stats" unique_id=533752610 instance=ExtResource("17_6jr1t")]
 layout_mode = 1
 offset_left = 32.0
 offset_top = 80.0
 offset_right = -168.0
 offset_bottom = -14.0
 
-[node name="mado" type="Sprite2D" parent="display/white_petal_stats"]
+[node name="mado" type="Sprite2D" parent="display/white_petal_stats" unique_id=1345969624]
 position = Vector2(384, 144)
 texture = ExtResource("12_tlelv")
 
-[node name="eye_l" type="Sprite2D" parent="display/white_petal_stats/mado"]
+[node name="eye_l" type="Sprite2D" parent="display/white_petal_stats/mado" unique_id=792739245]
 position = Vector2(-28, -6)
 texture = ExtResource("20_ub6k2")
 hframes = 3
@@ -475,7 +473,7 @@ frame_dimensions = Vector2i(32, 22)
 frame_h_count = 3
 metadata/_custom_type_script = "uid://cdjphp77kgyqr"
 
-[node name="eye_r" type="Sprite2D" parent="display/white_petal_stats/mado"]
+[node name="eye_r" type="Sprite2D" parent="display/white_petal_stats/mado" unique_id=1446204671]
 position = Vector2(28, -6)
 texture = ExtResource("20_ub6k2")
 flip_h = true
@@ -488,12 +486,12 @@ frame_dimensions = Vector2i(32, 22)
 frame_h_count = 3
 metadata/_custom_type_script = "uid://cdjphp77kgyqr"
 
-[node name="stats" type="Sprite2D" parent="display/white_petal_stats"]
+[node name="stats" type="Sprite2D" parent="display/white_petal_stats" unique_id=609763293]
 position = Vector2(42, 32)
 texture = ExtResource("13_jwvlf")
 centered = false
 
-[node name="heads_up" type="TextureRect" parent="display"]
+[node name="heads_up" type="TextureRect" parent="display" unique_id=260466736]
 material = SubResource("CanvasItemMaterial_kisvh")
 layout_mode = 1
 anchors_preset = 15
@@ -504,7 +502,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_6jr1t")
 
-[node name="Label" type="Label" parent="display/heads_up"]
+[node name="Label" type="Label" parent="display/heads_up" unique_id=1845852616]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -517,18 +515,18 @@ text = "press ALT to close inventory."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="select" type="CenterContainer" parent="."]
+[node name="select" type="CenterContainer" parent="." unique_id=1688507394]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 32.0
 grow_horizontal = 2
 
-[node name="separator" type="HBoxContainer" parent="select"]
+[node name="separator" type="HBoxContainer" parent="select" unique_id=1579747047]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="pink" type="Control" parent="select/separator" node_paths=PackedStringArray("texture_renderer", "button")]
+[node name="pink" type="Control" parent="select/separator" unique_id=1690722687 node_paths=PackedStringArray("texture_renderer", "button")]
 custom_minimum_size = Vector2(27, 14)
 layout_mode = 2
 mouse_filter = 1
@@ -539,7 +537,7 @@ hover_cell = 1
 press_cell = 2
 metadata/_custom_type_script = "uid://bqp8xu5yrv1tn"
 
-[node name="texture_renderer" type="Sprite2D" parent="select/separator/pink"]
+[node name="texture_renderer" type="Sprite2D" parent="select/separator/pink" unique_id=1000885573]
 texture = ExtResource("27_cgott")
 centered = false
 vframes = 3
@@ -548,7 +546,7 @@ strip_style = 1
 frame_dimensions = Vector2i(27, 14)
 frame_v_count = 3
 
-[node name="button" type="Control" parent="select/separator/pink" node_paths=PackedStringArray("button")]
+[node name="button" type="Control" parent="select/separator/pink" unique_id=67006175 node_paths=PackedStringArray("button")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -559,8 +557,7 @@ mouse_filter = 1
 script = ExtResource("15_kisvh")
 button = NodePath("button")
 
-[node name="button" type="BaseButton" parent="select/separator/pink/button"]
-_import_path = NodePath("")
+[node name="button" type="BaseButton" parent="select/separator/pink/button" unique_id=1894762225]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -602,6 +599,7 @@ grow_vertical = 1
 rotation = 0.0
 scale = Vector2(1, 1)
 pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
 size_flags_horizontal = 1
 size_flags_vertical = 1
 size_flags_stretch_ratio = 1.0
@@ -641,7 +639,7 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = null
 
-[node name="white" type="Control" parent="select/separator" node_paths=PackedStringArray("texture_renderer", "button")]
+[node name="white" type="Control" parent="select/separator" unique_id=1733245051 node_paths=PackedStringArray("texture_renderer", "button")]
 custom_minimum_size = Vector2(27, 14)
 layout_mode = 2
 mouse_filter = 1
@@ -652,7 +650,7 @@ hover_cell = 1
 press_cell = 2
 metadata/_custom_type_script = "uid://bqp8xu5yrv1tn"
 
-[node name="texture_renderer" type="Sprite2D" parent="select/separator/white"]
+[node name="texture_renderer" type="Sprite2D" parent="select/separator/white" unique_id=361022309]
 texture = ExtResource("17_qtnvx")
 centered = false
 vframes = 3
@@ -661,7 +659,7 @@ strip_style = 1
 frame_dimensions = Vector2i(27, 14)
 frame_v_count = 3
 
-[node name="button" type="Control" parent="select/separator/white" node_paths=PackedStringArray("button")]
+[node name="button" type="Control" parent="select/separator/white" unique_id=82012449 node_paths=PackedStringArray("button")]
 anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -669,8 +667,7 @@ mouse_filter = 1
 script = ExtResource("15_kisvh")
 button = NodePath("button")
 
-[node name="button" type="BaseButton" parent="select/separator/white/button"]
-_import_path = NodePath("")
+[node name="button" type="BaseButton" parent="select/separator/white/button" unique_id=913981858]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -712,6 +709,7 @@ grow_vertical = 1
 rotation = 0.0
 scale = Vector2(1, 1)
 pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
 size_flags_horizontal = 1
 size_flags_vertical = 1
 size_flags_stretch_ratio = 1.0

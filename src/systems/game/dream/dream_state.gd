@@ -1,4 +1,4 @@
-extends State
+extends LegacyState
 
 @export var hud: PLHUDManager
 

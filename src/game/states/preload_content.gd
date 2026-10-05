@@ -1,4 +1,4 @@
-extends State
+extends LegacyState
 
 func _state_enter() -> void: 
 	await Game.main_tree.process_frame

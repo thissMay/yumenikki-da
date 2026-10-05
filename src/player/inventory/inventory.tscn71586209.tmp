@@ -1,0 +1,750 @@
+[gd_scene format=3 uid="uid://bl24ldxfxb508"]
+
+[ext_resource type="Texture2D" uid="uid://bthqacspvj0dv" path="res://src/player/inventory/menu/petal_wheel.png" id="1_1btln"]
+[ext_resource type="Texture2D" uid="uid://x8um7uotrwnv" path="res://src/player/inventory/menu/what.png" id="1_hnmhd"]
+[ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://src/global_theme.tres" id="1_jwvlf"]
+[ext_resource type="Texture2D" uid="uid://cs08f133r86y2" path="res://src/player/inventory/menu/mado.png" id="2_3hyeo"]
+[ext_resource type="Script" uid="uid://c26ss6y7br14h" path="res://src/player/inventory/pl_inventory.gd" id="2_6jr1t"]
+[ext_resource type="Shader" uid="uid://cqc638thw4csm" path="res://src/shaders/masks/multiply.gdshader" id="2_f6805"]
+[ext_resource type="Script" uid="uid://d1yh57n73ftwa" path="res://src/player/inventory/pl_inventory_fsm.gd" id="3_im28w"]
+[ext_resource type="Texture2D" uid="uid://c6ybhwpcy6a4b" path="res://src/player/inventory/menu/inv_eff.png" id="3_qqfc2"]
+[ext_resource type="Shader" uid="uid://hsx1wbnb1rif" path="res://src/shaders/screen_overlay/bw_invert_blur.gdshader" id="4_f6805"]
+[ext_resource type="Texture2D" uid="uid://bwu4uvhnwkx8j" path="res://src/player/inventory/menu/white_petal_stats.png" id="12_tlelv"]
+[ext_resource type="Texture2D" uid="uid://4hm3ms1l4bg" path="res://src/player/inventory/menu/inv_stats.png" id="13_jwvlf"]
+[ext_resource type="Script" uid="uid://sptd6yjcf24k" path="res://src/ui/abstract_button.gd" id="15_kisvh"]
+[ext_resource type="Script" uid="uid://bqp8xu5yrv1tn" path="res://src/ui/gui/gui_texture_button.gd" id="17_2m1ok"]
+[ext_resource type="PackedScene" uid="uid://demusraqmvy5s" path="res://src/player/inventory/inventory_effect_stats.gd.tscn" id="17_6jr1t"]
+[ext_resource type="Texture2D" uid="uid://c4n8hvjbra1w" path="res://src/player/inventory/menu/select_white_petal.png" id="17_qtnvx"]
+[ext_resource type="Script" uid="uid://dlvvx5cthl4bp" path="res://src/systems/utils/spritesheet_formatter.gd" id="18_3gg6c"]
+[ext_resource type="Texture2D" uid="uid://dm00pibk04dax" path="res://src/player/inventory/inventory_hotkeys.png" id="19_3gg6c"]
+[ext_resource type="Texture2D" uid="uid://kpymowo5rs5d" path="res://src/player/inventory/inv_effect_indicator.png" id="20_l1wax"]
+[ext_resource type="Texture2D" uid="uid://cpirdgkdrfldh" path="res://src/player/inventory/menu/white_petal_eyes.png" id="20_ub6k2"]
+[ext_resource type="Script" uid="uid://cdjphp77kgyqr" path="res://src/systems/utils/spritesheet_formatter_animated.gd" id="21_cgott"]
+[ext_resource type="Texture2D" uid="uid://b0264v3e43oil" path="res://src/player/inventory/menu/select_pink_petal.png" id="27_cgott"]
+
+[sub_resource type="GDScript" id="GDScript_8vhxa"]
+resource_name = "pink_petal"
+script/source = "extends LegacyState
+
+@export var section: Control
+@export var mado: Sprite2D
+@export var effects: Sprite2D
+@export var container: Control
+@export var items_container: Control
+
+@export var spr_petal_wheel: Sprite2D
+
+@export var overlay_modulate: ColorRect
+
+var tween: Tween
+
+
+func _state_enter() -> void: 
+	if 	items_container.get_children().size()  > 0:
+		items_container.get_children()[0].grab_focus()
+	
+	section.modulate.a = 0
+	section.visible = true
+	
+	mado.position.x -= 10
+	effects.position.x -= 20
+	container.position.x -= 35
+	
+	if tween != null: tween.kill()
+	tween = self.create_tween()
+	
+	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	tween.set_parallel()
+	
+	tween.tween_property(section, \"modulate:a\", 1, 0.5)
+	
+	tween.tween_property(mado, \"position:x\", 8, 0.5)
+	tween.tween_property(effects, \"position:x\", 192, 0.5)
+	tween.tween_property(container, \"position:x\", 184, 0.5)
+	
+	tween.tween_property(overlay_modulate, \"modulate\", Color(\"f996d8\"), 0.5)
+	
+	handle_animation_enter()
+	
+func _state_exit() -> void:
+	if tween != null: tween.kill()
+	tween = self.create_tween()
+	
+	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	tween.set_parallel()	
+	
+	tween.tween_property(section, \"modulate:a\", 0, 0.5)
+	
+	tween.tween_property(mado, \"position:x\", 8 - 15, 0.5)
+	tween.tween_property(effects, \"position:x\", 192 - 20, 0.5)
+	tween.tween_property(container, \"position:x\", 184 - 35, 0.5)
+	
+	handle_animation_exit()
+	await tween.finished
+	
+	section.visible = false
+
+func handle_animation_enter() -> void:
+	spr_petal_wheel.rotation_degrees = -90
+	
+	tween.tween_property(spr_petal_wheel, \"rotation_degrees\", 0, 0.5)
+func handle_animation_exit() -> void: 
+	tween.tween_property(spr_petal_wheel, \"rotation_degrees\", 90, 0.5)
+	
+"
+
+[sub_resource type="GDScript" id="GDScript_ssbrt"]
+resource_name = "white_petal"
+script/source = "extends State
+
+@export var section: Control
+@export var mado: Sprite2D
+@export var stats: Sprite2D
+@export var container: Control
+
+@export var spr_petal_wheel: Sprite2D
+
+var tween: Tween
+var player_stats_changed: EventListener
+#const default_player_stats := preload(\"res://src/player/madotsuki/effects/_none/_default.tres\")
+
+@export var overlay_modulate: ColorRect
+
+func _ready() -> void:
+	pass
+func _state_enter() -> void: 
+	container.update_stats_display()
+	
+	section.modulate.a = 0
+	section.visible = true
+	
+	mado.position.x += 20
+	stats.position.x += 20
+	container.position.x += 35
+	
+	if tween != null: tween.kill()
+	tween = self.create_tween()
+	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	tween.set_parallel()
+	
+	tween.tween_property(mado, \"position:x\", 395, 0.5)
+	tween.tween_property(stats, \"position:x\", 42, 0.5)
+	tween.tween_property(container, \"position:x\", 32, 0.5)
+	
+	tween.tween_property(section, \"modulate:a\", 1, 0.5)
+	
+	tween.tween_property(overlay_modulate, \"modulate\", Color(\"fae4ee\"), 0.5)
+	
+	handle_animation_enter()
+	
+func _state_exit() -> void:
+	if tween != null: tween.kill()
+	tween = self.create_tween()
+	
+	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	tween.set_parallel()	
+	
+	tween.tween_property(mado, \"position:x\", 395 + 20, 0.5)
+	tween.tween_property(stats, \"position:x\", 42 + 15, 0.5)
+	tween.tween_property(container, \"position:x\", 48 + 35, 0.5)
+	
+	tween.tween_property(section, \"modulate:a\", 0, 0.5)
+	handle_animation_exit()
+	await tween.finished
+	
+	section.visible = false
+
+func handle_animation_enter() -> void:
+	spr_petal_wheel.rotation_degrees = 180
+	tween.tween_property(spr_petal_wheel, \"rotation_degrees\", 270, 0.5)
+func handle_animation_exit() -> void: pass
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8vhxa"]
+shader = ExtResource("4_f6805")
+shader_parameter/blur_amount = 1.5
+shader_parameter/pixel_size = 380.0
+shader_parameter/contrast = 0.5
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qtnvx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x31xm"]
+shader = ExtResource("2_f6805")
+shader_parameter/overlay_modulate = Color(0, 0, 0, 1)
+shader_parameter/transparency = 0.0
+shader_parameter/optional_gradient = false
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kisvh"]
+blend_mode = 3
+
+[sub_resource type="Gradient" id="Gradient_3gg6c"]
+colors = PackedColorArray(0.30652142, 0.18194738, 0.40326485, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6jr1t"]
+gradient = SubResource("Gradient_3gg6c")
+fill_from = Vector2(1, 1)
+
+[node name="inventory" type="Control" unique_id=1870866390 node_paths=PackedStringArray("fsm", "display", "item_container", "favourite_icon")]
+clip_contents = true
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_jwvlf")
+script = ExtResource("2_6jr1t")
+fsm = NodePath("inventory_fsm")
+display = NodePath("display")
+item_container = NodePath("display/pink_petal_effects/inv_container/margin/items")
+favourite_icon = NodePath("display/pink_petal_effects/favourite_icon")
+
+[node name="inventory_fsm" type="Node" parent="." unique_id=2087946985 node_paths=PackedStringArray("white_petal", "pink_petal", "white_petal_button", "pink_petal_button", "deequip_prompt", "effect_indicator", "initial_state")]
+script = ExtResource("3_im28w")
+white_petal = NodePath("../display/white_petal_stats")
+pink_petal = NodePath("../display/pink_petal_effects")
+white_petal_button = NodePath("../select/separator/white")
+pink_petal_button = NodePath("../select/separator/pink")
+deequip_prompt = NodePath("../display/pink_petal_effects/deequip")
+effect_indicator = NodePath("../display/pink_petal_effects/deequip/texture_renderer")
+initial_state = NodePath("PINK_PETAL")
+metadata/_custom_type_script = "uid://co5edhtkgx3g8"
+
+[node name="PINK_PETAL" type="Node" parent="inventory_fsm" unique_id=12055926 node_paths=PackedStringArray("section", "mado", "effects", "container", "items_container", "spr_petal_wheel", "overlay_modulate")]
+script = SubResource("GDScript_8vhxa")
+section = NodePath("../../display/pink_petal_effects")
+mado = NodePath("../../display/pink_petal_effects/mado")
+effects = NodePath("../../display/pink_petal_effects/effects")
+container = NodePath("../../display/pink_petal_effects/inv_container")
+items_container = NodePath("../../display/pink_petal_effects/inv_container/margin/items")
+spr_petal_wheel = NodePath("../../display/spr_petal_wheel")
+overlay_modulate = NodePath("../../display/multiply_modulate")
+metadata/_custom_type_script = "uid://r0etyaq71dla"
+
+[node name="WHITE_PETAL" type="Node" parent="inventory_fsm" unique_id=1496976500 node_paths=PackedStringArray("section", "mado", "stats", "container", "spr_petal_wheel", "overlay_modulate")]
+script = SubResource("GDScript_ssbrt")
+section = NodePath("../../display/white_petal_stats")
+mado = NodePath("../../display/white_petal_stats/mado")
+stats = NodePath("../../display/white_petal_stats/stats")
+container = NodePath("../../display/white_petal_stats/stats_container")
+spr_petal_wheel = NodePath("../../display/spr_petal_wheel")
+overlay_modulate = NodePath("../../display/multiply_modulate")
+metadata/_custom_type_script = "uid://r0etyaq71dla"
+
+[node name="display" type="Control" parent="." unique_id=4391683]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bw_invert" type="TextureRect" parent="display" unique_id=230545064]
+material = SubResource("ShaderMaterial_8vhxa")
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("PlaceholderTexture2D_qtnvx")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="multiply_modulate" type="ColorRect" parent="display" unique_id=1300849539]
+material = SubResource("ShaderMaterial_x31xm")
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.975233, 0.589056, 0.846138, 1)
+
+[node name="spr_petal_wheel" type="Sprite2D" parent="display" unique_id=376396168]
+modulate = Color(1, 1, 1, 0.490196)
+clip_children = 2
+position = Vector2(0, 135)
+texture = ExtResource("1_1btln")
+
+[node name="pink_petal_effects" type="Control" parent="display" unique_id=1227477010]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="inv_container" type="NinePatchRect" parent="display/pink_petal_effects" unique_id=1919350928]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 80.0
+offset_right = 448.0
+offset_bottom = 240.0
+texture = ExtResource("1_hnmhd")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="margin" type="MarginContainer" parent="display/pink_petal_effects/inv_container" unique_id=1840247002]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="items" type="GridContainer" parent="display/pink_petal_effects/inv_container/margin" unique_id=354358595]
+layout_mode = 2
+mouse_filter = 2
+columns = 3
+
+[node name="mado" type="Sprite2D" parent="display/pink_petal_effects" unique_id=1846836069]
+position = Vector2(8, 40)
+texture = ExtResource("2_3hyeo")
+centered = false
+
+[node name="effects" type="Sprite2D" parent="display/pink_petal_effects" unique_id=827034984]
+position = Vector2(192, 32)
+texture = ExtResource("3_qqfc2")
+centered = false
+
+[node name="favourite_icon" type="Sprite2D" parent="display/pink_petal_effects" unique_id=1353806436]
+position = Vector2(190, 72)
+texture = ExtResource("19_3gg6c")
+
+[node name="deequip" type="Control" parent="display/pink_petal_effects" unique_id=717426593 node_paths=PackedStringArray("texture_renderer", "button")]
+custom_minimum_size = Vector2(36, 48)
+anchors_preset = 0
+offset_left = 142.0
+offset_top = 120.0
+offset_right = 178.0
+offset_bottom = 168.0
+scale = Vector2(1, 0.990508)
+mouse_filter = 1
+script = ExtResource("17_2m1ok")
+texture_renderer = NodePath("texture_renderer")
+button = NodePath("button")
+unhover_cell = 1
+hover_cell = 1
+press_cell = 1
+metadata/_custom_type_script = "uid://bqp8xu5yrv1tn"
+
+[node name="texture_renderer" type="Sprite2D" parent="display/pink_petal_effects/deequip" unique_id=837686858]
+position = Vector2(-6, 0)
+texture = ExtResource("20_l1wax")
+centered = false
+hframes = 2
+frame = 1
+script = ExtResource("18_3gg6c")
+frame_dimensions = Vector2i(48, 48)
+frame_h_count = 2
+progress = 1
+
+[node name="button" type="Control" parent="display/pink_petal_effects/deequip" unique_id=1954792660 node_paths=PackedStringArray("button")]
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource("15_kisvh")
+button = NodePath("button")
+
+[node name="button" type="BaseButton" parent="display/pink_petal_effects/deequip/button" unique_id=1511924175]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(0, 0)
+layout_direction = 0
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+rotation = 0.0
+scale = Vector2(1, 1)
+pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 1
+focus_behavior_recursive = 0
+mouse_filter = 0
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 2
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = false
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = null
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = null
+
+[node name="white_petal_stats" type="Control" parent="display" unique_id=1855979060]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="stats_container" parent="display/white_petal_stats" unique_id=533752610 instance=ExtResource("17_6jr1t")]
+layout_mode = 1
+offset_left = 32.0
+offset_top = 80.0
+offset_right = -168.0
+offset_bottom = -14.0
+
+[node name="mado" type="Sprite2D" parent="display/white_petal_stats" unique_id=1345969624]
+position = Vector2(384, 144)
+texture = ExtResource("12_tlelv")
+
+[node name="eye_l" type="Sprite2D" parent="display/white_petal_stats/mado" unique_id=792739245]
+position = Vector2(-28, -6)
+texture = ExtResource("20_ub6k2")
+hframes = 3
+script = ExtResource("21_cgott")
+autoplay = true
+loop = true
+fps = 9.0
+frame_dimensions = Vector2i(32, 22)
+frame_h_count = 3
+metadata/_custom_type_script = "uid://cdjphp77kgyqr"
+
+[node name="eye_r" type="Sprite2D" parent="display/white_petal_stats/mado" unique_id=1446204671]
+position = Vector2(28, -6)
+texture = ExtResource("20_ub6k2")
+flip_h = true
+hframes = 3
+script = ExtResource("21_cgott")
+autoplay = true
+loop = true
+fps = 8.0
+frame_dimensions = Vector2i(32, 22)
+frame_h_count = 3
+metadata/_custom_type_script = "uid://cdjphp77kgyqr"
+
+[node name="stats" type="Sprite2D" parent="display/white_petal_stats" unique_id=609763293]
+position = Vector2(42, 32)
+texture = ExtResource("13_jwvlf")
+centered = false
+
+[node name="heads_up" type="TextureRect" parent="display" unique_id=260466736]
+material = SubResource("CanvasItemMaterial_kisvh")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 206.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_6jr1t")
+
+[node name="Label" type="Label" parent="display/heads_up" unique_id=1845852616]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 5
+text = "press ALT to close inventory."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="select" type="CenterContainer" parent="." unique_id=1688507394]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+
+[node name="separator" type="HBoxContainer" parent="select" unique_id=1579747047]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="pink" type="Control" parent="select/separator" unique_id=1690722687 node_paths=PackedStringArray("texture_renderer", "button")]
+custom_minimum_size = Vector2(27, 14)
+layout_mode = 2
+mouse_filter = 1
+script = ExtResource("17_2m1ok")
+texture_renderer = NodePath("texture_renderer")
+button = NodePath("button")
+hover_cell = 1
+press_cell = 2
+metadata/_custom_type_script = "uid://bqp8xu5yrv1tn"
+
+[node name="texture_renderer" type="Sprite2D" parent="select/separator/pink" unique_id=1000885573]
+texture = ExtResource("27_cgott")
+centered = false
+vframes = 3
+script = ExtResource("18_3gg6c")
+strip_style = 1
+frame_dimensions = Vector2i(27, 14)
+frame_v_count = 3
+
+[node name="button" type="Control" parent="select/separator/pink" unique_id=67006175 node_paths=PackedStringArray("button")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("15_kisvh")
+button = NodePath("button")
+
+[node name="button" type="BaseButton" parent="select/separator/pink/button" unique_id=1894762225]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(0, 0)
+layout_direction = 0
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+rotation = 0.0
+scale = Vector2(1, 1)
+pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 1
+focus_behavior_recursive = 0
+mouse_filter = 0
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 2
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = false
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = null
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = null
+
+[node name="white" type="Control" parent="select/separator" unique_id=1733245051 node_paths=PackedStringArray("texture_renderer", "button")]
+custom_minimum_size = Vector2(27, 14)
+layout_mode = 2
+mouse_filter = 1
+script = ExtResource("17_2m1ok")
+texture_renderer = NodePath("texture_renderer")
+button = NodePath("button")
+hover_cell = 1
+press_cell = 2
+metadata/_custom_type_script = "uid://bqp8xu5yrv1tn"
+
+[node name="texture_renderer" type="Sprite2D" parent="select/separator/white" unique_id=361022309]
+texture = ExtResource("17_qtnvx")
+centered = false
+vframes = 3
+script = ExtResource("18_3gg6c")
+strip_style = 1
+frame_dimensions = Vector2i(27, 14)
+frame_v_count = 3
+
+[node name="button" type="Control" parent="select/separator/white" unique_id=82012449 node_paths=PackedStringArray("button")]
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource("15_kisvh")
+button = NodePath("button")
+
+[node name="button" type="BaseButton" parent="select/separator/white/button" unique_id=913981858]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(0, 0)
+layout_direction = 0
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+rotation = 0.0
+scale = Vector2(1, 1)
+pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 1
+focus_behavior_recursive = 0
+mouse_filter = 0
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 2
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = false
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = null
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = null

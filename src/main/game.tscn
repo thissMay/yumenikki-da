@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://ra24ysq2f70c"]
 
-[ext_resource type="Script" uid="uid://b2yjestmw6ux7" path="res://src/game/game_manager.gd" id="1_y4aoe"]
+[ext_resource type="Script" uid="uid://b2yjestmw6ux7" path="res://src/game/game.gd" id="1_y4aoe"]
 [ext_resource type="Environment" uid="uid://be4tedt15qnrp" path="res://src/main/environment_2d.tres" id="2_3apph"]
 [ext_resource type="Script" uid="uid://cfw3rjlf6vw4q" path="res://src/game/game_state_handle.gd" id="3_ci86m"]
-[ext_resource type="Script" uid="uid://d3r72epfndsge" path="res://src/autoloads/panorama_system.gd" id="3_y4aoe"]
-[ext_resource type="Script" uid="uid://co5edhtkgx3g8" path="res://src/systems/tools/FSM/fsm.gd" id="4_v3f7h"]
+[ext_resource type="Script" uid="uid://d3r72epfndsge" path="res://autoloads/panorama_system.gd" id="3_y4aoe"]
+[ext_resource type="Script" uid="uid://co5edhtkgx3g8" path="res://src/helpers/FSM/fsm.gd" id="4_v3f7h"]
 [ext_resource type="Script" uid="uid://bkcfhq2u2bvbg" path="res://src/game/states/pregame.gd" id="6_tboue"]
 [ext_resource type="Script" uid="uid://drsdf6evorx0v" path="res://src/game/states/active.gd" id="7_8fuah"]
 [ext_resource type="Script" uid="uid://b5ml1807efr4t" path="res://src/game/states/active_sub_play.gd" id="9_yapge"]
@@ -22,11 +22,9 @@
 [ext_resource type="Script" uid="uid://8icyy716mjp5" path="res://src/game/states/changing_scene.gd" id="25_3apph"]
 [ext_resource type="Texture2D" uid="uid://bvntqmlvl36s0" path="res://src/player/2D/madotsuki/effects/effect_anim_petal_pink.png" id="25_hma5v"]
 [ext_resource type="Texture2D" uid="uid://daueebm63ch62" path="res://src/player/2D/madotsuki/effects/effect_anim_petal_white.png" id="26_0wivy"]
-[ext_resource type="Script" uid="uid://dx4noqrry2gq1" path="res://src/systems/game/chase_manager.gd" id="28_y0xa8"]
 [ext_resource type="Script" uid="uid://dmro0dra81fni" path="res://src/systems/scenes/transition.gd" id="29_3apph"]
 [ext_resource type="Script" uid="uid://drtlglqkjepmq" path="res://src/game/states/pause.gd" id="29_scyrd"]
 [ext_resource type="AudioStream" uid="uid://dcqheuccc0ijo" path="res://src/audio/bgm/aztec_rave.WAV" id="30_fyoi4"]
-[ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://src/global_theme.tres" id="30_i8erk"]
 [ext_resource type="Script" uid="uid://cwji4a822mehj" path="res://src/ui/message_display/message_display_manager.gd" id="31_wfsxj"]
 [ext_resource type="PackedScene" uid="uid://c2sv1637gh6ub" path="res://src/ui/pause_menu/pause_screen.tscn" id="32_r2hvo"]
 [ext_resource type="PackedScene" uid="uid://q5moiijg0b7a" path="res://src/player/hud/pl_hud.tscn" id="33_a0tkc"]
@@ -397,11 +395,11 @@ func _setup() -> void:
 func play_music() -> void:
 	match music_bus:
 		MUSIC_BUS.MUSIC: 
-			Music.fade_in()
-			Music.play_sound(stream, vol, pitch)
+			Game.aud_music.fade_in()
+			Game.aud_music.play_sound(stream, vol, pitch)
 		MUSIC_BUS.AMBIENCE: 
-			Ambience.fade_in()
-			Ambience.play_sound(stream, vol, pitch) 
+			Game.aud_music.fade_in()
+			Game.aud_music.play_sound(stream, vol, pitch) 
 
 ## -------- AUDIO CONTROL (E.G AUDIO FADE) -------- ##
 "
@@ -413,9 +411,24 @@ colors = PackedColorArray(0, 0, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_8fuah"]
 gradient = SubResource("Gradient_tboue")
 
-[node name="game_manager" type="Node" unique_id=1029903312]
+[node name="game" type="Node" unique_id=1029903312]
 process_mode = 3
 script = ExtResource("1_y4aoe")
+
+[node name="aud_ui" type="AudioStreamPlayer" parent="." unique_id=145651787]
+script = ExtResource("21_cy466")
+muted = null
+affected_by_timescale = null
+
+[node name="aud_music" type="AudioStreamPlayer" parent="." unique_id=277996877]
+script = ExtResource("21_cy466")
+muted = null
+affected_by_timescale = null
+
+[node name="aud_amb" type="AudioStreamPlayer" parent="." unique_id=465387905]
+script = ExtResource("21_cy466")
+muted = null
+affected_by_timescale = null
 
 [node name="global_screen_effect" type="WorldEnvironment" parent="." unique_id=1455979223]
 environment = ExtResource("2_3apph")
@@ -431,7 +444,7 @@ script = ExtResource("18_sjocp")
 
 [node name="panorama_component" type="Node" parent="global_components" unique_id=186876674 node_paths=PackedStringArray("panorama_rect")]
 script = ExtResource("3_y4aoe")
-panorama_rect = NodePath("../../panorama (top_layer)/display")
+panorama_rect = NodePath("../../panorma/display")
 default_panorama_texture = SubResource("GradientTexture2D_jdkml")
 
 [node name="effect_equip_anim" type="Node2D" parent="global_components" unique_id=1350895473 node_paths=PackedStringArray("animation_player")]
@@ -466,32 +479,28 @@ texture = ExtResource("26_0wivy")
 [node name="sound" type="AudioStreamPlayer" parent="global_components/effect_equip_anim" unique_id=1841191134]
 bus = &"Effects"
 script = ExtResource("21_cy466")
+muted = null
+affected_by_timescale = null
 metadata/_custom_type_script = "uid://dgrha4aqsx4kh"
-
-[node name="chase_manager" type="Node" parent="global_components" unique_id=2012363432]
-script = ExtResource("28_y0xa8")
 
 [node name="inventory_manager" type="Node" parent="global_components" unique_id=1423604278 node_paths=PackedStringArray("inventory")]
 script = ExtResource("16_ci86m")
-inventory = NodePath("../../always/ui/hud/inventory")
+inventory = NodePath("../../always/hud/inventory")
 
 [node name="game_fsm" type="Node" parent="." unique_id=580089779 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_v3f7h")
 track_state_changes = true
 initial_state = NodePath("PREGAME")
 
-[node name="PREGAME" type="Node" parent="game_fsm" unique_id=113451060 node_paths=PackedStringArray("transitions")]
+[node name="PREGAME" type="Node" parent="game_fsm" unique_id=113451060]
 script = ExtResource("6_tboue")
-transitions = [NodePath("../ACTIVE"), NodePath("../PAUSE")]
 
-[node name="ACTIVE" type="Node" parent="game_fsm" unique_id=1608058595 node_paths=PackedStringArray("transitions")]
+[node name="ACTIVE" type="Node" parent="game_fsm" unique_id=1608058595]
 script = ExtResource("7_8fuah")
-transitions = [NodePath("../CHANGING_SCENES"), NodePath("../PAUSE")]
 
-[node name="PLAY" type="Node" parent="game_fsm/ACTIVE" unique_id=1507857156 node_paths=PackedStringArray("dream_component", "transitions")]
+[node name="PLAY" type="Node" parent="game_fsm/ACTIVE" unique_id=1507857156 node_paths=PackedStringArray("dream_component")]
 script = ExtResource("9_yapge")
 dream_component = NodePath("dream_component")
-transitions = [NodePath("../CUTSCENE"), NodePath("../SPECIAL_INVERT_SCENE")]
 
 [node name="dream_component" type="Node" parent="game_fsm/ACTIVE/PLAY" unique_id=2126802749 node_paths=PackedStringArray("dream_mode", "neutral_mode")]
 script = ExtResource("10_nupip")
@@ -500,33 +509,29 @@ neutral_mode = NodePath("NEUTRAL")
 
 [node name="NEUTRAL" type="Node" parent="game_fsm/ACTIVE/PLAY/dream_component" unique_id=319401705 node_paths=PackedStringArray("hud", "transitions")]
 script = ExtResource("11_cjakg")
-hud = NodePath("../../../../../always/ui/hud")
+hud = NodePath("../../../../../always/hud")
 transitions = [null]
 
 [node name="DREAM" type="Node" parent="game_fsm/ACTIVE/PLAY/dream_component" unique_id=267889612 node_paths=PackedStringArray("hud", "transitions")]
 script = ExtResource("12_qks74")
-hud = NodePath("../../../../../always/ui/hud")
+hud = NodePath("../../../../../always/hud")
 transitions = [NodePath("../NEUTRAL")]
 
-[node name="CUTSCENE" type="Node" parent="game_fsm/ACTIVE" unique_id=791465525 node_paths=PackedStringArray("dream_fsm", "transitions")]
+[node name="CUTSCENE" type="Node" parent="game_fsm/ACTIVE" unique_id=791465525 node_paths=PackedStringArray("dream_fsm")]
 script = ExtResource("14_eb0fa")
 dream_fsm = NodePath("../PLAY/dream_component")
-transitions = [NodePath("../PLAY"), NodePath("../SPECIAL_INVERT_SCENE")]
 
-[node name="SPECIAL_INVERT_SCENE" type="Node" parent="game_fsm/ACTIVE" unique_id=2075737171 node_paths=PackedStringArray("inventory", "transitions")]
+[node name="SPECIAL_INVERT_SCENE" type="Node" parent="game_fsm/ACTIVE" unique_id=2075737171 node_paths=PackedStringArray("inventory")]
 script = ExtResource("15_x5cou")
-inventory = NodePath("../../../always/ui/hud/inventory")
-transitions = [NodePath("../CUTSCENE"), NodePath("../PLAY")]
+inventory = NodePath("../../../always/hud/inventory")
 
-[node name="CHANGING_SCENES" type="Node" parent="game_fsm" unique_id=1774952713 node_paths=PackedStringArray("transitions")]
+[node name="CHANGING_SCENES" type="Node" parent="game_fsm" unique_id=1774952713]
 script = ExtResource("25_3apph")
-transitions = [NodePath("../ACTIVE"), NodePath("../PAUSE"), null]
 
-[node name="PAUSE" type="Node" parent="game_fsm" unique_id=1890733336 node_paths=PackedStringArray("pause_menu", "hud", "transitions")]
+[node name="PAUSE" type="Node" parent="game_fsm" unique_id=1890733336 node_paths=PackedStringArray("pause_menu", "hud")]
 script = ExtResource("29_scyrd")
 pause_menu = NodePath("../../always/pause")
-hud = NodePath("../../always/ui/hud")
-transitions = [null, NodePath("../ACTIVE")]
+hud = NodePath("../../always/hud")
 
 [node name="BGM" type="Node" parent="game_fsm/PAUSE" unique_id=1706962390]
 script = SubResource("GDScript_3apph")
@@ -536,10 +541,10 @@ pitch = 0.5
 [node name="pausable" type="Node2D" parent="." unique_id=1975901986]
 process_mode = 1
 
-[node name="panorama (top_layer)" type="CanvasLayer" parent="." unique_id=1236070863]
+[node name="panorma" type="CanvasLayer" parent="." unique_id=1236070863]
 layer = -25
 
-[node name="display" type="TextureRect" parent="panorama (top_layer)" unique_id=564499640]
+[node name="display" type="TextureRect" parent="panorma" unique_id=564499640]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -553,59 +558,50 @@ process_mode = 3
 layer = 30
 
 [node name="pause" parent="always" unique_id=1935369359 instance=ExtResource("32_r2hvo")]
-visible = false
 z_index = 80
 custom_minimum_size = Vector2(480, 270)
 
-[node name="ui" type="Control" parent="always" unique_id=2112659681]
-z_index = 80
-layout_mode = 3
+[node name="hud" parent="always" unique_id=243965080 instance=ExtResource("33_a0tkc")]
+mouse_filter = 1
+
+[node name="message_display_manager" type="Control" parent="always/hud" unique_id=134455122 node_paths=PackedStringArray("message_display", "prompt_display", "dialogue_display")]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("30_i8erk")
-
-[node name="hud" parent="always/ui" unique_id=243965080 instance=ExtResource("33_a0tkc")]
-layout_mode = 1
-mouse_filter = 1
-
-[node name="message_display_manager" type="Control" parent="always/ui/hud" unique_id=134455122 node_paths=PackedStringArray("message_display", "prompt_display", "dialogue_display")]
-anchors_preset = 0
-mouse_filter = 2
 script = ExtResource("31_wfsxj")
 message_display = NodePath("message_display")
 prompt_display = NodePath("prompt_display")
 dialogue_display = NodePath("dialogue_display")
 
-[node name="message_display" type="PanelContainer" parent="always/ui/hud/message_display_manager" unique_id=503351773]
+[node name="message_display" type="PanelContainer" parent="always/hud/message_display_manager" unique_id=503351773]
 layout_mode = 0
 script = ExtResource("36_8fuah")
 
-[node name="prompt_display" type="PanelContainer" parent="always/ui/hud/message_display_manager" unique_id=1804225143]
+[node name="prompt_display" type="PanelContainer" parent="always/hud/message_display_manager" unique_id=275114996]
 layout_mode = 0
 script = ExtResource("37_aa7m6")
 
-[node name="dialogue_display" type="PanelContainer" parent="always/ui/hud/message_display_manager" unique_id=2033041203]
+[node name="dialogue_display" type="PanelContainer" parent="always/hud/message_display_manager" unique_id=1163665994]
 layout_mode = 0
 script = ExtResource("38_yapge")
 
-[node name="inventory" parent="always/ui/hud" unique_id=2073096810 instance=ExtResource("37_tboue")]
-visible = false
+[node name="inventory" parent="always/hud" unique_id=2073096810 instance=ExtResource("37_tboue")]
 z_index = 1
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
+offset_top = 272.0
 offset_right = 480.0
-offset_bottom = 270.0
+offset_bottom = 542.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="cinematic_bars" type="TextureRect" parent="always/ui" unique_id=512114394]
-layout_mode = 0
+[node name="cinematic_bars" type="TextureRect" parent="always" unique_id=512114394]
 offset_right = 480.0
 offset_bottom = 270.0
 size_flags_horizontal = 4
@@ -613,23 +609,11 @@ size_flags_vertical = 4
 mouse_filter = 2
 texture = ExtResource("34_nnm53")
 
-[node name="secondary_transition" type="TextureRect" parent="always" unique_id=510892102]
+[node name="transition" type="TextureRect" parent="always" unique_id=510892102]
 visible = false
 custom_minimum_size = Vector2(480, 270)
 offset_right = 480.0
 offset_bottom = 270.0
-mouse_filter = 2
-texture = SubResource("GradientTexture1D_8fuah")
-script = ExtResource("29_3apph")
-
-[node name="primary_transition" type="TextureRect" parent="always" unique_id=1470515967]
-visible = false
-custom_minimum_size = Vector2(480, 270)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture1D_8fuah")
 script = ExtResource("29_3apph")

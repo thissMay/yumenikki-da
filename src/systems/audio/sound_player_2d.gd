@@ -16,8 +16,8 @@ const ZERO_VOLUME = -50
 		if Engine.is_editor_hint(): return
 	
 		match _is_affected:
-			true: 	Utils.connect_to_signal(set_timescale_factor, Game.true_time_scale_changed)
-			false: 	Utils.disconnect_from_signal(set_timescale_factor, Game.true_time_scale_changed)
+			true: 	Utils.connect_to_signal(set_timescale_factor, Global.true_time_scale_changed)
+			false: 	Utils.disconnect_from_signal(set_timescale_factor, Global.true_time_scale_changed)
 var timescale_factor: float = 0
 
 func _ready() -> void:

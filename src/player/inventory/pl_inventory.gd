@@ -1,7 +1,7 @@
 class_name PLInventory
 extends Control
 
-@export var fsm: FSM
+@export var fsm: SM
 @export var display: Control
 @export var item_container: GridContainer
 

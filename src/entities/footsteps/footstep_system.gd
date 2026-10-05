@@ -5,14 +5,10 @@ extends SBComponent
 # one more thing: make a ground_material resource that holds a list
 # of all random sound effects for the ground.
 
-const DEFAULT_FOOTSTEP: AudioStream 	= preload("res://src/audio/se/footstep_null-1.wav")
-const DEFAULT_FOOTSTEP_MAT: FootstepSet = preload("res://src/audio/footsteps/null.tres")
-static var default_footstep_mat: FootstepSet = DEFAULT_FOOTSTEP_MAT
+@export var shadow_renderer: Sprite2D
 
-var curr_set: FootstepSet:
-	get: 
-		if curr_set == DEFAULT_FOOTSTEP_MAT: return default_footstep_mat
-		return curr_set
+const DEFAULT_FOOTSTEP: AudioStream 	= preload("res://src/audio/se/footstep_null-1.wav")
+
 
 var curr_anim: CompressedTexture2D = preload("res://src/entities/footsteps/default.png")
 
@@ -23,10 +19,8 @@ var floor_priority: TileMapLayer
 var greatest_index: int = -50
 var material_id: int = 0
 
-@onready var multiple_floors := FootstepSet.new()
 
 func _on_bypass_enabled() -> void:
-	multiple_floors.arr.clear()
 	floor_priority = null
 
 func _setup(_sentient: SentientBase = null) -> void:
@@ -42,14 +36,14 @@ func _setup(_sentient: SentientBase = null) -> void:
 	area.body_shape_exited.connect(_on_body_shape_exited)
 	area.body_shape_entered.connect(_on_body_shape_entered)
 	
-	curr_set = default_footstep_mat
-	sentient.shadow_renderer.visible = !curr_set.transparent_tile
+	#curr_set = default_footstep_mat
+	#shadow_renderer.visible = !curr_set.transparent_tile
 	footstep_se_player.max_distance = 250
 
 func initate_footstep() -> void:  
-	curr_anim = curr_set.footstep_anim
+	#curr_anim = curr_set.footstep_anim
 	spawn_footstep_fx()
-	play_footstep_sound(curr_set.pick_random() if curr_set.size() > 0 else DEFAULT_FOOTSTEP)
+	#play_footstep_sound(curr_set.pick_random() if curr_set.size() > 0 else DEFAULT_FOOTSTEP)
 func spawn_footstep_fx() -> void: 
 	if Optimization.footstep_instances < Optimization.FOOTSTEP_MAX_INSTANCES:
 		var footstep_fx := FootstepDust.new(curr_anim)
@@ -66,38 +60,17 @@ func _on_body_shape_entered(
 	_body_rid: RID, 
 	_body: Node2D, 
 	_body_shape_index: int, 
-	_local_shape_index: int) -> void:
-		if _body is FootstepTileMap:
-			multiple_floors.append(_body)
+	_local_shape_index: int) -> void: pass
 								
-		scan_ground_material()				
-		sentient.shadow_renderer.visible = !curr_set.transparent_tile
 				
 func _on_body_shape_exited(
 	_body_rid: RID, 
 	_body: Node2D, 
 	_body_shape_index: int, 
 	_local_shape_index: int) -> void:
-		if _body is FootstepTileMap:
-			
-			if !area.overlaps_body(_body):
-				multiple_floors.remove_at(multiple_floors.find(_body)) 
-				greatest_index = -50
-				scan_ground_material()
-				sentient.shadow_renderer.visible = !curr_set.transparent_tile
-				
-				if  multiple_floors.is_empty():
-					curr_set = default_footstep_mat
-					floor_priority = null
-					sentient.shadow_renderer.visible = false
+		if _body is FootstepTileMap: pass
 					
-func scan_ground_material() -> void:
-	for floors: FootstepTileMap in multiple_floors.arr:
-		if floors.z_index > greatest_index: 
-			greatest_index = floors.z_index
-			floor_priority = floors
-			curr_set = floor_priority.get_footstep_material()
-			break
+func scan_ground_material() -> void: pass
 		
 class FootstepDust:
 	extends SpriteSheetFormatterAnimated

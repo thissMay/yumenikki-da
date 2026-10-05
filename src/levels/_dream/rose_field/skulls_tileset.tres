@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://cwp7v2lqsy58c"]
+[gd_resource type="TileSet" format=3 uid="uid://cwp7v2lqsy58c"]
 
 [ext_resource type="Texture2D" uid="uid://dnk4hyhcaj62t" path="res://src/levels/_dream/rose_field/sprites/jaw_skull.png" id="1_upg8y"]
 [ext_resource type="Texture2D" uid="uid://cvvqlvoukprvr" path="res://src/levels/_dream/rose_field/sprites/rose_skull.png" id="2_i5jci"]

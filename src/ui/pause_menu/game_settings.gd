@@ -4,7 +4,7 @@ extends Control
 var initial_hidden_stack_arr: Array
 var initial_active_stack_arr: Array
 
-var ui_list: List
+var ui_list: Array
 var active_stack: Stack
 
 @export var page_graphics: 	Control
@@ -37,28 +37,27 @@ func _ready() -> void:
 	references_setup()
 	buttons_setup()
 
-	ui_list = List.new()
 	active_stack = Stack.new()
 	
 	active_stack.pushed.connect(push_page)
 	active_stack.popped.connect(pop_page)
 
-	ui_list.add_to_back(page_graphics)
-	ui_list.add_to_back(page_audio)
-	ui_list.add_to_back(page_options)
-	ui_list.add_to_back(page_game)
+	ui_list.append(page_graphics)
+	ui_list.append(page_audio)
+	ui_list.append(page_options)
+	ui_list.append(page_game)
 	
 	reset()
 
 func push_page(_page: Control) -> void: 
-	for i in ui_list.array: i.visible = false
+	for i in ui_list: i.visible = false
 	_page.visible = true
 func pop_page(_page: Control) -> void:
 	if active_stack.top: 
 		_page.visible = false
 		active_stack.top.visible = true
 	else:
-		GameManager.pause_options(false)
+		Game.pause_options(false)
 		ConfigManager.save_settings_data()
 		reset()
 

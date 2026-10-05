@@ -9,7 +9,7 @@ var old_pos:	 Vector2
 var new_pos: 	Vector2
 var vel: 		Vector2
 
-@export var fsm: FSM
+@export var fsm: SM
 
 # ---- FOLLOW STRATS ----
 @export_group("Miscallenous")
@@ -18,8 +18,7 @@ static var default 			:= STRAT_FOLLOW.new()
 static var follow_player 	:= STRAT_FOLLOW_SENTIENT.new()
 static var follow_lerp 		:= STRAT_FOLLOW_DEFAULT.new()
 
-var prev_follow_strat: STRAT_FOLLOW = default
-var curr_follow_strat: STRAT_FOLLOW = default
+var curr_strat: STRAT_FOLLOW = default
 
 # ---- components
 @export var cam: Camera2D
@@ -78,8 +77,6 @@ func _ready() -> void:
 	self.top_level = true
 	self.process_mode = Node.PROCESS_MODE_PAUSABLE
 	
-	motion_reduction = motion_reduction
-	
 	if Engine.is_editor_hint(): 
 		if initial_target != null:
 			global_position = initial_target.global_position
@@ -117,9 +114,8 @@ func _physics_process(_delta: float) -> void:
 	
 # ---- follow strats  ----
 func set_follow_strategy(strat: STRAT_FOLLOW):
-	prev_follow_strat = curr_follow_strat
-	curr_follow_strat = strat
-	curr_follow_strat._changed()
+	curr_strat = strat
+	curr_strat._changed()
 
 # ---- cam control ----
 func set_zoom(_zoom: float) -> void:
@@ -145,7 +141,7 @@ func set_target(_target: CanvasItem, _dur: float = .5) -> void:
 			set_follow_strategy(follow_player if !motion_reduction else default)
 	else: 	set_follow_strategy(follow_lerp if !motion_reduction else default)
 	
-	curr_follow_strat._setup(self)
+	curr_strat._setup(self)
 	
 	if curr_target: prev_target = curr_target
 	curr_target = _target
@@ -262,7 +258,7 @@ class STRAT_FOLLOW:
 class STRAT_FOLLOW_DEFAULT:
 	extends STRAT_FOLLOW
 	func _follow(_cam: CameraHolder, _point: Vector2) -> void:
-		final = _cam.global_position.lerp(_point, Game.get_real_delta() * _cam.follow_speed)
+		final = _cam.global_position.lerp(_point, Global.get_real_delta() * _cam.follow_speed)
 		_cam.global_position = final
 class STRAT_FOLLOW_SENTIENT:
 	extends STRAT_FOLLOW
@@ -281,7 +277,7 @@ class STRAT_FOLLOW_SENTIENT:
 		if player == null:  return
 		look_ahead = look_ahead.lerp(
 			(player.velocity * look_ahead_distance).clamp(-MAX_LOOK_AHEAD_PIXELS, MAX_LOOK_AHEAD_PIXELS), 
-			Game.get_real_delta() * _cam.follow_speed)
+			Global.get_real_delta() * _cam.follow_speed)
 		final = point + look_ahead
 
 		_cam.global_position = final

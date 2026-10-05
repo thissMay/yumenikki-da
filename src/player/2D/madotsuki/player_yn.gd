@@ -3,7 +3,6 @@
 class_name Player_YN 
 extends Player
 
-
 # - dependencies.
 @export_category("Top-down Exclusive")
 @export var can_pinch: bool = true
@@ -13,21 +12,6 @@ var sound_player: AudioStreamPlayer
 
 # - trait components
 var global_components: SBComponentReceiver
-
-var sprite_sheet: SerializableDict = preload("res://src/player/2D/madotsuki/display/no_effect.tres"):
-	get:
-		if values != null and \
-		!values.sprite_override.is_empty() and\
-		ResourceLoader.exists(values.sprite_override):
-			return load(values.sprite_override)
-		
-		return sprite_sheet
-		
-	set(sheet):
-		sprite_sheet = sheet
-		set_texture_using_sprite_sheet(sprite_id)
-		
-var sprite_id: String = ""
 var action: PLAction 
 
 func _ready() -> void:
@@ -53,11 +37,11 @@ func dependency_setup() -> void:
 func _update(_delta: float) -> void:	
 	super(_delta)
 	if fsm: fsm._update(_delta)
-	if global_components != null: global_components._update(_delta)
+	
 func _physics_update(_delta: float) -> void:
 	super(_delta)
 	if fsm: fsm._physics_update(_delta)
-	if global_components != null: global_components._physics_update(_delta)
+	
 func _sb_input(event: InputEvent) -> void:
 	if Input.is_physical_key_pressed(KEY_Q) and can_pinch: 
 		perform_action(PLActionManager.PINCH_PRESS_ACTION)
@@ -84,12 +68,6 @@ func get_behaviour() -> PLBehaviour:
 
 func play_sound(_sound: AudioStreamWAV, _vol: float, _pitch: float) -> void:
 	if sound_player != null: sound_player.play_sound(_sound, _vol, _pitch)
-func set_texture_using_sprite_sheet(_sprite_id: String) -> void:
-	sprite_id = _sprite_id
-	if 	sprite_sheet.dict.has(_sprite_id):
-		sprite_renderer.texture = (sprite_sheet.dict[_sprite_id])
-func set_sprite_sheet(_new_sheet: SerializableDict) -> void:
-	sprite_sheet = _new_sheet
 
 # - misc.
 func get_values() -> SBVariables:

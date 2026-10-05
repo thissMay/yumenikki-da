@@ -1,7 +1,7 @@
 class_name SBSprint
 extends SBComponent
 
-@export var stamina_fsm: FSM
+@export var stamina_fsm: SM
 
 
 func _setup(_sb: SentientBase = null) -> void:

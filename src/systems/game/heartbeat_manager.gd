@@ -30,8 +30,8 @@ func _update(delta: float) -> void:
 	vol_bpm_multiplier = (0.225 * (bpm - 60))
 	pit_bpm_multiplier = (0.225 * (bpm - 60))
 
-	Audio.adjust_bus_effect( # --- distortion
-		Audio.BUS_DISTORTED, 0, 
+	AudioBusManager.adjust_bus_effect( # --- distortion
+		AudioBusManager.BUS_DISTORTED, 0, 
 		"drive", (0.0027 * (bpm - 60)))
 
 func set_active(_active: bool = true) -> void:
@@ -39,14 +39,14 @@ func set_active(_active: bool = true) -> void:
 		sound_player.mute()
 		trauma.set_shader_parameter("blur_amount", 0)
 	
-	Audio.set_effect_active(Audio.BUS_DISTORTED, 0, _active)
+	AudioBusManager.set_effect_active(AudioBusManager.BUS_DISTORTED, 0, _active)
 	
 	super(_active)
 
 func _on_bypass_enabled() -> void:
 	sound_player.mute()
-	Audio.set_effect_active(Audio.BUS_DISTORTED, 0, false)
+	AudioBusManager.set_effect_active(AudioBusManager.BUS_DISTORTED, 0, false)
 func _on_bypass_lifted() -> void:
 	sound_player.unmute()
-	Audio.set_effect_active(Audio.BUS_DISTORTED, 0, true)
+	AudioBusManager.set_effect_active(AudioBusManager.BUS_DISTORTED, 0, true)
 	

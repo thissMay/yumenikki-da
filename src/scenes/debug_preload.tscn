@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://blktr0ds5tq53"]
+[gd_scene format=3 uid="uid://blktr0ds5tq53"]
 
 [ext_resource type="Script" uid="uid://sq3rsj5jjhtf" path="res://src/scenes/debug_preload.gd" id="1_vbtsf"]
 [ext_resource type="Texture2D" uid="uid://bkfvddho8eetw" path="res://game_icon.png" id="2_d62i2"]
 [ext_resource type="Texture2D" uid="uid://dj68nb6nuamgi" path="res://src/images/loading.png" id="2_nlmqr"]
 [ext_resource type="Script" uid="uid://cdjphp77kgyqr" path="res://src/systems/utils/spritesheet_formatter_animated.gd" id="3_d62i2"]
-[ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://src/global_theme.tres" id="3_frv6y"]
+[ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://themes/global_theme.tres" id="3_frv6y"]
 
 [node name="preload" type="Node" node_paths=PackedStringArray("timer", "preload_control", "pregame_control", "shader_garbage_placeholder")]
 script = ExtResource("1_vbtsf")

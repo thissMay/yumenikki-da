@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dxtgmficcsio2"]
+[gd_resource type="TileSet" format=3 uid="uid://dxtgmficcsio2"]
 
 [ext_resource type="Texture2D" uid="uid://dlj0gld2qr38w" path="res://src/levels/_dream/rose_field/sprites/rose_tree.png" id="1_smsxf"]
 

@@ -35,12 +35,12 @@ func _init(
 		ease_type 		= _ease
 
 func _execute() -> void:
-	GameManager.secondary_transition.set_transition(
+	Game.instance.screen_transition.set_transition(
 		duration,
 		fade_shader,
 		transition,
 		ease_type)
 
 	match fade_type:
-		ScreenTransition.fade_type.FADE_IN	: await GameManager.secondary_transition.fade(gradient, a, b, hide_if_alpha_zero)
-		ScreenTransition.fade_type.FADE_OUT	: await GameManager.secondary_transition.fade(gradient, b, a, hide_if_alpha_zero)
+		ScreenTransition.fade_type.FADE_IN	: await Game.instance.screen_transition.fade(gradient, a, b, hide_if_alpha_zero)
+		ScreenTransition.fade_type.FADE_OUT	: await Game.instance.screen_transition.fade(gradient, b, a, hide_if_alpha_zero)

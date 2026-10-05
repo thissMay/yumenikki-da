@@ -1,4 +1,4 @@
-extends State
+extends LegacyState
 
 var change_tween: Tween
 var target_position: Vector2

@@ -1,4 +1,4 @@
-extends State
+extends LegacyState
 	
 @export var inventory: PLInventory
 
@@ -7,22 +7,20 @@ func _setup() -> void:
 
 func _state_enter() -> void: 
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	Ambience.mute()
-	Audio.adjust_bus_effect(Audio.BUS_DISTORTED, 1, "cutoff_hz", 300)
+	AudioBusManager.adjust_bus_effect(AudioBusManager.BUS_MUSIC, 1, "cutoff_hz", 300)
 	
-	Game.lerp_timescale(0.5)
-	GameManager.set_cinematic_bars(true)
+	#Game.lerp_timescale(0.5)
+	Game.set_cinematic_bars(true)
 	EventManager.invoke_event("SPECIAL_INVERT_CUTSCENE_BEGIN")
 	SceneManager.scene_node.process_mode = Node.PROCESS_MODE_DISABLED
 	
 	inventory.visible = true
 	if inventory != null: inventory._enter()
 func _state_exit() -> void: 	
-	Ambience.unmute()
-	Audio.adjust_bus_effect(Audio.BUS_DISTORTED, 1, "cutoff_hz", 16000)
+	AudioBusManager.adjust_bus_effect(AudioBusManager.BUS_MUSIC, 1, "cutoff_hz", 16000)
 	
-	Game.lerp_timescale(1)
-	GameManager.set_cinematic_bars(false)
+	#Game.lerp_timescale(1)
+	Game.set_cinematic_bars(false)
 	EventManager.invoke_event("SPECIAL_INVERT_CUTSCENE_END")
 	SceneManager.scene_node.process_mode = Node.PROCESS_MODE_INHERIT
 	

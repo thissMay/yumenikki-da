@@ -1,144 +1,123 @@
-extends Control
+class_name Game 
+extends Node
 
-var finished_preloading_content: bool = false
-var is_editor: bool = false
+const STATE_PRELOAD_CONTENT 	:= "preload_content"
+const STATE_PREGAME 			:= "pregame"
+const STATE_ACTIVE 				:= "active"
+const STATE_PAUSE 				:= "pause"
+const STATE_SWITCHING_SCENES 	:= "changing_scenes"
 
 const GAME_VER := "DEMO"
 
-# - scene paths
-const INITIAL_SCENE 		:= "res://src/scenes/initial_scene.tscn" 		# - 0
-const PRELOAD_SHADERS_SCENE := "res://src/scenes/debug_preload.tscn" 		# - 1
-const PREMENU_SCENE			:= "res://src/scenes/pre_menu.tscn"				# - 2
-const MENU_SCENE 			:= "res://src/levels/_neutral/menu/menu.tscn"	# - 3
+static var is_paused: bool = false
+static var root: Window
+static var main_tree: SceneTree
 
-const PREGAME_SCENES 		:= [INITIAL_SCENE, MENU_SCENE, PREMENU_SCENE]
+# -- 
+static var bloom: bool = false
 
-# ---- windows
-var is_paused: bool = false
-var root: Window
-var main_tree: SceneTree
+static var global_screen_effect: WorldEnvironment
+static var global_components: ComponentReceiver
 
-# ---- time
-var true_time_scale: 	float: 
-	set(true_ts): 
-		true_time_scale = true_ts
-		true_time_scale_changed.emit(true_ts)
-var true_delta: 		float: get = get_real_delta
+static var instance: Game
 
-signal time_scale_changed		(_new: float)
-signal true_time_scale_changed	(_new: float)
+# ---- audio ----
+static var aud_music: SoundPlayer
+static var aud_amb: SoundPlayer
+static var aud_ui: SoundPlayer
 
-# - signals
-signal game_ready
-signal scene_loaded
-signal scene_unloaded
+# ---- canvas properties ----
+static var screen_transition: 		ScreenTransition
 
-static var game_manager: GameManager
+# ---- process parents ----
+static var pausable_parent: Node
+static var always_parent: Node
 
-# The main game holds a child node that acts as the scene currently active.
-# Upon scene change, remove the current child and queue load for the requested one.
+# ---- UI ----
+static var player_hud: PLHUDManager
+static var options: IngameSettings
 
-func singleton_setup() -> void: 
-	if GameManager.instance == null:
-		game_manager 			= preload("res://src/main/game.tscn").instantiate()
-		game_manager.name 		= "game_manager"
-		self.add_child(game_manager)
-		
-	else:
-		game_manager.reparent(self)
+# ---- cinematic ----
+static var cinematic_bars: TextureRect
+static var cb_tween: Tween
 
-func _enter_tree() -> void:
-	true_time_scale = Engine.time_scale
-	main_tree 	= get_tree()
-	root 		= get_tree().root
-	
-	EventManager.		_setup()
-	SceneManager.		_setup()
-	Application.		_setup()
-	Audio.				_setup()
-	ConfigManager.		_setup()
-	Directory.			_setup()
-	Optimization.		_setup()
-	Save.				_setup() 
-	InputManager.		_setup()
-	SequencerManager.	_setup()
-	
-func _ready() -> void:
-	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	
-	singleton_setup()
-	
-	PhysicsServer2D.set_active(false)
-	ProjectSettings.set_setting("application/config/version", GAME_VER)
-	
-	set_process			(false)
-	set_physics_process	(false)
-	set_process_input	(false)
-	
-	game_manager.					_setup()
-	game_manager.global_components.	_setup()
-	game_manager.state_handle.		_setup()
-	
-	
-	# - post-initializtion.
+# ---- components
+static var game_fsm: SM
+static var state_handle: Component
 
-	set_process			(true)
-	set_physics_process	(true)
-	set_process_input	(true)
+func _setup() -> void:
+	self.process_mode = Node.PROCESS_MODE_INHERIT
 	
-	game_ready.emit()
-	PhysicsServer2D.set_active(true)
-	
-	await main_tree.process_frame
-	initialize()
-	
-	
-func _process(delta: float) -> void: 
-	InputManager.		_update(delta)
-	SequencerManager.	_update(delta)
-	SceneManager.		_update(delta)
-	game_manager.		update(delta)
-	
-func _physics_process(delta: float) -> void:
-	InputManager.		_physics_update(delta)
-	SequencerManager.	_physics_update(delta)
-	SceneManager.		_physics_update(delta)
-	game_manager.		physics_update(delta)
-func _input(_event: InputEvent) -> void:
-	game_manager.input_pass(_event)
-	InputManager._input_pass(_event)
-func _unhandled_input(_event: InputEvent) -> void:
-	InputManager._unhandled_input_pass(_event)
 
-func get_mouse_position_within_vp() -> Vector2:
-	return clamp(Application.main_viewport.get_mouse_position(), Vector2.ZERO, Application.get_viewport_dimens())
-func get_mouse_position() -> Vector2:
-	return Application.main_viewport.get_mouse_position() - (Application.get_viewport_dimens() / 2)
-# ---- rendering server control ----
-
-func lerp_timescale(_new: float):
-	var t_tween := self.create_tween() 
-	true_time_scale = _new
-	t_tween.tween_method(set_timescale, Engine.time_scale, _new, 0.35)
-func set_timescale(_new: float) -> void:
-	Engine.time_scale = _new
-	time_scale_changed.emit(_new)
+	instance = self
 	
-# ---- game values ----	
-func get_real_delta() -> float: 
-	return (true_time_scale / Engine.max_fps)
-func get_real_timescale() -> float:
-	return true_time_scale
-func get_timescale() -> float: return Engine.time_scale
-
-# --- game's initial state (and is editor determination)
-func initialize() -> void: 
-	var initial_scene: PackedScene = SceneManager.curr_scene_resource
-	if initial_scene == null: return
+	player_hud = PLHUDManager.instance
 	
-	match initial_scene.resource_path:
-		INITIAL_SCENE: 
-			is_editor = false
-			SceneManager.change_scene_to(load(PRELOAD_SHADERS_SCENE), false, false)
-		_:	
-			is_editor = true
+	aud_music = $aud_music
+	aud_amb = $aud_amb
+	aud_ui = $aud_ui
+	
+	game_fsm 				= get_node("game_fsm")
+	state_handle			= get_node("state_handle")
+	
+	global_components 		= get_node("global_components")
+	global_screen_effect 	= get_node("global_screen_effect")
+	
+	pausable_parent 		= get_node("pausable")
+	always_parent 			= get_node("always")
+
+	cinematic_bars 			= get_node("always/cinematic_bars")
+	options 				= get_node("always/pause")
+	
+	screen_transition 		= get_node("always/transition")
+
+	pausable_parent.process_mode = Node.PROCESS_MODE_PAUSABLE
+	always_parent.process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	cinematic_bars.position.y = -45
+	cinematic_bars.size.y = 360
+	
+	global_screen_effect.environment.glow_enabled = bloom
+	
+	screen_transition.		fade(ScreenTransition.DEFAULT_GRADIENT, 1, 0)
+	
+func update(_delta: float) -> void: 
+	game_fsm._update(_delta)
+	if global_components: global_components._update(_delta)
+func physics_update(_delta: float) -> void: 
+	game_fsm._physics_update(_delta)
+	if global_components: global_components._physics_update(_delta)
+func input_pass(event: InputEvent) -> void: 
+	game_fsm._input_pass(event)
+	
+# - game functionality
+static func pause_options(_pause: bool = true) -> void:
+	if _pause: change_to_state("pause")
+	elif !_pause: change_to_state("active")
+static func pause(_pause: bool = true) -> void:
+	if _pause: Application.pause()
+	else: Application.resume()
+	
+# - UI stuff
+static func set_cinematic_bars(_active: bool) -> void: 
+	if cb_tween != null: cb_tween.kill()
+	cb_tween = cinematic_bars.create_tween()
+	cb_tween.set_parallel()
+	cb_tween.set_ease(Tween.EASE_OUT)
+	cb_tween.set_trans(Tween.TRANS_EXPO)
+	
+	match _active:
+		true:
+			cinematic_bars.visible = _active
+			cb_tween.tween_property(cinematic_bars, "size:y", 270, 1)
+			cb_tween.tween_property(cinematic_bars, "position:y", 0, 1)
+		false:
+			cb_tween.tween_property(cinematic_bars, "size:y", 360, 1)
+			cb_tween.tween_property(cinematic_bars, "position:y", -45, 1)
+			await cb_tween.finished
+			cinematic_bars.visible = false
+
+# - state based stuff
+static func change_to_state(new_state: String) -> void:
+	game_fsm.change_to_state(new_state)
+static func is_in_state(state: String) -> bool: return game_fsm._is_in_state(state)

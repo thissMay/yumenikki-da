@@ -93,8 +93,8 @@ static func read_data_value(_key: String) -> Variant:
 static func verify_data_version(_data: Dictionary) -> bool:
 	if _data.is_empty(): return false
 	
-	if  _data.has("version"):
-		return _data["version"] == Game.GAME_VER
+	#if  _data.has("version"):
+		#return _data["version"] == Game.GAME_VER
 		
 	return false
 

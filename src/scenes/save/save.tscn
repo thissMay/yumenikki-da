@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://dslcsa2eloa1c"]
+[gd_scene format=3 uid="uid://dslcsa2eloa1c"]
 
 [ext_resource type="Texture2D" uid="uid://dh772bsjsu38l" path="res://src/scenes/save/sprites/mado_save_arm.png" id="2_kdm6a"]
 [ext_resource type="Shader" uid="uid://dqxrs4a4y611c" path="res://src/shaders/panorama/linear.gdshader" id="2_tpwl2"]
@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bd2ipqqost5hk" path="res://src/scenes/save/pl_save_menu.gd" id="3_q5rxk"]
 [ext_resource type="Script" uid="uid://ctqw6a8qsvnv4" path="res://src/systems/sequencing/event/audio/play_bgm.gd" id="3_tpl3m"]
 [ext_resource type="Shader" uid="uid://bqp8m8worpqyn" path="res://src/shaders/panorama/linear_fog.gdshader" id="4_ctqsg"]
-[ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://src/global_theme.tres" id="4_lviw6"]
+[ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://themes/global_theme.tres" id="4_lviw6"]
 [ext_resource type="Script" uid="uid://chyunxyc0k0a3" path="res://src/scenes/save/state/save_state.gd" id="4_tbmd7"]
 [ext_resource type="Script" uid="uid://doidyfe8jy75n" path="res://src/scenes/save/state/load_state.gd" id="5_7lrnq"]
 [ext_resource type="Texture2D" uid="uid://cgkm4gcpsetqk" path="res://src/scenes/save/sprites/mado_save.png" id="5_hgjum"]

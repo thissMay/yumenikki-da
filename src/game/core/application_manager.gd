@@ -19,10 +19,10 @@ static var main_viewport: Viewport
 
 static func quit(): 
 	on_quit()
-	await GameManager.screen_transition.fade(ScreenTransition.DEFAULT_GRADIENT, 0, 1)
+	await Game.screen_transition.fade(ScreenTransition.DEFAULT_GRADIENT, 0, 1)
 	
-	if Game.game_manager != null:
-		Game.game_manager.process_mode = Node.PROCESS_MODE_DISABLED
+	if Game.instance != null:
+		Game.instance.process_mode = Node.PROCESS_MODE_DISABLED
 	Game.main_tree.quit.call_deferred()
 static func pause(): 
 	Game.is_paused = true
@@ -33,8 +33,6 @@ static func resume():
 
 static func on_quit() -> void:
 	Optimization.set_max_fps(30)
-	Music.		fade_out()
-	Ambience.	fade_out()
 	Save.		save_data()
 
 static func get_viewport_width() -> int: return ProjectSettings.get("display/window/size/viewport_width")
@@ -59,13 +57,9 @@ static func window_setup() -> void:
 	main_window.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
 	
 	main_window.focus_exited.connect(func(): 
-		pause()
-		Music.		stream_paused = true
-		Ambience.	stream_paused = true)
+		pause())
 	main_window.focus_entered.connect(func(): 
-		resume()
-		Music.		stream_paused = false
-		Ambience.	stream_paused = false)
+		resume())
 	
 static func change_window_mode(new_mode: Window.Mode) -> void: main_window.mode = new_mode
 static func set_window_borderless(_brd: bool = true) -> void: main_window.borderless = _brd

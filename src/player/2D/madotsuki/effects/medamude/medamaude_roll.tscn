@@ -1,13 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://br0bcbl7kadoi"]
+[gd_scene format=3 uid="uid://br0bcbl7kadoi"]
 
 [ext_resource type="Script" uid="uid://cb2wiih8v4e8b" path="res://src/player/2D/scripts/pl_effect_component.gd" id="1_evoy4"]
 [ext_resource type="Texture2D" uid="uid://dio3vdyjkcckn" path="res://src/player/2D/madotsuki/effects/medamude/eye_socket.png" id="2_t2xpe"]
 [ext_resource type="Texture2D" uid="uid://7ccp3cgh7dwu" path="res://src/player/2D/madotsuki/effects/medamude/eye.png" id="3_8hpig"]
 [ext_resource type="Texture2D" uid="uid://djgw2bayjy6lb" path="res://src/player/2D/madotsuki/effects/medamude/eye_pupil.png" id="4_qe30v"]
 [ext_resource type="Script" uid="uid://dlvvx5cthl4bp" path="res://src/systems/utils/spritesheet_formatter.gd" id="5_0e8wi"]
-[ext_resource type="Script" uid="uid://co5edhtkgx3g8" path="res://src/systems/tools/FSM/fsm.gd" id="6_qe30v"]
+[ext_resource type="Script" uid="uid://co5edhtkgx3g8" path="res://src/helpers/FSM/fsm.gd" id="6_qe30v"]
 [ext_resource type="Script" uid="uid://ctbtfitoggtku" path="res://src/systems/components/component_receiver.gd" id="6_tjnme"]
-[ext_resource type="Script" uid="uid://r0etyaq71dla" path="res://src/systems/tools/FSM/state.gd" id="7_0e8wi"]
+[ext_resource type="Script" uid="uid://r0etyaq71dla" path="res://src/helpers/FSM/legacy_state.gd" id="7_0e8wi"]
 [ext_resource type="Script" uid="uid://bptlrkdn0tpua" path="res://src/systems/components/overrides/wiggle.gd" id="7_7oc0x"]
 
 [node name="medamaude_roll" type="Node"]

@@ -91,7 +91,7 @@ func _core_setup() -> void:
 		
 	text_display.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	text_display.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	text_display.label_settings = preload("res://src/global_label_settings.tres")
+	text_display.label_settings = preload("res://themes/global_label_settings.tres")
 	
 	icon_display_container.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	icon_content_seperator.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -113,7 +113,7 @@ func _core_setup() -> void:
 		
 	display_bg.material = ShaderMaterial.new()
 	display_bg.material.shader = DEFAULT_PANEL_DISPLAY_SHADER
-	if theme == null: theme = preload("res://src/global_theme.tres")
+	if theme == null: theme = preload("res://themes/global_theme.tres")
 	set_panel_modulate(panel_display_colour)
 	
 # --- setter functions ---	

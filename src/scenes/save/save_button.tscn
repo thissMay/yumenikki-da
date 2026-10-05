@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://mcaw5oms6f1t"]
+[gd_scene format=3 uid="uid://mcaw5oms6f1t"]
 
-[ext_resource type="Theme" uid="uid://bbm2vcixqf0gs" path="res://src/code_theme.tres" id="1_liomp"]
+[ext_resource type="Theme" uid="uid://bbm2vcixqf0gs" path="res://themes/code_theme.tres" id="1_liomp"]
 [ext_resource type="Script" uid="uid://56lsga81m5hg" path="res://src/scenes/save/save_button.gd" id="2_liomp"]
 [ext_resource type="Shader" uid="uid://bhdcejnx8m6be" path="res://src/shaders/ui/button_texture_grad_mask.gdshader" id="3_cwohn"]
-[ext_resource type="LabelSettings" uid="uid://dbxux4dchsxxt" path="res://src/global_label_settings.tres" id="4_mv4xc"]
+[ext_resource type="LabelSettings" uid="uid://dbxux4dchsxxt" path="res://themes/global_label_settings.tres" id="4_mv4xc"]
 [ext_resource type="Script" uid="uid://sptd6yjcf24k" path="res://src/ui/abstract_button.gd" id="5_pwl2l"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_6a8lx"]

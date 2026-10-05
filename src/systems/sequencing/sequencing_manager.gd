@@ -38,7 +38,7 @@ static func create_sequence(_name: String, _skip_invalid: bool = true, _wait_fin
 	seq.skip_invalid_events 	= _skip_invalid
 	seq.wait_til_finished 		= _wait_finish
 	
-	Game.add_child(seq)
+	Game.instance.add_child(seq)
 	Utils.connect_to_signal(seq.queue_free, seq.finished, ConnectFlags.CONNECT_ONE_SHOT)
 	
 	return seq 

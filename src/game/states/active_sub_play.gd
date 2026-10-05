@@ -1,4 +1,4 @@
-extends State
+extends LegacyState
 
 @export var dream_component: Component
 
@@ -36,6 +36,6 @@ func _state_exit() -> void:
 func _state_input(event: InputEvent) -> void:
 	dream_component._input_pass(event)
 	if Input.is_action_just_pressed("ui_esc_menu"):
-		GameManager.pause_options(true)
+		Game.pause_options(true)
 		
 	if player != null: (player as Player_YN)._sb_input(event)

@@ -1,1 +1,1 @@
-extends State
+extends LegacyState

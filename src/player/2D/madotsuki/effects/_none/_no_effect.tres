@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PLEffect" load_steps=5 format=3 uid="uid://dhc55c375fam2"]
+[gd_resource type="Resource" script_class="PLEffect" format=3 uid="uid://dhc55c375fam2"]
 
 [ext_resource type="Resource" uid="uid://fbyv4ifpj1q5" path="res://src/player/2D/madotsuki/effects/_none/_behaviour.tres" id="1_ru6d1"]
 [ext_resource type="Resource" uid="uid://by60xu5a4jc32" path="res://src/player/2D/madotsuki/actions/_default/hold_to_pinch.tres" id="2_gjokx"]

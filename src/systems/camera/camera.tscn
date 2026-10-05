@@ -1,10 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://c8bnpo28a373g"]
+[gd_scene format=3 uid="uid://c8bnpo28a373g"]
 
 [ext_resource type="Script" uid="uid://dpjo72gyccf67" path="res://src/systems/camera/camera_handler.gd" id="1_0c5nr"]
 [ext_resource type="Script" uid="uid://ctbtfitoggtku" path="res://src/systems/components/component_receiver.gd" id="2_rya0b"]
 [ext_resource type="Shader" uid="uid://cmxwqr6xgpduc" path="res://src/shaders/unshaded.gdshader" id="3_mqlxo"]
 [ext_resource type="Script" uid="uid://co667il3vd04t" path="res://src/systems/camera/components/curve_rotation.gd" id="3_qjqrg"]
-[ext_resource type="Script" uid="uid://co5edhtkgx3g8" path="res://src/systems/tools/FSM/fsm.gd" id="5_wxyky"]
+[ext_resource type="Script" uid="uid://co5edhtkgx3g8" path="res://src/helpers/FSM/fsm.gd" id="5_wxyky"]
 [ext_resource type="Script" uid="uid://dhlkhuum3gyh1" path="res://src/systems/camera/components/deadzone_component.gd" id="5_yhg0v"]
 [ext_resource type="Script" uid="uid://qxqnp1ku22in" path="res://src/systems/camera/states/static.gd" id="6_tyaiw"]
 [ext_resource type="Script" uid="uid://ctdqgwtms50u0" path="res://src/systems/camera/states/changing_target.gd" id="7_yhg0v"]

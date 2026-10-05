@@ -1,11 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://bvxntqsu3uuqt"]
+[gd_scene format=3 uid="uid://bvxntqsu3uuqt"]
 
 [ext_resource type="Texture2D" uid="uid://jyyt5bquldaa" path="res://src/images/panorama/glow_sea.png" id="2_juckd"]
-[ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://src/global_theme.tres" id="2_o2rco"]
+[ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://themes/global_theme.tres" id="2_o2rco"]
 [ext_resource type="Script" uid="uid://dhvrb58iweuo0" path="res://src/ui/gui/gui_button.gd" id="3_juckd"]
 [ext_resource type="Shader" uid="uid://dqxrs4a4y611c" path="res://src/shaders/panorama/linear.gdshader" id="4_tcehx"]
 [ext_resource type="Shader" uid="uid://bhdcejnx8m6be" path="res://src/shaders/ui/button_texture_grad_mask.gdshader" id="7_x008i"]
-[ext_resource type="LabelSettings" uid="uid://dbxux4dchsxxt" path="res://src/global_label_settings.tres" id="8_kfffw"]
+[ext_resource type="LabelSettings" uid="uid://dbxux4dchsxxt" path="res://themes/global_label_settings.tres" id="8_kfffw"]
 [ext_resource type="Script" uid="uid://sptd6yjcf24k" path="res://src/ui/abstract_button.gd" id="9_wghfn"]
 
 [sub_resource type="GDScript" id="GDScript_x008i"]

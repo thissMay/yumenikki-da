@@ -7,9 +7,6 @@
 
 [sub_resource type="Resource" id="Resource_y2gw5"]
 script = ExtResource("4_y2gw5")
-exhaust_multi = 0.85
-stamina_drain = 0.8
-stamina_regen = 0.78
 sprite_override = "uid://t640tko80xou"
 emote = "uid://c1yypq7p5sgav"
 walk_multi = 1.21

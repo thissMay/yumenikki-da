@@ -8,8 +8,8 @@ func _ready() -> void:
 	quit_to_menu.pressed.connect(
 		func(): 
 			SceneManager.change_scene_to(preload("res://src/levels/_neutral/menu/menu.tscn"))
-			GameManager.pause_options(false)
-			GameManager.pause(false)
+			Game.pause_options(false)
+			Game.pause(false)
 			)		
 	quit_to_desktop.pressed.connect(
 		func(): Application.quit())

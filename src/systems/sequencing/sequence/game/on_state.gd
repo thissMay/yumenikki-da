@@ -1,14 +1,14 @@
 extends Sequence
 
 enum MODE {ENTER, EXIT, BOTH}
-var state: State
+var state: LegacyState
 @export var emit_mode: MODE
 
 func _ready() -> void:
 	super()
 	state = get_parent()
 	
-	if state != null and state is State:
+	if state != null and state is LegacyState:
 		match emit_mode:
 			MODE.ENTER:
 				state.entered.connect(func(): SequencerManager.invoke(self))

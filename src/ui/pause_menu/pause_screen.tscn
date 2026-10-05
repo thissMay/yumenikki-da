@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://c2sv1637gh6ub"]
+[gd_scene format=3 uid="uid://c2sv1637gh6ub"]
 
-[ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://src/global_theme.tres" id="1_po4hh"]
+[ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://themes/global_theme.tres" id="1_po4hh"]
 [ext_resource type="Script" uid="uid://cfsgaybsbxwt1" path="res://src/ui/pause_menu/game_settings.gd" id="2_q8cxp"]
 [ext_resource type="PackedScene" uid="uid://bb5x43q568lo3" path="res://src/ui/pause_menu/selection/pause_selection_game.tscn" id="3_5dkct"]
 [ext_resource type="Script" uid="uid://dhvrb58iweuo0" path="res://src/ui/gui/gui_button.gd" id="4_guygo"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dwdmn5kwner1y" path="res://src/ui/pause_menu/selection/pause_selection_audio.tscn" id="5_iwnud"]
 [ext_resource type="Shader" uid="uid://bhdcejnx8m6be" path="res://src/shaders/ui/button_texture_grad_mask.gdshader" id="5_me0vq"]
 [ext_resource type="PackedScene" uid="uid://cmrcvsmoim6ds" path="res://src/ui/pause_menu/selection/pause_selection_options.tscn" id="6_6ev8l"]
-[ext_resource type="LabelSettings" uid="uid://dbxux4dchsxxt" path="res://src/global_label_settings.tres" id="6_q1jgw"]
+[ext_resource type="LabelSettings" uid="uid://dbxux4dchsxxt" path="res://themes/global_label_settings.tres" id="6_q1jgw"]
 [ext_resource type="Script" uid="uid://sptd6yjcf24k" path="res://src/ui/abstract_button.gd" id="7_70b82"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_3i1iq"]
@@ -23,7 +23,7 @@ shader_parameter/position = 0.0
 shader_parameter/size = 1.0
 shader_parameter/angle = 0.0
 
-[node name="pause_menu" type="Control" node_paths=PackedStringArray("page_graphics", "page_audio", "page_options", "page_game")]
+[node name="pause_menu" type="Control" unique_id=830786831 node_paths=PackedStringArray("page_graphics", "page_audio", "page_options", "page_game")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,7 +38,7 @@ page_audio = NodePath("menu/container/audio")
 page_options = NodePath("menu/container/options")
 page_game = NodePath("menu/container/game")
 
-[node name="dark" type="ColorRect" parent="."]
+[node name="dark" type="ColorRect" parent="." unique_id=367071699]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,7 +48,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.572549)
 
-[node name="menu" type="CenterContainer" parent="."]
+[node name="menu" type="CenterContainer" parent="." unique_id=225368499]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,30 +56,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="container" type="VBoxContainer" parent="menu"]
+[node name="container" type="VBoxContainer" parent="menu" unique_id=653035012]
 layout_mode = 2
 
-[node name="audio" parent="menu/container" instance=ExtResource("5_iwnud")]
+[node name="audio" parent="menu/container" unique_id=2125079541 instance=ExtResource("5_iwnud")]
 visible = false
 layout_mode = 2
 
-[node name="graphics" parent="menu/container" instance=ExtResource("4_xcrwk")]
+[node name="graphics" parent="menu/container" unique_id=834591912 instance=ExtResource("4_xcrwk")]
 visible = false
 layout_mode = 2
 
-[node name="options" parent="menu/container" instance=ExtResource("6_6ev8l")]
+[node name="options" parent="menu/container" unique_id=604371739 instance=ExtResource("6_6ev8l")]
 visible = false
 layout_mode = 2
 
-[node name="game" parent="menu/container" instance=ExtResource("3_5dkct")]
-visible = false
+[node name="game" parent="menu/container" unique_id=1479758032 instance=ExtResource("3_5dkct")]
 layout_mode = 2
 
-[node name="separator" type="HSeparator" parent="menu/container"]
+[node name="separator" type="HSeparator" parent="menu/container" unique_id=411059648]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="go_back" type="Control" parent="menu/container" node_paths=PackedStringArray("abstract_button", "display_bg", "main_container", "inner_main_container", "icon_content_seperator", "margin_container", "icon_display_container", "icon_display", "text_display")]
+[node name="go_back" type="Control" parent="menu/container" unique_id=897310748 node_paths=PackedStringArray("abstract_button", "display_bg", "main_container", "inner_main_container", "icon_content_seperator", "margin_container", "icon_display_container", "icon_display", "text_display")]
 custom_minimum_size = Vector2(60, 18)
 layout_mode = 2
 focus_mode = 2
@@ -87,9 +86,9 @@ mouse_filter = 1
 theme = ExtResource("1_po4hh")
 script = ExtResource("4_guygo")
 button_display_texture = SubResource("CanvasTexture_3i1iq")
-abstract_button = NodePath("main_container/abstract_button")
 panel_display_texture = SubResource("CanvasTexture_78awa")
 panel_display_colour = Color(1, 1, 1, 1)
+abstract_button = NodePath("main_container/abstract_button")
 display_bg = NodePath("main_container/display_bg")
 main_container = NodePath("main_container")
 inner_main_container = NodePath("main_container/margin_container/icon_content_seperator/inner_main_container")
@@ -100,7 +99,7 @@ icon_display = NodePath("main_container/margin_container/icon_content_seperator/
 text_display = NodePath("main_container/margin_container/icon_content_seperator/inner_main_container/text_display")
 metadata/_custom_type_script = "uid://dhvrb58iweuo0"
 
-[node name="main_container" type="PanelContainer" parent="menu/container/go_back"]
+[node name="main_container" type="PanelContainer" parent="menu/container/go_back" unique_id=2097889989]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -109,13 +108,13 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="display_bg" type="ColorRect" parent="menu/container/go_back/main_container"]
+[node name="display_bg" type="ColorRect" parent="menu/container/go_back/main_container" unique_id=413560218]
 material = SubResource("ShaderMaterial_guygo")
 layout_mode = 2
 size_flags_horizontal = 0
 mouse_filter = 2
 
-[node name="margin_container" type="MarginContainer" parent="menu/container/go_back/main_container"]
+[node name="margin_container" type="MarginContainer" parent="menu/container/go_back/main_container" unique_id=1018405748]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 4
@@ -123,38 +122,37 @@ theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 2
 
-[node name="icon_content_seperator" type="HBoxContainer" parent="menu/container/go_back/main_container/margin_container"]
+[node name="icon_content_seperator" type="HBoxContainer" parent="menu/container/go_back/main_container/margin_container" unique_id=1423934239]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="icon_display_container" type="CenterContainer" parent="menu/container/go_back/main_container/margin_container/icon_content_seperator"]
+[node name="icon_display_container" type="CenterContainer" parent="menu/container/go_back/main_container/margin_container/icon_content_seperator" unique_id=1437059594]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="icon_display" type="TextureRect" parent="menu/container/go_back/main_container/margin_container/icon_content_seperator/icon_display_container"]
+[node name="icon_display" type="TextureRect" parent="menu/container/go_back/main_container/margin_container/icon_content_seperator/icon_display_container" unique_id=96743257]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="inner_main_container" type="CenterContainer" parent="menu/container/go_back/main_container/margin_container/icon_content_seperator"]
+[node name="inner_main_container" type="CenterContainer" parent="menu/container/go_back/main_container/margin_container/icon_content_seperator" unique_id=1885321380]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="text_display" type="Label" parent="menu/container/go_back/main_container/margin_container/icon_content_seperator/inner_main_container"]
+[node name="text_display" type="Label" parent="menu/container/go_back/main_container/margin_container/icon_content_seperator/inner_main_container" unique_id=1465983412]
 layout_mode = 2
 text = "Go Back."
 label_settings = ExtResource("6_q1jgw")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="abstract_button" type="Control" parent="menu/container/go_back/main_container" node_paths=PackedStringArray("button")]
+[node name="abstract_button" type="Control" parent="menu/container/go_back/main_container" unique_id=1957015303 node_paths=PackedStringArray("button")]
 layout_mode = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 script = ExtResource("7_70b82")
 button = NodePath("button")
 
-[node name="button" type="BaseButton" parent="menu/container/go_back/main_container/abstract_button"]
-_import_path = NodePath("")
+[node name="button" type="BaseButton" parent="menu/container/go_back/main_container/abstract_button" unique_id=1219907819]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -196,6 +194,7 @@ grow_vertical = 1
 rotation = 0.0
 scale = Vector2(1, 1)
 pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
 size_flags_horizontal = 1
 size_flags_vertical = 1
 size_flags_stretch_ratio = 1.0
@@ -209,9 +208,18 @@ focus_neighbor_bottom = NodePath("")
 focus_next = NodePath("")
 focus_previous = NodePath("")
 focus_mode = 1
+focus_behavior_recursive = 0
 mouse_filter = 0
+mouse_behavior_recursive = 0
 mouse_force_pass_scroll_events = true
 mouse_default_cursor_shape = 2
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
 theme = null
 theme_type_variation = &""
 disabled = false

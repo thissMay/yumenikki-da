@@ -23,7 +23,7 @@ func _setup(_sb: SentientBase = null) -> void:
 
 # ----> equip / de-equip.
 func equip(_pl: Player, _effect: PLEffect, _skip: bool = false) -> void:
-	if _effect == null or _effect == effect_data or _effect in IGNORE: return
+	if _effect == null or _effect == effect_data: return
 	if _effect:
 		_pl.components.get_component_by_name(Player_YN.Components.ACTION).cancel_action(_pl, true)
 			
@@ -67,7 +67,6 @@ func _input_pass(event: InputEvent) -> void:
 		
 	if Input.is_action_just_pressed("ui_favourite_effect"): 
 		if !equipped: 	
-			print(Player.Instance.equipment_favourite)
 			change_effect(sentient, Player.Instance.equipment_favourite)
 		else:	
 			sentient.components.get_component_by_name(Player_YN.Components.ACTION).cancel_action(sentient, true)		

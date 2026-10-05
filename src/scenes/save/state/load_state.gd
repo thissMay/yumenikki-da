@@ -1,4 +1,4 @@
-extends State
+extends LegacyState
 
 @export var path_follow_cam: PathFollow2D
 @export var path_follow_ui: PathFollow2D

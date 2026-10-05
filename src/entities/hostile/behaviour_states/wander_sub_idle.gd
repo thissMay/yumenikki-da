@@ -10,7 +10,7 @@ func _setup() -> void:
 	wander_radius = sentient.wander_radius
 	
 	if idle_timer == null or repath_timer == null:
-		assert(idle_timer == null or repath_timer == null, "NavSentient, Wander State :: Idle Timer not found...")
+		assert(idle_timer == null or repath_timer == null, "NavSentient, Wander LegacyState :: Idle Timer not found...")
 		return
 	idle_timer.autostart = false
 	idle_timer.one_shot = true

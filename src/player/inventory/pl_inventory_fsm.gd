@@ -1,4 +1,4 @@
-extends FSM
+extends SM
 
 var player_equip_listener: EventListener
 var special_invert_sequence_end: EventListener

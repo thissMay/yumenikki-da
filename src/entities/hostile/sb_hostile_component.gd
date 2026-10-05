@@ -11,7 +11,7 @@ var suspicion: float:
 var suspicion_over_zero: bool = false
 
 @export_group("Components")
-@export var behaviour_fsm: FSM
+@export var behaviour_fsm: SM
 @export var suspicion_region: AreaRegion
 @export var suspicion_indicator: Node2D
 @export var suspicion_indicator_status: SpriteSheetFormatter
@@ -20,7 +20,7 @@ var indicator_observe_colour: Color = Color("ebaf00")
 var indicator_chase_colour: Color = Color("d80c4e")
 
 @export var target: SentientBase
-@export var target_states: Array[State]
+@export var target_states: Array[LegacyState]
 
 var radius: float = 0
 var displacement: Vector2

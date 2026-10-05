@@ -5,9 +5,9 @@ enum state {DREAM, NEUTRAL}
 
 static var global_dream_state: state
 
-@export var curr_reality_mode: 	State
-@export var dream_mode: 		State
-@export var neutral_mode: 		State
+@export var curr_reality_mode: 	LegacyState
+@export var dream_mode: 		LegacyState
+@export var neutral_mode: 		LegacyState
 
 const DREAM_LEVEL_DIR := "res://src/levels/_dream"
 const REAL_LEVEL_DIR := "res://src/levels/_real"

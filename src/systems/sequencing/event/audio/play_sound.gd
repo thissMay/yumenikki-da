@@ -8,8 +8,8 @@ extends Event
 @export_range(0.1 , 2, .01) var pitch: 	float = 1
 
 # -- test
-@export_tool_button("Play Test Audio") var play: Callable = play_test_audio
-@export_tool_button("Stop Test Audio") var stop: Callable = stop_test_audio
+@export_tool_button("Play Test AudioBusManager") var play: Callable = play_test_audio
+@export_tool_button("Stop Test AudioBusManager") var stop: Callable = stop_test_audio
 
 
 func _execute() -> void:
