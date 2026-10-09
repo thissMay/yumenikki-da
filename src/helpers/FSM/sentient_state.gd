@@ -1,4 +1,4 @@
 class_name SBState
 extends LegacyState
 
-var sentient: SentientBase
+var actor: Actor2D

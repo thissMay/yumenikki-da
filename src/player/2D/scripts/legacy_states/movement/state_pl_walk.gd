@@ -2,12 +2,12 @@ extends SBState
 var library_path := "normal"
 
 func _state_enter() -> void:
-	sentient.components.get_component_by_name("animation_manager").play_animation(str(library_path, '/', "walk"))
+	actor.components.get_component_by_name("animation_manager").play_animation(str(library_path, '/', "walk"))
 
 func _state_update(_delta: float) -> void:
-	if sentient.values.auto_sprint: 
+	if actor.values.auto_sprint: 
 		request_transition_to("sprint")
 
 func _state_physics_update(_delta: float) -> void:
-	sentient.get_behaviour()._walk(sentient, _delta)
+	actor.get_behaviour()._walk(actor, _delta)
 	

@@ -18,7 +18,7 @@ var effect_values: 	PLVariables 		= null:
 		else: 						return effect_values
 		
 
-func _setup(_sb: SentientBase = null) -> void:
+func _setup(_sb: Actor2D = null) -> void:
 	equip(_sb, Player.Instance.equipment_pending, true)
 
 # ----> equip / de-equip.
@@ -59,15 +59,15 @@ func change_effect(_pl: Player, _new_effect: PLEffect, _skip: bool = false) -> v
 	equip(_pl, _new_effect, _skip) 
 
 func _physics_update(_delta: float) -> void:
-	if effect_data != null: effect_data._effect_phys_update	(sentient, _delta)
+	if effect_data != null: effect_data._effect_phys_update	(actor, _delta)
 func _update(_delta: float) -> void:
-	if effect_data != null: effect_data._effect_update		(sentient, _delta)
+	if effect_data != null: effect_data._effect_update		(actor, _delta)
 func _input_pass(event: InputEvent) -> void: 
-	if effect_data != null: effect_data._effect_input		(sentient, event)
+	if effect_data != null: effect_data._effect_input		(actor, event)
 		
 	if Input.is_action_just_pressed("ui_favourite_effect"): 
 		if !equipped: 	
-			change_effect(sentient, Player.Instance.equipment_favourite)
+			change_effect(actor, Player.Instance.equipment_favourite)
 		else:	
-			sentient.components.get_component_by_name(Player_YN.Components.ACTION).cancel_action(sentient, true)		
-			deequip(sentient)
+			actor.components.get_component_by_name(Player_YN.Components.ACTION).cancel_action(actor, true)		
+			deequip(actor)

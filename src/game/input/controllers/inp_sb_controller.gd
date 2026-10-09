@@ -1,8 +1,8 @@
 class_name SBInputController
 extends InputController
 
-var sentient: SentientBase
+var actor: Actor2D
 
-func _setup(_sb: SentientBase = null) -> void: 
+func _setup(_sb: Actor2D = null) -> void: 
 	if _sb == null: return
-	sentient 		= _sb
+	actor 		= _sb

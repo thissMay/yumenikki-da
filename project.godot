@@ -40,7 +40,7 @@ NodeSaveService="*uid://j13s8ehd4488"
 
 [display]
 
-window/size/viewport_width=480
+window/size/viewport_width=360
 window/size/viewport_height=270
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
@@ -56,6 +56,7 @@ enabled=PackedStringArray("res://addons/autoload_setup/plugin.cfg", "res://addon
 [file_customization]
 
 folder_colors={
+"res://dev/": "blue",
 "res://src/entities/hostile/": "red",
 "res://src/entities/sentients/": "yellow",
 "res://src/levels/": "purple",
@@ -63,6 +64,10 @@ folder_colors={
 "res://src/player/hud/": "gray",
 "res://src/player/inventory/": "gray"
 }
+
+[gui]
+
+theme/custom="uid://bv8atq67jgwrc"
 
 [input]
 

@@ -9,7 +9,7 @@ extends SBState
 
 @export var hesitance_distance: float = 50
 
-var target: SentientBase
+var target: Actor2D
 var roll: float = 0
 
 func _setup() -> void:
@@ -23,7 +23,7 @@ func _setup() -> void:
 		hesitance_timer.wait_time = randf_range(min_wait_time, max_wait_time)
 		update_hesitance_observe_point())
 		
-	(sentient as NavSentient).nav_agent.target_reached.connect(hesitance_timer.start)
+	(actor as NavSentient).nav_agent.target_reached.connect(hesitance_timer.start)
 
 func _state_enter() -> void:
 	roll = randf()
@@ -32,9 +32,9 @@ func _state_enter() -> void:
 	sb_aggression.suspicion_indicator_status.visible = true
 	sb_aggression.suspicion_indicator_status.progress = 0
 	
-	(sentient as NavSentient).nav_agent.target_desired_distance = 10
-	(sentient as NavSentient).nav_agent.set_navigation_layer_value(2, false)
-	(sentient as NavSentient).nav_agent.set_navigation_layer_value(3, true)
+	(actor as NavSentient).nav_agent.target_desired_distance = 10
+	(actor as NavSentient).nav_agent.set_navigation_layer_value(2, false)
+	(actor as NavSentient).nav_agent.set_navigation_layer_value(3, true)
 	hesitance_timer.start()
 	super()
 	
@@ -56,17 +56,17 @@ func update(_delta: float) -> void:
 		fsm.change_to_state("wander")
 		
 func physics_update(_delta: float) -> void: 
-	if (!(sentient as NavSentient).nav_agent.is_target_reached() and 
-		(sentient as NavSentient).nav_agent.is_target_reachable()):
+	if (!(actor as NavSentient).nav_agent.is_target_reached() and 
+		(actor as NavSentient).nav_agent.is_target_reachable()):
 			
-		sentient.handle_direction((sentient as NavSentient).nav_agent.get_next_path_position() - sentient.global_position)
-		sentient.handle_direction((sentient as NavSentient).nav_agent.get_next_path_position() - sentient.global_position)
+		actor.handle_direction((actor as NavSentient).nav_agent.get_next_path_position() - actor.global_position)
+		actor.handle_direction((actor as NavSentient).nav_agent.get_next_path_position() - actor.global_position)
 	
 	else:
 		stance_fsm.change_to_state("idle")	
 		
-	if !(sentient as NavSentient).nav_agent.is_target_reachable():
+	if !(actor as NavSentient).nav_agent.is_target_reachable():
 		update_hesitance_observe_point()
 
 func update_hesitance_observe_point() -> void: 
-	sentient.nav_agent.target_position = target.global_position
+	actor.nav_agent.target_position = target.global_position

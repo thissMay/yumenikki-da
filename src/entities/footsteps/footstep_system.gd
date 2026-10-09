@@ -23,7 +23,7 @@ var material_id: int = 0
 func _on_bypass_enabled() -> void:
 	floor_priority = null
 
-func _setup(_sentient: SentientBase = null) -> void:
+func _setup(_sentient: Actor2D = null) -> void:
 	super(_sentient)
 	
 	footstep_se_player 	= $sound_player
@@ -48,13 +48,13 @@ func spawn_footstep_fx() -> void:
 	if Optimization.footstep_instances < Optimization.FOOTSTEP_MAX_INSTANCES:
 		var footstep_fx := FootstepDust.new(curr_anim)
 		self.add_child(footstep_fx)
-		footstep_fx.global_position = sentient.global_position
+		footstep_fx.global_position = actor.global_position
 
 func play_footstep_sound(_footstep_se: AudioStream) -> void: 
 	footstep_se_player.play_sound(
 		_footstep_se, 
-		clampf(2.1 *(log(sentient.noise + 1)), 0.5, 1.75), 
-		clampf(randf_range(0.75, sentient.noise), 0.75, 1.2))	
+		clampf(2.1 *(log(actor.noise + 1)), 0.5, 1.75), 
+		clampf(randf_range(0.75, actor.noise), 0.75, 1.2))	
 
 func _on_body_shape_entered(
 	_body_rid: RID, 

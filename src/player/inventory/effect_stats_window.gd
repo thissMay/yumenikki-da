@@ -35,9 +35,9 @@ func _ready() -> void:
 		"PLAYER_UPDATED")
 
 func update_stats_display() -> void:
-	handle_stats_display_value(walk_speed, "WALK SPEED: \t%.2f m/s" % 		(player.values.walk_multi * SentientBase.BASE_SPEED / 16))
-	handle_stats_display_value(sprint_speed, "SPRINT SPEED: \t%.2f m/s" % 	(player.values.sprint_multi * SentientBase.BASE_SPEED / 16))
-	handle_stats_display_value(sneak_speed, "SNEAK SPEED: \t%.2f m/s" % 	(player.values.sneak_multi * SentientBase.BASE_SPEED / 16))
+	handle_stats_display_value(walk_speed, "WALK SPEED: \t%.2f m/s" % 		(player.values.walk_multi * Actor2D.BASE_SPEED / 16))
+	handle_stats_display_value(sprint_speed, "SPRINT SPEED: \t%.2f m/s" % 	(player.values.sprint_multi * Actor2D.BASE_SPEED / 16))
+	handle_stats_display_value(sneak_speed, "SNEAK SPEED: \t%.2f m/s" % 	(player.values.sneak_multi * Actor2D.BASE_SPEED / 16))
 	
 	handle_stats_display_value(can_sprint, "CAN SPRINT?: \t%s" 					% player.values.can_sprint)
 	

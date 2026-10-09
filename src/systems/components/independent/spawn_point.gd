@@ -14,7 +14,7 @@ extends Node2D
 		else:						parent_instead_of_self = self
 @export var as_sibling: bool = true
 @export_subgroup("Direction")
-@export var heading: SentientBase.compass_headings = SentientBase.compass_headings.SOUTH
+@export var heading: Actor2D.compass_headings = Actor2D.compass_headings.SOUTH
 
 const TEXTURE: Texture2D = preload("res://src/systems/components/independent/pl_spawn.png")
 	

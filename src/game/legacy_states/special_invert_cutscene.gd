@@ -6,7 +6,6 @@ func _setup() -> void:
 	inventory._setup()
 
 func _state_enter() -> void: 
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	AudioBusManager.adjust_bus_effect(AudioBusManager.BUS_MUSIC, 1, "cutoff_hz", 300)
 	
 	#Game.lerp_timescale(0.5)

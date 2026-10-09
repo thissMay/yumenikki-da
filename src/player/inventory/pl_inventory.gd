@@ -1,7 +1,6 @@
 class_name PLInventory
 extends Control
 
-@export var fsm: SM
 @export var display: Control
 @export var item_container: GridContainer
 
@@ -12,15 +11,12 @@ var effects: Array[PLEffect]
 var effect_buttons: Array[GUIPanelButton]
 
 # - initializaiton (called from special invert state).
-func _setup() -> void:
-	fsm._setup(self)
+func _setup() -> void: pass
 		
 func _enter() -> void: 
 	(self.visible) = true
-	fsm.curr_state._state_enter()
 func _exit() -> void: 
 	(self.visible) = false
-	fsm.curr_state._state_exit()
 
 # - adding + removing items.
 func delete_buttons() -> void: 

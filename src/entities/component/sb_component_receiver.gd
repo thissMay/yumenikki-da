@@ -3,7 +3,7 @@
 class_name SBComponentReceiver
 extends ComponentReceiver
 
-var sentient: SentientBase
+var actor: Actor2D
 
 func _init(_affector: Node = null) -> void: 
 	super(_affector)
@@ -12,14 +12,14 @@ func _validate_property(property: Dictionary) -> void:
 	if property.name in ["affector", "independent"]:
 		property.usage = PROPERTY_USAGE_NO_EDITOR
 func _ready() -> void:
-	if get_parent() != null and get_parent() is SentientBase:
+	if get_parent() != null and get_parent() is Actor2D:
 		self.name = "sb_components"
-func _setup(_sb: SentientBase = null) -> void: 
+func _setup(_sb: Actor2D = null) -> void: 
 	components = self.get_children()
 	
 	for component in components: 
 		if component and component is SBComponent and component.active: 
-			component.sentient = _sb
+			component.actor = _sb
 			component._setup(_sb)
 
 # ---

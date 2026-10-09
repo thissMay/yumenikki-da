@@ -19,7 +19,7 @@ func add_custom_types() -> void:
 		preload("res://src/systems/scenes/game/game_additive_scene.gd"), 
 		preload("res://addons/miscallenous/editor/game_scene_additive.png")
 		)
-	add_custom_type("SentientBase", 
+	add_custom_type("Actor2D", 
 		"CharacterBody2D", 
 		preload("res://src/entities/sentient_base.gd"), 
 		preload("res://addons/miscallenous/editor/sentient_base.png")
@@ -48,7 +48,7 @@ func add_custom_types() -> void:
 func remove_custom_types() -> void:
 	remove_custom_type("GameScene")
 	remove_custom_type("AdditiveGameScene")
-	remove_custom_type("SentientBase")
+	remove_custom_type("Actor2D")
 	remove_custom_type("Event")
 	remove_custom_type("Sequence")
 	remove_custom_type("SpawnPoint")

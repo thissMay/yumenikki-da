@@ -1,5 +1,5 @@
 class_name Player
-extends SentientBase
+extends Actor2D
 
 @export var fsm: SentientFSM
 
@@ -91,7 +91,7 @@ class Instance:
 				if get_pl(): (get_pl() as Player_YN).equip(equipment_pending), "SCENE_CHANGE_SUCCESS"
 		)
 
-	static func teleport_player(_pos: Vector2, _heading: SentientBase.compass_headings, w_camera: bool = false) -> void:
+	static func teleport_player(_pos: Vector2, _heading: Actor2D.compass_headings, w_camera: bool = false) -> void:
 		if get_pl():
 			get_pl().global_position = _pos
 			get_pl().heading = _heading

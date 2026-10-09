@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://3hnikrtrioc8"]
+
+[node name="GameStateRoot" type="Node2D" unique_id=178791851]

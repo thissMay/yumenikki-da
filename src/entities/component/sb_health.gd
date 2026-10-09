@@ -17,7 +17,7 @@ var death: SBComponent
 
 signal took_damage(_dmg: float)
 
-func _setup(_sentient: SentientBase = null) -> void:
+func _setup(_sentient: Actor2D = null) -> void:
 	super(_sentient)
 	blood_particles = Utils.get_child_node_or_null(self, "blood_particles")
 	if blood_particles == null: 

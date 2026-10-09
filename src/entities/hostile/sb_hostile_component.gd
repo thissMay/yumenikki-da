@@ -11,7 +11,7 @@ var suspicion: float:
 var suspicion_over_zero: bool = false
 
 @export_group("Components")
-@export var behaviour_fsm: SM
+@export var behaviour_fsm: LegacyFSM
 @export var suspicion_region: AreaRegion
 @export var suspicion_indicator: Node2D
 @export var suspicion_indicator_status: SpriteSheetFormatter
@@ -19,7 +19,7 @@ var suspicion_over_zero: bool = false
 var indicator_observe_colour: Color = Color("ebaf00")
 var indicator_chase_colour: Color = Color("d80c4e")
 
-@export var target: SentientBase
+@export var target: Actor2D
 @export var target_states: Array[LegacyState]
 
 var radius: float = 0
@@ -45,8 +45,8 @@ func _update(_delta: float) -> void:
 	
 	radius = suspicion_region.shape.radius 
 	displacement = (dist_from_to(Vector2(
-		Vector2(radius * cos(atan2(target.position.y - sentient.position.y, target.position.x  - sentient.position.x)), radius * sin(atan2(target.position.y  - sentient.position.y, target.position.x  - sentient.position.x)))),
-		target.position - sentient.position))
+		Vector2(radius * cos(atan2(target.position.y - actor.position.y, target.position.x  - actor.position.x)), radius * sin(atan2(target.position.y  - actor.position.y, target.position.x  - actor.position.x)))),
+		target.position - actor.position))
 	in_range = displacement.length() < suspicion_distance_threshold
 	
 	if in_range: suspicion += suspicion_increase_multiplier * (1 / displacement.length())
@@ -55,11 +55,11 @@ func _update(_delta: float) -> void:
 	if suspicion >= min_observe_threshold and behaviour_fsm.get_curr_state_name() == "wander":
 		behaviour_fsm.change_to_state("observe")
 	
-	sentient.queue_redraw()
+	actor.queue_redraw()
 		
 func _physics_update(delta: float) -> void: pass
 
-func _setup(_sentient: SentientBase = null) -> void: 
+func _setup(_sentient: Actor2D = null) -> void: 
 	super(_sentient)
 	_sentient.draw.connect(_draw)
 	for i in target_states:
@@ -81,11 +81,11 @@ func _setup(_sentient: SentientBase = null) -> void:
 
 func _draw() -> void:
 	if Engine.is_editor_hint():
-		sentient.draw_circle(Vector2.ZERO, radius, Color.YELLOW, false, 3)
+		actor.draw_circle(Vector2.ZERO, radius, Color.YELLOW, false, 3)
 		
-		sentient.draw_line(
-			Vector2(radius * cos(atan2(target.position.y - sentient.position.y, target.position.x  - sentient.position.x)), radius * sin(atan2(target.position.y  - sentient.position.y, target.position.x  - sentient.position.x))),
-			target.position - sentient.position,
+		actor.draw_line(
+			Vector2(radius * cos(atan2(target.position.y - actor.position.y, target.position.x  - actor.position.x)), radius * sin(atan2(target.position.y  - actor.position.y, target.position.x  - actor.position.x))),
+			target.position - actor.position,
 			Color.GREEN if displacement.length() > suspicion_distance_threshold else Color.RED,
 			2)
 

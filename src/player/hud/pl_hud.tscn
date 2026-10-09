@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://q5moiijg0b7a"]
 
-[ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://themes/global_theme.tres" id="1_jajjr"]
 [ext_resource type="Script" uid="uid://d3yuvhq7nx0we" path="res://src/player/hud/pl_hud_manager.gd" id="1_o4eow"]
 [ext_resource type="Script" uid="uid://cfcnsb8jk2ag5" path="res://src/player/hud/pl_hud_indicators.gd" id="2_ir6k4"]
 [ext_resource type="Texture2D" uid="uid://h7wmglg415a4" path="res://src/player/inventory/effects_indicator.png" id="9_a8b7g"]
@@ -14,7 +13,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_jajjr")
 script = ExtResource("1_o4eow")
 indicators = NodePath("indicators")
 save_icon = NodePath("indicators/icon")

@@ -1,7 +1,7 @@
 class_name SBComponent
 extends Component
 
-var sentient: SentientBase
+var actor: Actor2D
 
 func _ready() -> void:
 	set_process			(false)
@@ -15,7 +15,7 @@ func _ready() -> void:
 	Utils.connect_to_signal(_on_bypass_lifted, sb_component_receiver.bypass_lifted)
 
 # -- virtual
-func _setup(_sb: SentientBase = null) -> void: sentient = _sb
+func _setup(_sb: Actor2D = null) -> void: actor = _sb
 
 func _update(_delta: float) -> void: pass
 func _physics_update(_delta: float) -> void: pass

@@ -3,7 +3,7 @@
 class_name EVN_GoToPoint
 extends Event
 
-@export var sentient: SentientBase
+@export var actor: Actor2D
 @export var marker: Marker2D
 @export var point: SpawnPoint
 
@@ -13,9 +13,9 @@ func _ready() -> void:
 	super()
 
 func _execute() -> void:
-	sentient.global_position = point.global_position
+	actor.global_position = point.global_position
 func _validate() -> bool:
-	if point == null or sentient == null:
+	if point == null or actor == null:
 		printerr("EVENT - TRAVEL POINT :: Spawn Point or Sentient is not found!")
 		return false
 	return true

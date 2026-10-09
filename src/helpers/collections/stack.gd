@@ -8,12 +8,10 @@ signal popped(_element: Variant)
 var top: Variant
 var array: Array = []
 
-var uncapped: bool = true
 var max_size: int = 0
 
-func _init(_max_size: int = 0, _uncapped: bool = true) -> void: 
+func _init(_max_size: int = 0) -> void: 
 	max_size = _max_size
-	uncapped = _uncapped
 
 ## Returns the top element without removing it.
 func peek() -> Variant:
@@ -42,9 +40,8 @@ func pop() -> Variant:
 func push(_element: Variant) -> void:
 	# - we ignore max_size limits if (max_size <= 0)
 	
-	if max_size > 0 and array.size() > max_size: 
-		if !uncapped: return
-		 
+	if max_size > 0 and array.size() >= max_size: return
+	
 	array.append(_element)
 	top = _element
 	if _element is StackNode: 

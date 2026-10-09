@@ -9,7 +9,7 @@ var old_pos:	 Vector2
 var new_pos: 	Vector2
 var vel: 		Vector2
 
-@export var fsm: SM
+@export var fsm: LegacyFSM
 
 # ---- FOLLOW STRATS ----
 @export_group("Miscallenous")
@@ -137,7 +137,7 @@ func set_target(_target: CanvasItem, _dur: float = .5) -> void:
 	curr_target 	= _target
 	fsm.change_to_state("changing_target")
 	
-	if (_target as Node) is SentientBase: 
+	if (_target as Node) is Actor2D: 
 			set_follow_strategy(follow_player if !motion_reduction else default)
 	else: 	set_follow_strategy(follow_lerp if !motion_reduction else default)
 	

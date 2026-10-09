@@ -1,4 +1,4 @@
-class_name SM 
+class_name LegacyFSM 
 extends Node
 
 @export var track_state_changes: bool = false
@@ -38,8 +38,7 @@ func _setup(_owner: Node, _skip_initial_state_setup: bool = false) -> void:
 		curr_state.state_enter()
 		
 		
-func change_state(from: State, state: State) -> void: pass
-func LCA (a: State, b: State) -> State: return null
+
 		
 func change_to_state(_new: StringName) -> void:
 	_new = _new.to_lower()

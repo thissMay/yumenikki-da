@@ -1,9 +1,8 @@
 extends LegacyState
 
-@export var dream_fsm: SM
+@export var dream_fsm: LegacyFSM
 
 func _state_enter() -> void: 
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	EventManager.invoke_event("CUTSCENE_START")
 	Game.set_cinematic_bars(true)
 

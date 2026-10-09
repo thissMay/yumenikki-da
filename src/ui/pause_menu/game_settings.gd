@@ -12,21 +12,12 @@ var active_stack: Stack
 @export var page_options: 	Control
 @export var page_game: 		Control
 
-var go_back: 			GUIPanelButton
+@export_group("bullshit")
+@export var go_back: 			Button
+@export var game_options: 		Button
+@export var options_audio:  	Button
+@export var options_graphics:  	Button
 
-var game_options: 			GUIPanelButton
-
-var options_audio:  	GUIPanelButton
-var options_graphics:  	GUIPanelButton
-
-func references_setup() -> void:
-	go_back = get_node("menu/container/go_back")
-	
-	game_options  			= get_node("menu/container/game/options")
-	
-	options_audio 		= get_node("menu/container/options/audio")
-	options_graphics 	= get_node("menu/container/options/graphics")
-	
 func buttons_setup() -> void:
 	game_options.pressed.connect(func(): active_stack.push(page_options))
 	options_audio.pressed.connect(func(): active_stack.push(page_audio))
@@ -34,7 +25,6 @@ func buttons_setup() -> void:
 	go_back.pressed.connect(func(): active_stack.pop())
 
 func _ready() -> void:
-	references_setup()
 	buttons_setup()
 
 	active_stack = Stack.new()

@@ -92,11 +92,6 @@ func get_group_arr(_name: String) -> Array[Node]:
 		return get_tree().get_nodes_in_group(_name)
 	return [null]
 
-# refinements.
-func u_load(_res_path: String) -> Resource:
-	if !ResourceLoader.exists(_res_path): return
-	return load(_res_path)
-
 # - helper.
 func push(...a: Array) -> void:
 	if !ignore_warnings: push_warning(a)

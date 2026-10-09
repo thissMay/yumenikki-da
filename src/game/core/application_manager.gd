@@ -16,6 +16,7 @@ static var viewport_length: int
 static var viewport_content_scale: float
 static var main_window: Window
 static var main_viewport: Viewport
+static var viewport_size
 
 static func quit(): 
 	on_quit()

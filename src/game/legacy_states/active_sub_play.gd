@@ -14,7 +14,6 @@ func _ready() -> void:
 	player_updated.do_on_notify(func(): player = EventManager.get_event_param("PLAYER_UPDATED")[0], "PLAYER_UPDATED")
 		
 func _state_enter() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 	await Game.main_tree.process_frame
 	PhysicsServer2D.set_active(true)

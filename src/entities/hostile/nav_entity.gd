@@ -1,7 +1,7 @@
 @tool
 
 class_name NavSentient
-extends SentientBase
+extends Actor2D
 
 @export var nav_agent: NavigationAgent2D
 @export var stance_fsm: SentientFSM

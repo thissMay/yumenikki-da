@@ -17,7 +17,7 @@ var fear: float: 		# --- [0 - 100] induces spiking BPM. affects music and ambien
 	get: return roundf(fear)			
 var exhaustion: float 	# --- [0 - 100] induces blurred outer visual. affects music and ambience volumes and invokes distorted audio.
 
-func _setup(_sentient: SentientBase = null) -> void:
+func _setup(_sentient: Actor2D = null) -> void:
 	super(_sentient)
 	bpm = calculate_bpm()
 

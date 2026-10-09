@@ -33,7 +33,7 @@ func _ready() -> void:
 	
 	interactable_found.connect(func(interactable):
 		AudioService.play_sound(load("res://src/audio/se/se_interaction_prompt.wav"), 0.1, 0.8)
-		prompt_icon.global_position = sentient.global_position - Vector2(0, 24)
+		prompt_icon.global_position = actor.global_position - Vector2(0, 24)
 		show_prompt(true))
 	interactable_lost.connect(func():
 		show_prompt(false))
@@ -41,7 +41,7 @@ func _ready() -> void:
 	
 func _update(delta: float) -> void:
 	handle_field()
-	field.rotation = sentient.direction.angle()
+	field.rotation = actor.direction.angle()
 	
 	if cooldown: 
 		interaction_cooldown -= delta
@@ -126,5 +126,5 @@ func prompt_hide_animation() -> void:
 	prompt_icon.visible = false
 
 func _input_pass(_input: InputEvent) -> void: 
-	if 	 Input.is_physical_key_pressed(KEY_E): sentient.quered_interact.emit(sentient, 0)
-	elif Input.is_physical_key_pressed(KEY_R): sentient.quered_interact.emit(sentient, 1)
+	if 	 Input.is_physical_key_pressed(KEY_E): actor.quered_interact.emit(actor, 0)
+	elif Input.is_physical_key_pressed(KEY_R): actor.quered_interact.emit(actor, 1)

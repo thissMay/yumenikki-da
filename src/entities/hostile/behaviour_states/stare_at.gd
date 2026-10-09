@@ -1,7 +1,7 @@
 extends SBState
 
-var target: SentientBase
+var target: Actor2D
 
 func physics_update(_delta: float) -> void:
 	if target == null: return
-	sentient.handle_direction((target.global_position - sentient.global_position))
+	actor.handle_direction((target.global_position - actor.global_position))

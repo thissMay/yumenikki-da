@@ -1,4 +1,4 @@
-class_name SentientBase
+class_name Actor2D
 extends CharacterBody2D
 
 @export var values: SBVariables = SBVariables.new():
@@ -96,7 +96,7 @@ func dependency_setup() -> void: pass
 
 # ---- base processes ----
 func _physics_update(_delta: float) -> void:
-	(self as SentientBase).move_and_slide()
+	(self as Actor2D).move_and_slide()
 	components._physics_update(_delta)
 func _update(_delta: float) -> void:
 	components._update(_delta)

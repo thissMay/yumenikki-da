@@ -12,8 +12,6 @@
 [ext_resource type="Script" uid="uid://dhvrb58iweuo0" path="res://src/ui/gui/gui_button.gd" id="10_d7jyh"]
 [ext_resource type="LabelSettings" uid="uid://dbxux4dchsxxt" path="res://themes/global_label_settings.tres" id="11_vexp4"]
 [ext_resource type="Script" uid="uid://sptd6yjcf24k" path="res://src/ui/abstract_button.gd" id="12_msekq"]
-[ext_resource type="Script" uid="uid://bvqa07cv77e0q" path="res://src/systems/sequencing/sequence/game/on_button_press.gd" id="12_ppdc2"]
-[ext_resource type="Script" uid="uid://c0ymap76lrhgr" path="res://src/systems/sequencing/event/scene/travel_to_scene.gd" id="13_37vgk"]
 [ext_resource type="Script" uid="uid://c1od80bn28h0l" path="res://src/systems/sequencing/sequence_interface.gd" id="14_d7jyh"]
 [ext_resource type="AudioStream" uid="uid://qlkbvjfnvqll" path="res://src/audio/bgm/may_yta_candlebath.ogg" id="15_d7jyh"]
 [ext_resource type="Script" uid="uid://ctqw6a8qsvnv4" path="res://src/systems/sequencing/event/audio/play_bgm.gd" id="15_vexp4"]
@@ -41,10 +39,6 @@ func _initialize() -> void:
 	credits_go_back.pressed.connect(func(): credits_panel.visible = false)
 	
 "
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bmll1"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_u2r5h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vexp4"]
 shader = ExtResource("2_uj1l6")
@@ -82,7 +76,7 @@ shader_parameter/noise = SubResource("NoiseTexture2D_ppdc2")
 shader_parameter/scroll_speed = 0.01499999687072999
 shader_parameter/gradient = SubResource("GradientTexture2D_vexp4")
 shader_parameter/rot_radians = 0.0
-shader_parameter/ray_strength = 1.225
+shader_parameter/ray_strength = 2.12
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jissf"]
 blend_mode = 3
@@ -93,42 +87,12 @@ blend_mode = 3
 gradient = SubResource("Gradient_dwoed")
 width = 128
 height = 128
-fill_from = Vector2(0.4, 0.4)
+fill_from = Vector2(0.32692307, 0.48504272)
 fill_to = Vector2(1, 0.7)
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_ppdc2"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wx1ft"]
-shader = ExtResource("7_dwoed")
-shader_parameter/first_color = Color(0, 0, 0, 1)
-shader_parameter/second_color = Color(0, 0, 0, 0)
-shader_parameter/position = 0.0
-shader_parameter/size = 1.0
-shader_parameter/angle = 0.0
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_d7jyh"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7o6ls"]
-shader = ExtResource("7_dwoed")
-shader_parameter/first_color = Color(0, 0, 0, 1)
-shader_parameter/second_color = Color(0, 0, 0, 0)
-shader_parameter/position = 0.0
-shader_parameter/size = 1.0
-shader_parameter/angle = 0.0
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_vexp4"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_46psg"]
-shader = ExtResource("7_dwoed")
-shader_parameter/first_color = Color(0, 0, 0, 1)
-shader_parameter/second_color = Color(0, 0, 0, 0)
-shader_parameter/position = 0.0
-shader_parameter/size = 1.0
-shader_parameter/angle = 0.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_msekq"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_riren"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d7jyh"]
 shader = ExtResource("7_dwoed")
 shader_parameter/first_color = Color(0, 0, 0, 1)
 shader_parameter/second_color = Color(0, 0, 0, 0)
@@ -136,23 +100,21 @@ shader_parameter/position = 0.0
 shader_parameter/size = 1.0
 shader_parameter/angle = 0.0
 
-[node name="menu" type="Node2D" node_paths=PackedStringArray("button_credits", "button_quit", "credits_go_back", "credits_panel", "version_label", "seq_initial")]
+[node name="menu" type="Node2D" unique_id=1926380828 node_paths=PackedStringArray("button_credits", "button_quit", "credits_go_back", "credits_panel", "version_label", "seq_initial")]
 script = SubResource("GDScript_h18ho")
-button_credits = NodePath("ui/theme_applier/menu/credits")
-button_quit = NodePath("ui/theme_applier/menu/quit_to_desktop")
+button_credits = NodePath("")
+button_quit = NodePath("")
 credits_go_back = NodePath("ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/go_back")
 credits_panel = NodePath("ui/theme_applier/credtis_panel")
-version_label = NodePath("ui/theme_applier/menu/game_ver")
+version_label = NodePath("ui/theme_applier/game_ver")
 seq_initial = NodePath("on_initial")
-load_transition = SubResource("ShaderMaterial_bmll1")
-unload_transition = SubResource("ShaderMaterial_u2r5h")
 
-[node name="camera" parent="." instance=ExtResource("5_bmll1")]
-position = Vector2(240, 135)
+[node name="camera" parent="." unique_id=1368085752 instance=ExtResource("5_bmll1")]
+position = Vector2(180, 135)
 
-[node name="bg" type="CanvasLayer" parent="."]
+[node name="bg" type="CanvasLayer" parent="." unique_id=65263426]
 
-[node name="Control" type="Control" parent="bg"]
+[node name="Control" type="Control" parent="bg" unique_id=1679237005]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 15
@@ -161,7 +123,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="bg" type="TextureRect" parent="bg/Control"]
+[node name="bg" type="TextureRect" parent="bg/Control" unique_id=955437948]
 z_index = -1
 material = SubResource("ShaderMaterial_vexp4")
 layout_mode = 1
@@ -176,7 +138,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_8cjbf")
 
-[node name="godrays" type="TextureRect" parent="bg/Control"]
+[node name="godrays" type="TextureRect" parent="bg/Control" unique_id=153982313]
 material = SubResource("ShaderMaterial_37vgk")
 layout_mode = 1
 anchors_preset = 15
@@ -190,7 +152,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_6sr68")
 
-[node name="ColorRect" type="TextureRect" parent="bg/Control"]
+[node name="ColorRect" type="TextureRect" parent="bg/Control" unique_id=688585721]
 material = SubResource("CanvasItemMaterial_jissf")
 layout_mode = 1
 anchors_preset = 15
@@ -203,509 +165,49 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_6sr68")
 metadata/_edit_use_anchors_ = true
 
-[node name="ui" type="CanvasLayer" parent="."]
+[node name="ui" type="CanvasLayer" parent="." unique_id=1262800983]
 
-[node name="theme_applier" type="Control" parent="ui"]
+[node name="theme_applier" type="Control" parent="ui" unique_id=1247101301]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_5atdl")
 
-[node name="menu" type="VBoxContainer" parent="ui/theme_applier"]
+[node name="TextureRect" type="TextureRect" parent="ui/theme_applier" unique_id=1568644043]
 layout_mode = 0
-offset_left = 48.0
-offset_top = 68.0
-offset_right = 176.0
-offset_bottom = 203.0
-mouse_filter = 2
-theme = ExtResource("3_5atdl")
-theme_override_constants/separation = 4
-
-[node name="TextureRect" type="TextureRect" parent="ui/theme_applier/menu"]
-layout_mode = 2
+offset_right = 128.0
+offset_bottom = 64.0
 texture = ExtResource("3_omn5r")
 stretch_mode = 3
 
-[node name="new_game" type="Control" parent="ui/theme_applier/menu" node_paths=PackedStringArray("abstract_button", "display_bg", "main_container", "inner_main_container", "icon_content_seperator", "margin_container", "icon_display_container", "icon_display", "text_display")]
-custom_minimum_size = Vector2(60, 18)
-layout_mode = 2
-focus_mode = 2
-mouse_filter = 1
-theme = ExtResource("3_5atdl")
-script = ExtResource("10_d7jyh")
-button_display_texture = SubResource("CanvasTexture_ppdc2")
-abstract_button = NodePath("main_container/abstract_button")
-display_bg = NodePath("main_container/display_bg")
-main_container = NodePath("main_container")
-inner_main_container = NodePath("main_container/margin_container/icon_content_seperator/inner_main_container")
-icon_content_seperator = NodePath("main_container/margin_container/icon_content_seperator")
-margin_container = NodePath("main_container/margin_container")
-icon_display_container = NodePath("main_container/margin_container/icon_content_seperator/icon_display_container")
-icon_display = NodePath("main_container/margin_container/icon_content_seperator/icon_display_container/icon_display")
-text_display = NodePath("main_container/margin_container/icon_content_seperator/inner_main_container/text_display")
-metadata/_custom_type_script = "uid://dhvrb58iweuo0"
-
-[node name="main_container" type="PanelContainer" parent="ui/theme_applier/menu/new_game"]
+[node name="menu" type="VBoxContainer" parent="ui/theme_applier" unique_id=1923015]
 layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 176.0
+offset_right = 198.0
+offset_bottom = 260.0
 mouse_filter = 2
+theme_override_constants/separation = 4
 
-[node name="display_bg" type="ColorRect" parent="ui/theme_applier/menu/new_game/main_container"]
-material = SubResource("ShaderMaterial_wx1ft")
+[node name="Button" type="Button" parent="ui/theme_applier/menu" unique_id=945012690]
 layout_mode = 2
-size_flags_horizontal = 0
-mouse_filter = 2
 
-[node name="margin_container" type="MarginContainer" parent="ui/theme_applier/menu/new_game/main_container"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 2
-
-[node name="icon_content_seperator" type="HBoxContainer" parent="ui/theme_applier/menu/new_game/main_container/margin_container"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="icon_display_container" type="CenterContainer" parent="ui/theme_applier/menu/new_game/main_container/margin_container/icon_content_seperator"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="icon_display" type="TextureRect" parent="ui/theme_applier/menu/new_game/main_container/margin_container/icon_content_seperator/icon_display_container"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="inner_main_container" type="CenterContainer" parent="ui/theme_applier/menu/new_game/main_container/margin_container/icon_content_seperator"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="text_display" type="Label" parent="ui/theme_applier/menu/new_game/main_container/margin_container/icon_content_seperator/inner_main_container"]
-layout_mode = 2
-text = "New Game"
-label_settings = ExtResource("11_vexp4")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="abstract_button" type="Control" parent="ui/theme_applier/menu/new_game/main_container" node_paths=PackedStringArray("button")]
-layout_mode = 2
-mouse_filter = 1
-script = ExtResource("12_msekq")
-button = NodePath("button")
-
-[node name="button" type="BaseButton" parent="ui/theme_applier/menu/new_game/main_container/abstract_button"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 2
-auto_translate_mode = 0
-editor_description = ""
-visible = true
-modulate = Color(1, 1, 1, 1)
-self_modulate = Color(1, 1, 1, 1)
-show_behind_parent = false
-top_level = false
-clip_children = 0
-light_mask = 1
-visibility_layer = 1
-z_index = 0
-z_as_relative = true
-y_sort_enabled = false
-texture_filter = 0
-texture_repeat = 0
-material = null
-use_parent_material = false
-clip_contents = false
-custom_minimum_size = Vector2(0, 0)
-layout_direction = 0
+[node name="game_ver" type="Label" parent="ui/theme_applier" unique_id=728625337]
 layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
-rotation = 0.0
-scale = Vector2(1, 1)
-pivot_offset = Vector2(0, 0)
-size_flags_horizontal = 1
-size_flags_vertical = 1
-size_flags_stretch_ratio = 1.0
-localize_numeral_system = true
-tooltip_text = ""
-tooltip_auto_translate_mode = 0
-focus_neighbor_left = NodePath("")
-focus_neighbor_top = NodePath("")
-focus_neighbor_right = NodePath("")
-focus_neighbor_bottom = NodePath("")
-focus_next = NodePath("")
-focus_previous = NodePath("")
-focus_mode = 1
-focus_behavior_recursive = 0
-mouse_filter = 0
-mouse_behavior_recursive = 0
-mouse_force_pass_scroll_events = true
-mouse_default_cursor_shape = 2
-accessibility_name = ""
-accessibility_description = ""
-accessibility_live = 0
-accessibility_controls_nodes = Array[NodePath]([])
-accessibility_described_by_nodes = Array[NodePath]([])
-accessibility_labeled_by_nodes = Array[NodePath]([])
-accessibility_flow_to_nodes = Array[NodePath]([])
-theme = null
-theme_type_variation = &""
-disabled = false
-toggle_mode = false
-button_pressed = false
-action_mode = 1
-button_mask = 1
-keep_pressed_outside = false
-button_group = null
-shortcut = null
-shortcut_feedback = true
-shortcut_in_tooltip = true
-script = null
-
-[node name="on_button_press" type="Node" parent="ui/theme_applier/menu/new_game" node_paths=PackedStringArray("order", "front", "back")]
-process_mode = 4
-script = ExtResource("12_ppdc2")
-order = [NodePath("go_to_prologue")]
-front = NodePath("go_to_prologue")
-back = NodePath("go_to_prologue")
-metadata/_custom_type_script = "uid://bvqa07cv77e0q"
-
-[node name="go_to_prologue" type="Node" parent="ui/theme_applier/menu/new_game/on_button_press"]
-process_mode = 4
-script = ExtResource("13_37vgk")
-scene_path = "uid://bv5x4rpikgrho"
-metadata/_custom_type_script = "uid://c0ymap76lrhgr"
-
-[node name="credits" type="Control" parent="ui/theme_applier/menu" node_paths=PackedStringArray("abstract_button", "display_bg", "main_container", "inner_main_container", "icon_content_seperator", "margin_container", "icon_display_container", "icon_display", "text_display")]
-custom_minimum_size = Vector2(60, 18)
-layout_mode = 2
-focus_mode = 2
-mouse_filter = 1
-theme = ExtResource("3_5atdl")
-script = ExtResource("10_d7jyh")
-button_display_texture = SubResource("CanvasTexture_d7jyh")
-abstract_button = NodePath("main_container/abstract_button")
-display_bg = NodePath("main_container/display_bg")
-main_container = NodePath("main_container")
-inner_main_container = NodePath("main_container/margin_container/icon_content_seperator/inner_main_container")
-icon_content_seperator = NodePath("main_container/margin_container/icon_content_seperator")
-margin_container = NodePath("main_container/margin_container")
-icon_display_container = NodePath("main_container/margin_container/icon_content_seperator/icon_display_container")
-icon_display = NodePath("main_container/margin_container/icon_content_seperator/icon_display_container/icon_display")
-text_display = NodePath("main_container/margin_container/icon_content_seperator/inner_main_container/text_display")
-metadata/_custom_type_script = "uid://dhvrb58iweuo0"
-
-[node name="main_container" type="PanelContainer" parent="ui/theme_applier/menu/credits"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-
-[node name="display_bg" type="ColorRect" parent="ui/theme_applier/menu/credits/main_container"]
-material = SubResource("ShaderMaterial_7o6ls")
-layout_mode = 2
-size_flags_horizontal = 0
-mouse_filter = 2
-
-[node name="margin_container" type="MarginContainer" parent="ui/theme_applier/menu/credits/main_container"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 2
-
-[node name="icon_content_seperator" type="HBoxContainer" parent="ui/theme_applier/menu/credits/main_container/margin_container"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="icon_display_container" type="CenterContainer" parent="ui/theme_applier/menu/credits/main_container/margin_container/icon_content_seperator"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="icon_display" type="TextureRect" parent="ui/theme_applier/menu/credits/main_container/margin_container/icon_content_seperator/icon_display_container"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="inner_main_container" type="CenterContainer" parent="ui/theme_applier/menu/credits/main_container/margin_container/icon_content_seperator"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="text_display" type="Label" parent="ui/theme_applier/menu/credits/main_container/margin_container/icon_content_seperator/inner_main_container"]
-layout_mode = 2
-text = "Credits"
-label_settings = ExtResource("11_vexp4")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="abstract_button" type="Control" parent="ui/theme_applier/menu/credits/main_container" node_paths=PackedStringArray("button")]
-layout_mode = 2
-mouse_filter = 1
-script = ExtResource("12_msekq")
-button = NodePath("button")
-
-[node name="button" type="BaseButton" parent="ui/theme_applier/menu/credits/main_container/abstract_button"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 2
-auto_translate_mode = 0
-editor_description = ""
-visible = true
-modulate = Color(1, 1, 1, 1)
-self_modulate = Color(1, 1, 1, 1)
-show_behind_parent = false
-top_level = false
-clip_children = 0
-light_mask = 1
-visibility_layer = 1
-z_index = 0
-z_as_relative = true
-y_sort_enabled = false
-texture_filter = 0
-texture_repeat = 0
-material = null
-use_parent_material = false
-clip_contents = false
-custom_minimum_size = Vector2(0, 0)
-layout_direction = 0
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
-rotation = 0.0
-scale = Vector2(1, 1)
-pivot_offset = Vector2(0, 0)
-size_flags_horizontal = 1
-size_flags_vertical = 1
-size_flags_stretch_ratio = 1.0
-localize_numeral_system = true
-tooltip_text = ""
-tooltip_auto_translate_mode = 0
-focus_neighbor_left = NodePath("")
-focus_neighbor_top = NodePath("")
-focus_neighbor_right = NodePath("")
-focus_neighbor_bottom = NodePath("")
-focus_next = NodePath("")
-focus_previous = NodePath("")
-focus_mode = 1
-focus_behavior_recursive = 0
-mouse_filter = 0
-mouse_behavior_recursive = 0
-mouse_force_pass_scroll_events = true
-mouse_default_cursor_shape = 2
-accessibility_name = ""
-accessibility_description = ""
-accessibility_live = 0
-accessibility_controls_nodes = Array[NodePath]([])
-accessibility_described_by_nodes = Array[NodePath]([])
-accessibility_labeled_by_nodes = Array[NodePath]([])
-accessibility_flow_to_nodes = Array[NodePath]([])
-theme = null
-theme_type_variation = &""
-disabled = false
-toggle_mode = false
-button_pressed = false
-action_mode = 1
-button_mask = 1
-keep_pressed_outside = false
-button_group = null
-shortcut = null
-shortcut_feedback = true
-shortcut_in_tooltip = true
-script = null
-
-[node name="quit_to_desktop" type="Control" parent="ui/theme_applier/menu" node_paths=PackedStringArray("abstract_button", "display_bg", "main_container", "inner_main_container", "icon_content_seperator", "margin_container", "icon_display_container", "icon_display", "text_display")]
-custom_minimum_size = Vector2(60, 18)
-layout_mode = 2
-focus_mode = 2
-mouse_filter = 1
-theme = ExtResource("3_5atdl")
-script = ExtResource("10_d7jyh")
-button_display_texture = SubResource("CanvasTexture_vexp4")
-abstract_button = NodePath("main_container/abstract_button")
-display_bg = NodePath("main_container/display_bg")
-main_container = NodePath("main_container")
-inner_main_container = NodePath("main_container/margin_container/icon_content_seperator/inner_main_container")
-icon_content_seperator = NodePath("main_container/margin_container/icon_content_seperator")
-margin_container = NodePath("main_container/margin_container")
-icon_display_container = NodePath("main_container/margin_container/icon_content_seperator/icon_display_container")
-icon_display = NodePath("main_container/margin_container/icon_content_seperator/icon_display_container/icon_display")
-text_display = NodePath("main_container/margin_container/icon_content_seperator/inner_main_container/text_display")
-metadata/_custom_type_script = "uid://dhvrb58iweuo0"
-
-[node name="main_container" type="PanelContainer" parent="ui/theme_applier/menu/quit_to_desktop"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-
-[node name="display_bg" type="ColorRect" parent="ui/theme_applier/menu/quit_to_desktop/main_container"]
-material = SubResource("ShaderMaterial_46psg")
-layout_mode = 2
-size_flags_horizontal = 0
-mouse_filter = 2
-
-[node name="margin_container" type="MarginContainer" parent="ui/theme_applier/menu/quit_to_desktop/main_container"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 2
-
-[node name="icon_content_seperator" type="HBoxContainer" parent="ui/theme_applier/menu/quit_to_desktop/main_container/margin_container"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="icon_display_container" type="CenterContainer" parent="ui/theme_applier/menu/quit_to_desktop/main_container/margin_container/icon_content_seperator"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="icon_display" type="TextureRect" parent="ui/theme_applier/menu/quit_to_desktop/main_container/margin_container/icon_content_seperator/icon_display_container"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="inner_main_container" type="CenterContainer" parent="ui/theme_applier/menu/quit_to_desktop/main_container/margin_container/icon_content_seperator"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="text_display" type="Label" parent="ui/theme_applier/menu/quit_to_desktop/main_container/margin_container/icon_content_seperator/inner_main_container"]
-layout_mode = 2
-text = "Quit to Desktop"
-label_settings = ExtResource("11_vexp4")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="abstract_button" type="Control" parent="ui/theme_applier/menu/quit_to_desktop/main_container" node_paths=PackedStringArray("button")]
-layout_mode = 2
-mouse_filter = 1
-script = ExtResource("12_msekq")
-button = NodePath("button")
-
-[node name="button" type="BaseButton" parent="ui/theme_applier/menu/quit_to_desktop/main_container/abstract_button"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 2
-auto_translate_mode = 0
-editor_description = ""
-visible = true
-modulate = Color(1, 1, 1, 1)
-self_modulate = Color(1, 1, 1, 1)
-show_behind_parent = false
-top_level = false
-clip_children = 0
-light_mask = 1
-visibility_layer = 1
-z_index = 0
-z_as_relative = true
-y_sort_enabled = false
-texture_filter = 0
-texture_repeat = 0
-material = null
-use_parent_material = false
-clip_contents = false
-custom_minimum_size = Vector2(0, 0)
-layout_direction = 0
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
-rotation = 0.0
-scale = Vector2(1, 1)
-pivot_offset = Vector2(0, 0)
-size_flags_horizontal = 1
-size_flags_vertical = 1
-size_flags_stretch_ratio = 1.0
-localize_numeral_system = true
-tooltip_text = ""
-tooltip_auto_translate_mode = 0
-focus_neighbor_left = NodePath("")
-focus_neighbor_top = NodePath("")
-focus_neighbor_right = NodePath("")
-focus_neighbor_bottom = NodePath("")
-focus_next = NodePath("")
-focus_previous = NodePath("")
-focus_mode = 1
-focus_behavior_recursive = 0
-mouse_filter = 0
-mouse_behavior_recursive = 0
-mouse_force_pass_scroll_events = true
-mouse_default_cursor_shape = 2
-accessibility_name = ""
-accessibility_description = ""
-accessibility_live = 0
-accessibility_controls_nodes = Array[NodePath]([])
-accessibility_described_by_nodes = Array[NodePath]([])
-accessibility_labeled_by_nodes = Array[NodePath]([])
-accessibility_flow_to_nodes = Array[NodePath]([])
-theme = null
-theme_type_variation = &""
-disabled = false
-toggle_mode = false
-button_pressed = false
-action_mode = 1
-button_mask = 1
-keep_pressed_outside = false
-button_group = null
-shortcut = null
-shortcut_feedback = true
-shortcut_in_tooltip = true
-script = null
-
-[node name="separator" type="HSeparator" parent="ui/theme_applier/menu"]
-layout_mode = 2
-
-[node name="game_ver" type="Label" parent="ui/theme_applier/menu"]
-layout_mode = 2
+offset_left = 264.0
+offset_top = 256.0
+offset_right = 352.0
+offset_bottom = 264.0
 text = "VERSION: pre-alpha 02"
 
-[node name="credtis_panel" parent="ui/theme_applier" instance=ExtResource("3_k4drn")]
+[node name="credtis_panel" parent="ui/theme_applier" unique_id=1140656086 instance=ExtResource("3_k4drn")]
 visible = false
 layout_mode = 1
 metadata/_edit_lock_ = true
 
-[node name="go_back" type="Control" parent="ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" index="4" node_paths=PackedStringArray("abstract_button", "display_bg", "main_container", "inner_main_container", "icon_content_seperator", "margin_container", "icon_display_container", "icon_display", "text_display")]
+[node name="go_back" type="Control" parent="ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" index="4" unique_id=12498211 node_paths=PackedStringArray("abstract_button", "display_bg", "main_container", "inner_main_container", "icon_content_seperator", "margin_container", "icon_display_container", "icon_display", "text_display")]
 custom_minimum_size = Vector2(60, 18)
 layout_mode = 2
 focus_mode = 2
@@ -724,7 +226,7 @@ icon_display = NodePath("main_container/margin_container/icon_content_seperator/
 text_display = NodePath("main_container/margin_container/icon_content_seperator/inner_main_container/text_display")
 metadata/_custom_type_script = "uid://dhvrb58iweuo0"
 
-[node name="main_container" type="PanelContainer" parent="ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/go_back"]
+[node name="main_container" type="PanelContainer" parent="ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/go_back" unique_id=407311685]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -732,13 +234,13 @@ offset_right = -60.0
 offset_bottom = -18.0
 mouse_filter = 2
 
-[node name="display_bg" type="ColorRect" parent="ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/go_back/main_container"]
-material = SubResource("ShaderMaterial_riren")
+[node name="display_bg" type="ColorRect" parent="ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/go_back/main_container" unique_id=248465595]
+material = SubResource("ShaderMaterial_d7jyh")
 layout_mode = 2
 size_flags_horizontal = 0
 mouse_filter = 2
 
-[node name="margin_container" type="MarginContainer" parent="ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/go_back/main_container"]
+[node name="margin_container" type="MarginContainer" parent="ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/go_back/main_container" unique_id=250993842]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 4
@@ -746,37 +248,36 @@ theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 2
 
-[node name="icon_content_seperator" type="HBoxContainer" parent="ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/go_back/main_container/margin_container"]
+[node name="icon_content_seperator" type="HBoxContainer" parent="ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/go_back/main_container/margin_container" unique_id=1062950104]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="icon_display_container" type="CenterContainer" parent="ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/go_back/main_container/margin_container/icon_content_seperator"]
+[node name="icon_display_container" type="CenterContainer" parent="ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/go_back/main_container/margin_container/icon_content_seperator" unique_id=1501862371]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="icon_display" type="TextureRect" parent="ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/go_back/main_container/margin_container/icon_content_seperator/icon_display_container"]
+[node name="icon_display" type="TextureRect" parent="ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/go_back/main_container/margin_container/icon_content_seperator/icon_display_container" unique_id=1324176915]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="inner_main_container" type="CenterContainer" parent="ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/go_back/main_container/margin_container/icon_content_seperator"]
+[node name="inner_main_container" type="CenterContainer" parent="ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/go_back/main_container/margin_container/icon_content_seperator" unique_id=1943727987]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="text_display" type="Label" parent="ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/go_back/main_container/margin_container/icon_content_seperator/inner_main_container"]
+[node name="text_display" type="Label" parent="ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/go_back/main_container/margin_container/icon_content_seperator/inner_main_container" unique_id=1692477056]
 layout_mode = 2
 text = "Go Back."
 label_settings = ExtResource("11_vexp4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="abstract_button" type="Control" parent="ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/go_back/main_container" node_paths=PackedStringArray("button")]
+[node name="abstract_button" type="Control" parent="ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/go_back/main_container" unique_id=1016654522 node_paths=PackedStringArray("button")]
 layout_mode = 2
 mouse_filter = 1
 script = ExtResource("12_msekq")
 button = NodePath("button")
 
-[node name="button" type="BaseButton" parent="ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/go_back/main_container/abstract_button"]
-_import_path = NodePath("")
+[node name="button" type="BaseButton" parent="ui/theme_applier/credtis_panel/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/go_back/main_container/abstract_button" unique_id=81794144]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -818,6 +319,7 @@ grow_vertical = 1
 rotation = 0.0
 scale = Vector2(1, 1)
 pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
 size_flags_horizontal = 1
 size_flags_vertical = 1
 size_flags_stretch_ratio = 1.0
@@ -857,13 +359,13 @@ shortcut_feedback = true
 shortcut_in_tooltip = true
 script = null
 
-[node name="on_initial" type="Node" parent="." node_paths=PackedStringArray("order", "front", "back")]
+[node name="on_initial" type="Node" parent="." unique_id=243673689 node_paths=PackedStringArray("order", "front", "back")]
 script = ExtResource("14_d7jyh")
 order = [NodePath("play_music")]
 front = NodePath("play_music")
 back = NodePath("play_music")
 
-[node name="play_music" type="Node" parent="on_initial"]
+[node name="play_music" type="Node" parent="on_initial" unique_id=283294226]
 process_mode = 4
 script = ExtResource("15_vexp4")
 stream = ExtResource("15_d7jyh")

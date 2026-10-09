@@ -8,8 +8,8 @@ extends Event
 	get: return marker_B.global_position - marker_A.global_position
 
 @export_group("Properties.")
-@export var sentient: SentientBase
-@export var heading: SentientBase.compass_headings = SentientBase.compass_headings.SOUTH
+@export var actor: Actor2D
+@export var heading: Actor2D.compass_headings = Actor2D.compass_headings.SOUTH
 @export var change_heading: bool = false
 
 @export var marker_A: 	Marker2D
@@ -48,9 +48,9 @@ func _process(_delta: float) -> void:
 	
 func _execute	() -> void:
 	match displace:
-		true: 	sentient.global_position += Vector2(dis_vector)
-		_:		sentient.global_position = marker_B.global_position
+		true: 	actor.global_position += Vector2(dis_vector)
+		_:		actor.global_position = marker_B.global_position
 	
-	if change_heading: 		sentient.heading = heading
+	if change_heading: 		actor.heading = heading
 func _validate() -> bool: 
-	return sentient != null
+	return actor != null

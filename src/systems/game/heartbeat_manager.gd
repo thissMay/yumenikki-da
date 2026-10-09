@@ -7,7 +7,7 @@ var bpm: float = 0
 var vol_bpm_multiplier: float = 1
 var pit_bpm_multiplier: float = 1
 
-func _setup(_sb: SentientBase = null) -> void:
+func _setup(_sb: Actor2D = null) -> void:
 	trauma = get_node("fx").material
 	sound_player = $sound
 	sound_player.stream = preload("res://src/audio/se/se_heartbeat.wav")

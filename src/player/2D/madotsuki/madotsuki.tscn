@@ -18,12 +18,12 @@
 [ext_resource type="Texture2D" uid="uid://cgt6yqo0ynnak" path="res://src/player/2D/scripts/behaviour/interaction_prompt.png" id="17_cin7d"]
 [ext_resource type="Script" uid="uid://sd3feymdmkd6" path="res://src/helpers/FSM/sentient_fsm.gd" id="18_rujao"]
 [ext_resource type="Script" uid="uid://du8llo3s6lchk" path="res://src/entities/component/sb_input.gd" id="19_57bvo"]
-[ext_resource type="Script" uid="uid://copf228upsgds" path="res://src/player/2D/scripts/states/movement/state_pl_idle.gd" id="22_e8irh"]
-[ext_resource type="Script" uid="uid://8lqdoulxnowh" path="res://src/player/2D/scripts/states/movement/super_state_pl_move.gd" id="24_t8l7d"]
-[ext_resource type="Script" uid="uid://mw73mitc7ufu" path="res://src/player/2D/scripts/states/movement/state_pl_walk.gd" id="24_ydgy1"]
-[ext_resource type="Script" uid="uid://ybbhtmvclmcj" path="res://src/player/2D/scripts/states/movement/state_pl_run.gd" id="25_fc8o1"]
-[ext_resource type="Script" uid="uid://0gg3uqjct50j" path="res://src/player/2D/scripts/states/movement/state_pl_sneak.gd" id="26_naf4t"]
-[ext_resource type="Script" uid="uid://s2qduwa65o" path="res://src/player/2D/scripts/states/misc/state_pl_action.gd" id="28_4wyx3"]
+[ext_resource type="Script" uid="uid://copf228upsgds" path="res://src/player/2D/scripts/legacy_states/movement/state_pl_idle.gd" id="22_e8irh"]
+[ext_resource type="Script" uid="uid://8lqdoulxnowh" path="res://src/player/2D/scripts/legacy_states/movement/super_state_pl_move.gd" id="24_t8l7d"]
+[ext_resource type="Script" uid="uid://mw73mitc7ufu" path="res://src/player/2D/scripts/legacy_states/movement/state_pl_walk.gd" id="24_ydgy1"]
+[ext_resource type="Script" uid="uid://ybbhtmvclmcj" path="res://src/player/2D/scripts/legacy_states/movement/state_pl_run.gd" id="25_fc8o1"]
+[ext_resource type="Script" uid="uid://0gg3uqjct50j" path="res://src/player/2D/scripts/legacy_states/movement/state_pl_sneak.gd" id="26_naf4t"]
+[ext_resource type="Script" uid="uid://s2qduwa65o" path="res://src/player/2D/scripts/legacy_states/misc/state_pl_action.gd" id="28_4wyx3"]
 [ext_resource type="Texture2D" uid="uid://05eixr261ttf" path="res://src/entities/shadow.png" id="29_1qwjo"]
 [ext_resource type="Script" uid="uid://dgrha4aqsx4kh" path="res://src/systems/audio/sound_player.gd" id="30_cin7d"]
 [ext_resource type="Script" uid="uid://dlvvx5cthl4bp" path="res://src/systems/utils/spritesheet_formatter.gd" id="30_kknx7"]
@@ -120,6 +120,7 @@ script = ExtResource("9_y4vx3")
 [node name="footstep_manager" type="Node2D" parent="sb_components" unique_id=1069838770 node_paths=PackedStringArray("shadow_renderer")]
 material = SubResource("CanvasItemMaterial_mbimu")
 script = ExtResource("5_xe7mj")
+active = null
 shadow_renderer = NodePath("../../sprite_container/shadow_renderer")
 
 [node name="sound_player" type="AudioStreamPlayer2D" parent="sb_components/footstep_manager" unique_id=790931104]
@@ -166,6 +167,7 @@ metadata/_custom_type_script = "uid://bgisym1hdeqgt"
 
 [node name="input" type="Node" parent="sb_components" unique_id=1830478568]
 script = ExtResource("19_57bvo")
+active = null
 metadata/_custom_type_script = "uid://du8llo3s6lchk"
 
 [node name="stance_fsm" type="Node" parent="." unique_id=1580590593 node_paths=PackedStringArray("initial_state")]

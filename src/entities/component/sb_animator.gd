@@ -24,14 +24,14 @@ var dynamic_rot_intensity: float = 3.85
 var dynamic_rot_multi: float = DEFAULT_DYNAMIC_ROT_MULTI
 
 # --- setup functions --- 
-func _setup(_sentient: SentientBase = null) -> void:
+func _setup(_sentient: Actor2D = null) -> void:
 	super(_sentient)
 	animation_player = get_node("animation_player")
 	animation_player.animation_finished.connect(finished.emit)
 				
 func _update(_delta: float) -> void:
-	if sentient.is_moving: 
-		animation_player.speed_scale = clamp(.36 * log(sentient.speed / 3.25 + 1), 0, INF)
+	if actor.is_moving: 
+		animation_player.speed_scale = clamp(.36 * log(actor.speed / 3.25 + 1), 0, INF)
 	else: animation_player.speed_scale = 1
 		
 # --- handler functions ---

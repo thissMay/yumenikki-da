@@ -1,4 +1,4 @@
-extends SM
+extends LegacyFSM
 
 @export var to_save_section	: AbstractButton
 @export var to_load_section	: AbstractButton

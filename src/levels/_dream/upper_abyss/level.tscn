@@ -150,7 +150,7 @@ turbulence_noise_scale = 8.0
 turbulence_influence_min = 0.02
 turbulence_influence_max = 0.07
 
-[sub_resource type="Resource" id="Resource_ko0ej"]
+[sub_resource type="Resource" id="Resource_yd7mj"]
 resource_local_to_scene = true
 resource_name = "sb_variables"
 script = ExtResource("11_s1u5h")
@@ -249,7 +249,10 @@ frame_h_count = 1
 
 [node name="madotsuki" parent="y_order" unique_id=87216397 instance=ExtResource("2_tq601")]
 position = Vector2(240, 144)
-values = SubResource("Resource_ko0ej")
+values = SubResource("Resource_yd7mj")
+
+[node name="action_manager" parent="y_order/madotsuki/sb_components" parent_id_path=PackedInt32Array(87216397, 2095492773) index="1" unique_id=1967329828]
+active = null
 
 [node name="bubbles" parent="y_order/madotsuki/sprite_container" parent_id_path=PackedInt32Array(87216397, 1933999540) index="2" unique_id=1217599521 instance=ExtResource("12_yd7mj")]
 z_index = 1
@@ -329,10 +332,12 @@ pitch = 0.8
 next = NodePath("../panorama")
 metadata/_custom_type_script = "uid://0v2nidb8jsha"
 
-[node name="panorama" type="Node" parent="on_initial" unique_id=369773154 node_paths=PackedStringArray("subviewport", "pivot")]
+[node name="panorama" type="Node" parent="on_initial" unique_id=369773154 node_paths=PackedStringArray("subviewport", "pivot", "prev", "next")]
 script = ExtResource("2_s1u5h")
 subviewport = NodePath("subviewport")
 pivot = NodePath("pivot")
+prev = NodePath("../bgm")
+next = NodePath("../set_environment_muffled")
 metadata/_custom_type_script = "uid://0v2nidb8jsha"
 
 [node name="pivot" type="Marker2D" parent="on_initial/panorama" unique_id=1577706294]
@@ -351,10 +356,11 @@ offset_right = 480.0
 offset_bottom = 270.0
 texture = ExtResource("5_4xmih")
 
-[node name="set_environment_muffled" type="Node" parent="on_initial" unique_id=322154289]
+[node name="set_environment_muffled" type="Node" parent="on_initial" unique_id=322154289 node_paths=PackedStringArray("prev")]
 script = ExtResource("25_4xmih")
 bus_name = "ENVIRONMENT"
 bus_effects = Array[AudioEffect]([SubResource("AudioEffectLowPassFilter_2k60w")])
+prev = NodePath("../panorama")
 metadata/_custom_type_script = "uid://cokcpecitxber"
 
 [node name="on_free" type="Node" parent="." unique_id=1864676252]

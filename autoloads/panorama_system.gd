@@ -8,7 +8,6 @@ const MINIMUM_SIZE := Vector2(480, 270)
 
 var initial_screen_centre	: Vector2
 var screen_centre 			: Vector2
-var viewport_size 			: Vector2
 var eqn 					: Vector2
 
 static var instance: PanoramaSystem
@@ -17,11 +16,6 @@ func _setup() -> void:
 	instance = self
 	panorama_rect.custom_minimum_size 	= MINIMUM_SIZE
 	panorama_rect.global_position = Vector2.ZERO
-	
-	viewport_size = Vector2(
-		ProjectSettings.get_setting("display/window/size/viewport_width"),
-		ProjectSettings.get_setting("display/window/size/viewport_height")
-	)
 	
 func _physics_update(_delta: float) -> void:
 	if 	Player.Instance.get_pl() != null and \

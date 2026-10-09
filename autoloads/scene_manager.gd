@@ -88,9 +88,9 @@ func handle_scene_push(_scene_node: SceneNode) -> void:
 	
 	curr_scene_resource = load(_scene_node.scene_file_path) if !_scene_node.scene_file_path.is_empty() else null
 	if 		_scene_node.get_parent() == null: 
-		Game.pausable_parent.add_child(_scene_node)
+		Game.scene_container.add_child(_scene_node)
 	else: 	
-		_scene_node.reparent.call_deferred(Game.pausable_parent)
+		_scene_node.reparent.call_deferred(Game.scene_container)
 		await Game.main_tree.process_frame
 
 	_scene_node.initialize()

@@ -1,29 +1,31 @@
 [gd_scene format=3 uid="uid://ra24ysq2f70c"]
 
+[ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://themes/global_theme.tres" id="1_3apph"]
 [ext_resource type="Script" uid="uid://b2yjestmw6ux7" path="res://src/game/game.gd" id="1_y4aoe"]
 [ext_resource type="Environment" uid="uid://be4tedt15qnrp" path="res://src/main/environment_2d.tres" id="2_3apph"]
 [ext_resource type="Script" uid="uid://cfw3rjlf6vw4q" path="res://src/game/game_state_handle.gd" id="3_ci86m"]
 [ext_resource type="Script" uid="uid://d3r72epfndsge" path="res://autoloads/panorama_system.gd" id="3_y4aoe"]
+[ext_resource type="Texture2D" uid="uid://tot51cpm8hrq" path="res://src/images/panorama/mountains.jpg" id="4_3apph"]
 [ext_resource type="Script" uid="uid://co5edhtkgx3g8" path="res://src/helpers/FSM/fsm.gd" id="4_v3f7h"]
-[ext_resource type="Script" uid="uid://bkcfhq2u2bvbg" path="res://src/game/states/pregame.gd" id="6_tboue"]
-[ext_resource type="Script" uid="uid://drsdf6evorx0v" path="res://src/game/states/active.gd" id="7_8fuah"]
-[ext_resource type="Script" uid="uid://b5ml1807efr4t" path="res://src/game/states/active_sub_play.gd" id="9_yapge"]
+[ext_resource type="Script" uid="uid://bkcfhq2u2bvbg" path="res://src/game/legacy_states/pregame.gd" id="6_tboue"]
+[ext_resource type="Script" uid="uid://drsdf6evorx0v" path="res://src/game/legacy_states/active.gd" id="7_8fuah"]
+[ext_resource type="Script" uid="uid://b5ml1807efr4t" path="res://src/game/legacy_states/active_sub_play.gd" id="9_yapge"]
 [ext_resource type="Script" uid="uid://gigwxif6kkss" path="res://src/systems/game/dream/dream_manager.gd" id="10_nupip"]
 [ext_resource type="Script" uid="uid://c138sv0uwhbgj" path="res://src/systems/game/dream/neutral_state.gd" id="11_cjakg"]
 [ext_resource type="Script" uid="uid://byjfgx55roir" path="res://src/systems/game/dream/dream_state.gd" id="12_qks74"]
-[ext_resource type="Script" uid="uid://bss18y7yx0sjl" path="res://src/game/states/cutscene.gd" id="14_eb0fa"]
-[ext_resource type="Script" uid="uid://cwsl1s56sohmv" path="res://src/game/states/special_invert_cutscene.gd" id="15_x5cou"]
+[ext_resource type="Script" uid="uid://bss18y7yx0sjl" path="res://src/game/legacy_states/cutscene.gd" id="14_eb0fa"]
+[ext_resource type="Script" uid="uid://cwsl1s56sohmv" path="res://src/game/legacy_states/special_invert_cutscene.gd" id="15_x5cou"]
 [ext_resource type="Script" uid="uid://dt42f6rbv7tp" path="res://src/player/inventory/pl_inventory_manager.gd" id="16_ci86m"]
 [ext_resource type="Script" uid="uid://ctbtfitoggtku" path="res://src/systems/components/component_receiver.gd" id="18_sjocp"]
 [ext_resource type="Script" uid="uid://dgrha4aqsx4kh" path="res://src/systems/audio/sound_player.gd" id="21_cy466"]
 [ext_resource type="Script" uid="uid://b28e410lfdesx" path="res://src/player/2D/scripts/pl_effect_player.gd" id="22_qof35"]
 [ext_resource type="AudioStream" uid="uid://b5ua6uth0mp44" path="res://src/audio/se/effect_unequip.WAV" id="23_t4e1t"]
 [ext_resource type="AudioStream" uid="uid://xxugef5ihpej" path="res://src/audio/se/effect_equip.WAV" id="24_ranl0"]
-[ext_resource type="Script" uid="uid://8icyy716mjp5" path="res://src/game/states/changing_scene.gd" id="25_3apph"]
+[ext_resource type="Script" uid="uid://8icyy716mjp5" path="res://src/game/legacy_states/changing_scene.gd" id="25_3apph"]
 [ext_resource type="Texture2D" uid="uid://bvntqmlvl36s0" path="res://src/player/2D/madotsuki/effects/effect_anim_petal_pink.png" id="25_hma5v"]
 [ext_resource type="Texture2D" uid="uid://daueebm63ch62" path="res://src/player/2D/madotsuki/effects/effect_anim_petal_white.png" id="26_0wivy"]
 [ext_resource type="Script" uid="uid://dmro0dra81fni" path="res://src/systems/scenes/transition.gd" id="29_3apph"]
-[ext_resource type="Script" uid="uid://drtlglqkjepmq" path="res://src/game/states/pause.gd" id="29_scyrd"]
+[ext_resource type="Script" uid="uid://drtlglqkjepmq" path="res://src/game/legacy_states/pause.gd" id="29_scyrd"]
 [ext_resource type="AudioStream" uid="uid://dcqheuccc0ijo" path="res://src/audio/bgm/aztec_rave.WAV" id="30_fyoi4"]
 [ext_resource type="Script" uid="uid://cwji4a822mehj" path="res://src/ui/message_display/message_display_manager.gd" id="31_wfsxj"]
 [ext_resource type="PackedScene" uid="uid://c2sv1637gh6ub" path="res://src/ui/pause_menu/pause_screen.tscn" id="32_r2hvo"]
@@ -411,7 +413,7 @@ colors = PackedColorArray(0, 0, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_8fuah"]
 gradient = SubResource("Gradient_tboue")
 
-[node name="game" type="Node" unique_id=1029903312]
+[node name="game" type="Node" unique_id=946937007]
 process_mode = 3
 script = ExtResource("1_y4aoe")
 
@@ -432,6 +434,10 @@ affected_by_timescale = null
 
 [node name="global_screen_effect" type="WorldEnvironment" parent="." unique_id=1455979223]
 environment = ExtResource("2_3apph")
+
+[node name="Buildings" type="Sprite2D" parent="." unique_id=223665714]
+position = Vector2(704, 224)
+texture = ExtResource("4_3apph")
 
 [node name="state_handle" type="Node" parent="." unique_id=935693992 node_paths=PackedStringArray("game_state_fsm")]
 script = ExtResource("3_ci86m")
@@ -530,7 +536,7 @@ script = ExtResource("25_3apph")
 
 [node name="PAUSE" type="Node" parent="game_fsm" unique_id=1890733336 node_paths=PackedStringArray("pause_menu", "hud")]
 script = ExtResource("29_scyrd")
-pause_menu = NodePath("../../always/pause")
+pause_menu = NodePath("../../always/hud/pause")
 hud = NodePath("../../always/hud")
 
 [node name="BGM" type="Node" parent="game_fsm/PAUSE" unique_id=1706962390]
@@ -538,8 +544,16 @@ script = SubResource("GDScript_3apph")
 stream = ExtResource("30_fyoi4")
 pitch = 0.5
 
-[node name="pausable" type="Node2D" parent="." unique_id=1975901986]
+[node name="scene_container" type="Control" parent="." unique_id=2060173361]
 process_mode = 1
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_3apph")
 
 [node name="panorma" type="CanvasLayer" parent="." unique_id=1236070863]
 layer = -25
@@ -557,12 +571,14 @@ texture = SubResource("GradientTexture2D_jdkml")
 process_mode = 3
 layer = 30
 
-[node name="pause" parent="always" unique_id=1935369359 instance=ExtResource("32_r2hvo")]
-z_index = 80
-custom_minimum_size = Vector2(480, 270)
-
 [node name="hud" parent="always" unique_id=243965080 instance=ExtResource("33_a0tkc")]
 mouse_filter = 1
+
+[node name="notification_singleton" type="Control" parent="always/hud" unique_id=1884264652]
+anchors_preset = 0
+offset_left = 256.0
+offset_right = 360.0
+offset_bottom = 64.0
 
 [node name="message_display_manager" type="Control" parent="always/hud" unique_id=134455122 node_paths=PackedStringArray("message_display", "prompt_display", "dialogue_display")]
 layout_mode = 1
@@ -596,22 +612,32 @@ anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_top = 272.0
-offset_right = 480.0
+offset_right = 360.0
 offset_bottom = 542.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="cinematic_bars" type="TextureRect" parent="always" unique_id=512114394]
-offset_right = 480.0
-offset_bottom = 270.0
+[node name="pause" parent="always/hud" unique_id=1935369359 instance=ExtResource("32_r2hvo")]
+z_index = 80
+layout_mode = 1
+
+[node name="cinematic_bars" type="TextureRect" parent="always/hud" unique_id=512114394]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
 texture = ExtResource("34_nnm53")
+expand_mode = 1
 
-[node name="transition" type="TextureRect" parent="always" unique_id=510892102]
+[node name="transition" type="TextureRect" parent="always/hud" unique_id=510892102]
 visible = false
 custom_minimum_size = Vector2(480, 270)
+layout_mode = 0
 offset_right = 480.0
 offset_bottom = 270.0
 mouse_filter = 2

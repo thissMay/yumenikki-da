@@ -1,6 +1,6 @@
 extends Component
 
-@export var game_state_fsm: SM
+@export var game_state_fsm: LegacyFSM
 
 var state_requests_listener: EventListener
 

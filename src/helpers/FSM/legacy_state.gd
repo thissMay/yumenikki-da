@@ -5,8 +5,8 @@ extends Node
 @export var transitions: 	Array[LegacyState]
 var transitions_dict: 		Dictionary[StringName, LegacyState]
 
-var fsm: 		SM 	# - SM that owns this state.
-var context: 	Node 	# - context / object that this state (and SM) manipulates.
+var fsm: 		LegacyFSM 	# - LegacyFSM that owns this state.
+var context: 	Node 	# - context / object that this state (and LegacyFSM) manipulates.
 var parent:		NestedState	# - state that is parent of this state. (if it exists).
 
 signal entered

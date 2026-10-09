@@ -7,7 +7,7 @@ const PINCH_PRESS_ACTION: PLAction = preload("res://src/player/2D/madotsuki/acti
 
 var curr: 	PLAction
 var emote: 	PLAction:
-	get: return load(sentient.values.emote)
+	get: return load(actor.values.emote)
 
 # - other props
 @export var cooldown_timer: Timer
@@ -18,7 +18,7 @@ var is_cooldown: 	bool = false
 signal did_something
 
 
-func _setup(_sb: SentientBase = null) -> void: 
+func _setup(_sb: Actor2D = null) -> void: 
 	super(_sb)
 	
 	cooldown_timer.autostart 	= false
@@ -29,25 +29,25 @@ func _setup(_sb: SentientBase = null) -> void:
 	Utils.connect_to_signal(func(): is_cooldown = false, cooldown_timer.timeout)
 
 func _update(_delta: float) -> void: 			
-	if curr != null: curr._action_update(sentient, _delta)
+	if curr != null: curr._action_update(actor, _delta)
 func _physics_update(_delta: float) -> void: 	
-	if curr != null: curr._action_physics_update(sentient, _delta)
+	if curr != null: curr._action_physics_update(actor, _delta)
 
 func _input_pass(_event: InputEvent) -> void: 
-	if curr != null:  curr._action_input(sentient, _event)
+	if curr != null:  curr._action_input(actor, _event)
 	
-	if		Input.is_action_just_pressed("pl_emote"): perform_action(sentient, emote)
+	if		Input.is_action_just_pressed("pl_emote"): perform_action(actor, emote)
 	elif 	Input.is_action_just_pressed("pl_primary_action"): 
-		if !sentient.components.get_component_by_name(Player_YN.Components.EQUIP).effect_data: return	
-		sentient.components.get_component_by_name(Player_YN.Components.EQUIP).effect_data._primary_action(sentient)
+		if !actor.components.get_component_by_name(Player_YN.Components.EQUIP).effect_data: return	
+		actor.components.get_component_by_name(Player_YN.Components.EQUIP).effect_data._primary_action(actor)
 	elif 	Input.is_action_just_pressed("pl_secondary_action"): 
-		if !sentient.components.get_component_by_name(Player_YN.Components.EQUIP).effect_data: return
-		sentient.components.get_component_by_name(Player_YN.Components.EQUIP).effect_data._secondary_action(sentient)
+		if !actor.components.get_component_by_name(Player_YN.Components.EQUIP).effect_data: return
+		actor.components.get_component_by_name(Player_YN.Components.EQUIP).effect_data._secondary_action(actor)
 
 func perform_action(_pl: Player, _action: PLAction) -> void:
 	if is_cooldown: return 
 	if curr != null:
-		cancel_action(sentient)
+		cancel_action(actor)
 		return
 		
 	Utils.connect_to_signal(empty_action, _action.finished)

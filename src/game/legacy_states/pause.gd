@@ -4,7 +4,6 @@ extends LegacyState
 @export var hud: Control
 
 func _state_enter() -> void: 
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	AudioBusManager.adjust_bus_effect(AudioBusManager.BUS_MUSIC, 1, "cutoff_hz", 300)
 	
 	Game.set_cinematic_bars(true)
@@ -17,7 +16,6 @@ func _state_enter() -> void:
 	Application.main_window.grab_focus()
 
 func _state_exit() -> void: 
-	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	AudioBusManager.adjust_bus_effect(AudioBusManager.BUS_MUSIC, 1, "cutoff_hz", 16000)
 
 	Game.options.visible = false

@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://7gkxfsran1js"]
 
-[ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://themes/global_theme.tres" id="1_vfw02"]
 [ext_resource type="Script" uid="uid://20xcdy1as0gh" path="res://src/systems/utils/meta.gd" id="2_y1npw"]
-[ext_resource type="StyleBox" uid="uid://bjhs4pk2gmdg4" path="res://src/ui/panel_default.tres" id="3_8mxkv"]
 
-[node name="credits" type="Control"]
+[node name="credits" type="Control" unique_id=422221733]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,9 +10,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("1_vfw02")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=247410509]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,103 +20,86 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.7647059)
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 44.5
-offset_top = 36.0
-offset_right = -44.5
-offset_bottom = -36.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = ExtResource("3_8mxkv")
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
-layout_mode = 2
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1660754589]
+layout_mode = 0
+offset_left = 91.5
+offset_top = 2.0
+offset_right = 268.5
+offset_bottom = 268.0
 mouse_filter = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="v_box" type="VBoxContainer" parent="MarginContainer" unique_id=140373203]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 6
+alignment = 1
 
-[node name="code" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="code" type="VBoxContainer" parent="MarginContainer/v_box" unique_id=570751969]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Label" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/code"]
+[node name="Label" type="RichTextLabel" parent="MarginContainer/v_box/code" unique_id=2134312146]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/normal_font_size = 8
 text = "Code & Art:"
 fit_content = true
 scroll_active = false
+horizontal_alignment = 1
 
-[node name="Label2" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/code"]
+[node name="Label2" type="RichTextLabel" parent="MarginContainer/v_box/code" unique_id=1521336869]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 bbcode_enabled = true
-text = "-> [rainbow speed=.3]thissmay[/rainbow] ([url]https://linktr.ee/thissmay[/url])"
+text = "-> thissmay		([url]https://linktr.ee/thissmay[/url])"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="music" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="music" type="VBoxContainer" parent="MarginContainer/v_box" unique_id=548282617]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Label" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/music"]
+[node name="Label" type="RichTextLabel" parent="MarginContainer/v_box/music" unique_id=1412773424]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/normal_font_size = 8
 text = "Music:"
 fit_content = true
 scroll_active = false
+horizontal_alignment = 1
 
-[node name="Label2" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/music"]
+[node name="Label2" type="RichTextLabel" parent="MarginContainer/v_box/music" unique_id=715743097]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 bbcode_enabled = true
-text = "-> Luff 			([url]https://linktr.ee/xluffx[/url])
--> SILAS ROE 		([url]https://linktr.ee/silas.roe[/url])
+text = "-> Luff 		([url]https://linktr.ee/xluffx[/url])
+-> SILAS ROE 	([url]https://linktr.ee/silas.roe[/url])
 -> Madoxy 		([url]https://madoxy.neocities.org[/url])
 -> -1 			([url]https://youtube.com/@-1_void/[/url])
 -> Fronexe		([url]https://fronexe.itch.io/[/url])
 -> [REDACTED]
--> TirzaBoi: 		([url]https://linktr.ee/TirzaBoi [/url])"
+-> TirzaBoi: 	([url]https://linktr.ee/TirzaBoi [/url])"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 script = ExtResource("2_y1npw")
 
-[node name="se" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="se" type="VBoxContainer" parent="MarginContainer/v_box" unique_id=742980311]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Label" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/se"]
+[node name="Label" type="RichTextLabel" parent="MarginContainer/v_box/se" unique_id=1984168367]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/normal_font_size = 8
 text = "Sound Effects & Ambience:"
 fit_content = true
 scroll_active = false
+horizontal_alignment = 1
 
-[node name="Label2" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/se"]
+[node name="Label2" type="RichTextLabel" parent="MarginContainer/v_box/se" unique_id=1854930168]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 bbcode_enabled = true
@@ -129,48 +109,44 @@ scroll_active = false
 autowrap_mode = 0
 script = ExtResource("2_y1npw")
 
-[node name="images" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="images" type="VBoxContainer" parent="MarginContainer/v_box" unique_id=429506468]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Label" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/images"]
+[node name="Label" type="RichTextLabel" parent="MarginContainer/v_box/images" unique_id=321654342]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/normal_font_size = 8
 text = "Panorama & Other Images:"
 fit_content = true
 scroll_active = false
+horizontal_alignment = 1
 
-[node name="Label2" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/images"]
+[node name="Label2" type="RichTextLabel" parent="MarginContainer/v_box/images" unique_id=642541216]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 bbcode_enabled = true
-text = "-> Pexels 	([url]https://www.pexels.com/[/url])
--> Pixabay 	([url]https://pixabay.com[/url])"
+text = "-> Pexels 		([url]https://www.pexels.com/[/url])
+-> Pixabay	 	([url]https://pixabay.com[/url])"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 script = ExtResource("2_y1npw")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/separation = 10
-
-[node name="special_thanks" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="special_thanks" type="VBoxContainer" parent="MarginContainer/v_box" unique_id=961781316]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Label" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/special_thanks"]
+[node name="Label" type="RichTextLabel" parent="MarginContainer/v_box/special_thanks" unique_id=1962133507]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/normal_font_size = 8
 text = "Special Thanks!:"
 fit_content = true
 scroll_active = false
+horizontal_alignment = 1
 
-[node name="Label2" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/special_thanks"]
+[node name="Label2" type="RichTextLabel" parent="MarginContainer/v_box/special_thanks" unique_id=617611606]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 bbcode_enabled = true
