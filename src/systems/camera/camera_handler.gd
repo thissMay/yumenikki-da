@@ -258,7 +258,7 @@ class STRAT_FOLLOW:
 class STRAT_FOLLOW_DEFAULT:
 	extends STRAT_FOLLOW
 	func _follow(_cam: CameraHolder, _point: Vector2) -> void:
-		final = _cam.global_position.lerp(_point, Global.get_real_delta() * _cam.follow_speed)
+		final = _cam.global_position.lerp(_point, Global.get_delta() * _cam.follow_speed)
 		_cam.global_position = final
 class STRAT_FOLLOW_SENTIENT:
 	extends STRAT_FOLLOW
@@ -271,13 +271,13 @@ class STRAT_FOLLOW_SENTIENT:
 	var MAX_LOOK_AHEAD_PIXELS := Vector2(10, 10)
 
 	func _setup(_cam: CameraHolder) -> void:
-		player = Player.Instance.get_pl()
+		player = PlayerInstance.instance
 		
 	func _follow(_cam: CameraHolder, point: Vector2) -> void:
 		if player == null:  return
 		look_ahead = look_ahead.lerp(
 			(player.velocity * look_ahead_distance).clamp(-MAX_LOOK_AHEAD_PIXELS, MAX_LOOK_AHEAD_PIXELS), 
-			Global.get_real_delta() * _cam.follow_speed)
+			Global.get_delta() * _cam.follow_speed)
 		final = point + look_ahead
 
 		_cam.global_position = final

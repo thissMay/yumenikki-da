@@ -1,4 +1,5 @@
 class_name EventManager
+extends GameDependency
 
 const SUBSCRIBES_STR 	:= "subscribers"
 const PARAMS_STR 		:= "params"
@@ -39,8 +40,8 @@ static var event_ids := {
 		"STATE_PAUSE" : {},
 		"STATE_ACTIVE" : {},
 		
-		"GAME_FILE_SAVE" : {},
-		"GAME_CONFIG_SAVE" : {},
+		"GAME_SAVE" : {},
+		"CONFIG_SAVE" : {},
 		
 		"GAME_PRELOADING_CONTENT_FINISH" : {},
 		"GAME_PRELOADING_CONTENT_START" : {},
@@ -73,10 +74,7 @@ static var event_ids := {
 		"PLAYER_EFFECT_DISCARD" : {},
 			
 		"PLAYER_DOOR_TELEPORTATION" : {},
-			
 		"PLAYER_DOOR_USED" : {},
-		"PLAYER_SANITY_CHANGE" : {},
-		"PLAYER_ADRENALINE_CHANGE" : {},	
 
 		# ---- chase events -----
 		"PRECHASE_ACTIVE" : {},

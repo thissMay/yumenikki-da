@@ -15,9 +15,7 @@ const STATE_SWITCHING_SCENES 	:= "changing_scenes"
 
 var sm: SM
 var state_root: State
-var state_menu: State
-var state_active: State
-var state_pause: State
+
 
 const GAME_VER := "DEMO"
 
@@ -46,56 +44,30 @@ static var scene_container: Node
 static var always_parent: Node
 
 # ---- UI ----
-static var player_hud: PLHUDManager
-static var options: IngameSettings
+static var player_hud: Control
+static var options_menu: IngameSettings
+var inventory_menu: Control
 
 # ---- cinematic ----
 static var cinematic_bars: TextureRect
 static var cb_tween: Tween
 
 # ---- components
-static var game_fsm: LegacyFSM
 static var state_handle: Component
 
-class test_game_root:
-	extends State
-	var st_active: State
-	var st_pause: State
-	
-	func _init(machine: SM, parent: State):
-		super(machine, parent)
-		st_active = test_game_active.new(machine, self)
-		st_pause = test_game_pause.new(machine, self)
-		
-	func name() -> String: return "state_root"
-	
-class test_game_active: 
-	extends State
-	func name() -> String: return "state_active"
-	
-class test_game_pause: 
-	extends State
-	func name() -> String: return "state_pause"
-	
+
 func state_setup() -> void:
-	state_root = test_game_root.new(null, null)
+	state_root = GameStateRoot.new(null, null)
 	sm = SM.build(state_root)
-	
+	sm.start()
 
 func _setup() -> void:
-	state_setup()
-	self.process_mode = Node.PROCESS_MODE_INHERIT
-
 	instance = self
-	
 	player_hud = PLHUDManager.instance
 	
 	aud_music = $aud_music
 	aud_amb = $aud_amb
 	aud_ui = $aud_ui
-	
-	game_fsm 				= get_node("game_fsm")
-	state_handle			= get_node("state_handle")
 	
 	global_components 		= get_node("global_components")
 	global_screen_effect 	= get_node("global_screen_effect")
@@ -103,37 +75,31 @@ func _setup() -> void:
 	scene_container 		= get_node("scene_container")
 	always_parent 			= get_node("always")
 
-	cinematic_bars 			= get_node("always/hud/cinematic_bars")
-	options 				= get_node("always/hud/pause")
+	inventory_menu 			= get_node("always/ui_parent/inventory_display")
+	cinematic_bars 			= get_node("always/ui_parent/cinematic_bars")
+	options_menu 			= get_node("always/ui_parent/pause_menu")
 	
-	screen_transition 		= get_node("always/hud/transition")
+	screen_transition 		= get_node("always/ui_parent/transition")
 
 	scene_container.process_mode = Node.PROCESS_MODE_PAUSABLE
 	always_parent.process_mode = Node.PROCESS_MODE_ALWAYS
 	
-	cinematic_bars.position.y = -45
-	cinematic_bars.size.y = 360
-	
 	global_screen_effect.environment.glow_enabled = bloom
 	
-	screen_transition.		fade(ScreenTransition.DEFAULT_GRADIENT, 1, 0)
+	state_setup()
+	
 	
 func update(_delta: float) -> void: 
-	game_fsm._update(_delta)
+	sm.update(_delta)
 	if global_components: global_components._update(_delta)
 func physics_update(_delta: float) -> void: 
-	game_fsm._physics_update(_delta)
+	sm.phys_update(_delta)
 	if global_components: global_components._physics_update(_delta)
-func input_pass(event: InputEvent) -> void: 
-	game_fsm._input_pass(event)
+func input_pass(_event: InputEvent) -> void: 
+	sm.input_pass(_event)
+	
 	
 # - game functionality
-static func pause_options(_pause: bool = true) -> void:
-	if _pause: change_to_state("pause")
-	elif !_pause: change_to_state("active")
-static func pause(_pause: bool = true) -> void:
-	if _pause: Application.pause()
-	else: Application.resume()
 	
 # - UI stuff
 static func set_cinematic_bars(_active: bool) -> void: 
@@ -155,6 +121,3 @@ static func set_cinematic_bars(_active: bool) -> void:
 			cinematic_bars.visible = false
 
 # - state based stuff
-static func change_to_state(new_state: String) -> void:
-	game_fsm.change_to_state(new_state)
-static func is_in_state(state: String) -> bool: return game_fsm._is_in_state(state)

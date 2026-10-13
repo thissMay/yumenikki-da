@@ -10,9 +10,11 @@ const BUS_UI 		:= &"UI"
 static func adjust_bus_volume(_bus_name: String, _vol: float) -> void:
 	if (AudioServer.get_bus_index(_bus_name)) >= 0:
 		AudioServer.set_bus_volume_db(AudioServer.get_bus_index(_bus_name), linear_to_db(_vol))
-static func get_bus_volume(_bus_name: String) -> float:
+static func get_bus_volume(_bus_name: String, linear: bool = false) -> float:
 	if (AudioServer.get_bus_index(_bus_name)) >= 0:
-		return AudioServer.get_bus_volume_db(AudioServer.get_bus_index(_bus_name))
+		match linear:
+			true: return AudioServer.get_bus_volume_linear(AudioServer.get_bus_index(_bus_name))
+			false: return AudioServer.get_bus_volume_db(AudioServer.get_bus_index(_bus_name))
 	return 0
 	
 static func get_bus_effect_count(_bus_name: String) -> int:

@@ -1,4 +1,4 @@
-extends PLEffectComponent
+extends SBComponent
 
 @export var sound_player: SoundPlayer
 @export var field: Area2D
@@ -13,7 +13,9 @@ var shortest_dist: float = 200
 
 var field_radius: float
 
-func _ready() -> void:
+func _setup(_sb: Actor2D = null) -> void:
+	super(_sb)
+	
 	assert(sound_player != null, "MEMORIAM Error: Lin Pendant SoundPlayer does not exist!")
 	assert(field != null, "MEMORIAM Error: Lin Pendant Field does not exist!")
 	assert(glow != null, "MEMORIAM Error: Lin Pendant Glow does not exist!")
@@ -42,7 +44,7 @@ func _ready() -> void:
 # TODO:
 # fix the closest distance calculation.
 
-func _eff_update(_delta: float, _pl: Player) -> void:
+func _update(_delta: float) -> void:
 	for i in range(within_prox.size()):
 		if within_prox[i] != null: 
 			distances[i] = (self.global_position.distance_to(within_prox[i].global_position))

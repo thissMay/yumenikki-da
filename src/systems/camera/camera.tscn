@@ -13,13 +13,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pypnu"]
 shader = ExtResource("3_mqlxo")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qjqrg"]
-shader = ExtResource("3_mqlxo")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wxyky"]
-shader = ExtResource("3_mqlxo")
-
-[node name="camera_handler" type="Node2D" node_paths=PackedStringArray("fsm", "cam", "marker", "cam_receiver", "components")]
+[node name="camera_handler" type="Node2D" unique_id=1796942853 node_paths=PackedStringArray("fsm", "cam", "marker", "cam_receiver", "components")]
 process_mode = 1
 top_level = true
 z_index = 5
@@ -28,86 +22,64 @@ script = ExtResource("1_0c5nr")
 fsm = NodePath("cam_fsm")
 cam = NodePath("marker/camera")
 marker = NodePath("marker")
-cam_receiver = NodePath("marker/camera/components_receiver")
+cam_receiver = NodePath("")
 components = NodePath("components_receiver")
 
-[node name="components_receiver" type="Node" parent="." node_paths=PackedStringArray("affector")]
+[node name="components_receiver" type="Node" parent="." unique_id=1513178616 node_paths=PackedStringArray("affector")]
 script = ExtResource("2_rya0b")
 affector = NodePath("..")
 independent = true
 metadata/_custom_type_script = "uid://ctbtfitoggtku"
 
-[node name="curve_rotation" type="Node" parent="components_receiver" node_paths=PackedStringArray("camera", "receiver")]
+[node name="curve_rotation" type="Node" parent="components_receiver" unique_id=1526800350 node_paths=PackedStringArray("camera", "receiver")]
 script = ExtResource("3_qjqrg")
 camera = NodePath("../..")
 receiver = NodePath("..")
 metadata/_custom_type_script = "uid://df3nc1vhukhur"
 
-[node name="deadzone_manager" type="Node2D" parent="components_receiver"]
+[node name="deadzone_manager" type="Node2D" parent="components_receiver" unique_id=432908314]
 script = ExtResource("5_yhg0v")
 
-[node name="cam_fsm" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="cam_fsm" type="Node" parent="." unique_id=1283023048 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_wxyky")
 initial_state = NodePath("STATIC")
 metadata/_custom_type_script = "uid://co5edhtkgx3g8"
 
-[node name="STATIC" type="Node" parent="cam_fsm" node_paths=PackedStringArray("transitions")]
+[node name="STATIC" type="Node" parent="cam_fsm" unique_id=1238388693 node_paths=PackedStringArray("transitions")]
 script = ExtResource("6_tyaiw")
 transitions = [NodePath("../FOLLOWING"), NodePath("../CHANGING_TARGET")]
 metadata/_custom_type_script = "uid://r0etyaq71dla"
 
-[node name="FOLLOWING" type="Node" parent="cam_fsm" node_paths=PackedStringArray("transitions")]
+[node name="FOLLOWING" type="Node" parent="cam_fsm" unique_id=2060127519 node_paths=PackedStringArray("transitions")]
 script = ExtResource("8_b70d5")
 transitions = [NodePath("../STATIC"), NodePath("../CHANGING_TARGET")]
 metadata/_custom_type_script = "uid://r0etyaq71dla"
 
-[node name="CHANGING_TARGET" type="Node" parent="cam_fsm" node_paths=PackedStringArray("switch_timer", "transitions")]
+[node name="CHANGING_TARGET" type="Node" parent="cam_fsm" unique_id=1949211472 node_paths=PackedStringArray("switch_timer", "transitions")]
 script = ExtResource("7_yhg0v")
 switch_timer = NodePath("switch_timer")
 transitions = [NodePath("../FOLLOWING"), NodePath("../STATIC")]
 metadata/_custom_type_script = "uid://r0etyaq71dla"
 
-[node name="switch_timer" type="Timer" parent="cam_fsm/CHANGING_TARGET"]
+[node name="switch_timer" type="Timer" parent="cam_fsm/CHANGING_TARGET" unique_id=1633114739]
 
-[node name="marker" type="Marker2D" parent="."]
+[node name="marker" type="Marker2D" parent="." unique_id=917889697]
 
-[node name="camera" type="Camera2D" parent="marker"]
+[node name="camera" type="Camera2D" parent="marker" unique_id=73421345]
 ignore_rotation = false
 limit_smoothed = true
 editor_draw_limits = true
 
-[node name="overlay_1" type="ColorRect" parent="marker/camera"]
+[node name="overlay" type="ColorRect" parent="marker/camera" unique_id=1246206062]
 z_index = 10
 material = SubResource("ShaderMaterial_pypnu")
-custom_minimum_size = Vector2(480, 270)
-offset_left = -240.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -180.0
 offset_top = -135.0
-offset_right = 240.0
+offset_right = 180.0
 offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-
-[node name="overlay_2" type="ColorRect" parent="marker/camera"]
-z_index = 10
-material = SubResource("ShaderMaterial_qjqrg")
-custom_minimum_size = Vector2(480, 270)
-offset_left = -240.0
-offset_top = -135.0
-offset_right = 240.0
-offset_bottom = 135.0
-mouse_filter = 2
-
-[node name="overlay_3" type="ColorRect" parent="marker/camera"]
-z_index = 10
-material = SubResource("ShaderMaterial_wxyky")
-custom_minimum_size = Vector2(480, 270)
-offset_left = -240.0
-offset_top = -135.0
-offset_right = 240.0
-offset_bottom = 135.0
-mouse_filter = 2
-
-[node name="components_receiver" type="Node" parent="marker/camera" node_paths=PackedStringArray("affector")]
-script = ExtResource("2_rya0b")
-affector = NodePath("..")
-independent = true
-metadata/_custom_type_script = "uid://ctbtfitoggtku"

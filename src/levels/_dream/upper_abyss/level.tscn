@@ -9,12 +9,9 @@
 [ext_resource type="Shader" uid="uid://dqxrs4a4y611c" path="res://src/shaders/panorama/linear.gdshader" id="6_3s5hh"]
 [ext_resource type="Texture2D" uid="uid://igeawgnb7dyk" path="res://src/levels/_dream/upper_abyss/sprites/jellyfish_small/transparent.png" id="6_jboc0"]
 [ext_resource type="Texture2D" uid="uid://cnv28x5lj43m6" path="res://src/levels/_dream/upper_abyss/sprites/bubble_big.png" id="6_nhhmy"]
-[ext_resource type="Shader" uid="uid://cqc638thw4csm" path="res://src/shaders/masks/multiply.gdshader" id="8_4xmih"]
-[ext_resource type="Shader" uid="uid://20gve0q01un3" path="res://src/shaders/screen_overlay/distortion_waves.gdshader" id="8_s1u5h"]
 [ext_resource type="Shader" uid="uid://hg6wywtqrlha" path="res://src/shaders/masks/additive.gdshader" id="10_2w56n"]
 [ext_resource type="Texture2D" uid="uid://c3byfy6b7jo86" path="res://src/levels/_dream/upper_abyss/sprites/closed.png" id="10_ko0ej"]
 [ext_resource type="Texture2D" uid="uid://bel8k7h7lfio5" path="res://src/levels/_dream/upper_abyss/sprites/bubble_small.png" id="11_gap0c"]
-[ext_resource type="Script" uid="uid://jf85vmwx4pj" path="res://src/player/2D/scripts/pl_variables.gd" id="11_s1u5h"]
 [ext_resource type="PackedScene" uid="uid://c1crevnw4c26l" path="res://src/levels/_dream/upper_abyss/entities/medium_jellyfish.tscn" id="12_3veyl"]
 [ext_resource type="PackedScene" uid="uid://cgokhdfsfcksy" path="res://src/player/2D/bubbles.tscn" id="12_yd7mj"]
 [ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="14_wlpfk"]
@@ -26,40 +23,6 @@
 [ext_resource type="Script" uid="uid://pksfkcvcsgx7" path="res://src/levels/__ignore/tilemap_footstep_setup.gd" id="22_purwu"]
 [ext_resource type="Script" uid="uid://ctqw6a8qsvnv4" path="res://src/systems/sequencing/event/audio/play_bgm.gd" id="24_4xmih"]
 [ext_resource type="Script" uid="uid://cokcpecitxber" path="res://src/systems/sequencing/event/audio/set_bus_effects.gd" id="25_4xmih"]
-
-[sub_resource type="Gradient" id="Gradient_4xmih"]
-offsets = PackedFloat32Array(0, 0.72973, 1)
-colors = PackedColorArray(0.00483017, 0.0663816, 0.143034, 1, 0.365302, 0.525406, 0.663487, 1, 0.583816, 0.761581, 0.969736, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_yd7mj"]
-gradient = SubResource("Gradient_4xmih")
-fill_from = Vector2(1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ko0ej"]
-shader = ExtResource("8_4xmih")
-shader_parameter/overlay_modulate = Color(0, 0, 0, 1)
-shader_parameter/transparency = 0.0
-shader_parameter/optional_gradient = true
-shader_parameter/gradient = SubResource("GradientTexture2D_yd7mj")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_2k60w"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cqp54"]
-noise = SubResource("FastNoiseLite_2k60w")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tugvm"]
-shader = ExtResource("8_s1u5h")
-shader_parameter/overlay_modulate = Color(0, 0, 0, 1)
-shader_parameter/transparency = 0.0
-shader_parameter/optional_gradient = false
-shader_parameter/initial_uv_offset = Vector2(0, 0)
-shader_parameter/offset_strength = 0.0
-shader_parameter/offset_strength_influence = Vector2(1, 1)
-shader_parameter/dirX = 1.0
-shader_parameter/dirY = 0.7
-shader_parameter/scroll_speed = 0.27
-shader_parameter/noise_strength = 0.165
-shader_parameter/noise_fwd = SubResource("NoiseTexture2D_cqp54")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kjkby"]
 particles_animation = true
@@ -150,11 +113,20 @@ turbulence_noise_scale = 8.0
 turbulence_influence_min = 0.02
 turbulence_influence_max = 0.07
 
-[sub_resource type="Resource" id="Resource_yd7mj"]
+[sub_resource type="GDScript" id="GDScript_acyv2"]
+script/source = "class_name PLVariables
+extends SBVariables
+
+@export_group(\"Player Exclusive\")
+
+@export_subgroup(\"Display\")
+
+"
+
+[sub_resource type="Resource" id="Resource_h8r0l"]
 resource_local_to_scene = true
 resource_name = "sb_variables"
-script = ExtResource("11_s1u5h")
-metadata/_custom_type_script = "uid://jf85vmwx4pj"
+script = SubResource("GDScript_acyv2")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_101a1"]
 shader = ExtResource("6_3s5hh")
@@ -178,12 +150,6 @@ seq_free = NodePath("on_free")
 [node name="camera_handler" parent="." unique_id=153197370 node_paths=PackedStringArray("initial_target") instance=ExtResource("14_wlpfk")]
 position = Vector2(240, 144)
 initial_target = NodePath("../y_order/madotsuki")
-
-[node name="overlay_2" parent="camera_handler/marker/camera" index="1"]
-material = SubResource("ShaderMaterial_ko0ej")
-
-[node name="overlay_3" parent="camera_handler/marker/camera" index="2"]
-material = SubResource("ShaderMaterial_tugvm")
 
 [node name="bg_jellyfishies" type="GPUParticles2D" parent="camera_handler" unique_id=1711825916]
 z_index = -20
@@ -249,13 +215,13 @@ frame_h_count = 1
 
 [node name="madotsuki" parent="y_order" unique_id=87216397 instance=ExtResource("2_tq601")]
 position = Vector2(240, 144)
-values = SubResource("Resource_yd7mj")
-
-[node name="action_manager" parent="y_order/madotsuki/sb_components" parent_id_path=PackedInt32Array(87216397, 2095492773) index="1" unique_id=1967329828]
-active = null
+values = SubResource("Resource_h8r0l")
 
 [node name="bubbles" parent="y_order/madotsuki/sprite_container" parent_id_path=PackedInt32Array(87216397, 1933999540) index="2" unique_id=1217599521 instance=ExtResource("12_yd7mj")]
 z_index = 1
+
+[node name="pl_loop" parent="y_order/madotsuki" index="8" unique_id=2082079644 node_paths=PackedStringArray("children")]
+children = [NodePath("../sb_components"), NodePath("../nav"), NodePath("../sprite_container"), NodePath("../collision"), NodePath("../centre_trigger"), NodePath("../region_trigger"), NodePath("../audio_listener"), NodePath("../sound_player")]
 
 [node name="world" type="Node2D" parent="y_order" unique_id=1884587866]
 

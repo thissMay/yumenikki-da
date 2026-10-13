@@ -2,15 +2,24 @@ class_name SM
 extends RefCounted
 
 var root: State
+var started: bool = false
 
 func _init(root: State) -> void:
 	self.root = root
 
+func start() -> void:
+	if started: return 
+	started = true
+	
+	root.enter()
+
 func change_state(from: State, to: State) -> void: 
 	if (from == to || from == null || to == null): return
+	
 	var common: State = LCA(from, to)
 	var curr: State = from
 	var stack: Stack = to.trace_up_to(common)
+	
 	
 	while (curr != common):
 		curr.exit()
@@ -18,36 +27,40 @@ func change_state(from: State, to: State) -> void:
 		
 	while (!stack.is_empty()):
 		(stack.pop() as State).enter()
-		
-	
 func LCA (a: State, b: State) -> State: 
-	var state_set: Set = Set.new()
-	var first: State = a
-	var check: State = a
+	if (a == b): return
 	
-	while (first.parent != null):
-		state_set.add(first)
-		first = first.parent
+	var state_set: Set = Set.new()
+	
+	while (a != null):
+		state_set.add(a)
+		a = a.parent
 		
-	while (check.parent != null):
-		if state_set.contains(check): return check
-		check = check.parent
+	while (b != null):
+		if state_set.contains(b): return b
+		b = b.parent
 	
 	return null
+func leaf() -> State:
+	var r: State = root
+	while r.active  != null:
+		r = r.active 
+	return r
 
+func update(_delta: float) -> void: 		root.update(_delta)
+func phys_update(_delta: float) -> void: 	root.phys_update(_delta)
+func input_pass(_event: InputEvent):		root.input(_event)
 
 # -- static functions
 static func build(root: State) -> SM:
 	var sm := SM.new(root)
-	wire(root, sm, Set.new())
+	r_wire(root, sm, Set.new())
 	return sm
-
-
-static func wire(s: State, m: SM, visited: Set) -> void: 
+static func r_wire(s: State, m: SM, visited: Set) -> void: 
 	if (s == null): return
 	if (!visited.add(s)): return 
 	
-	s.machine = m
+	s.sm = m
 	
 	for p in s.get_property_list():
 		if p["class_name"] != "State": continue
@@ -57,4 +70,5 @@ static func wire(s: State, m: SM, visited: Set) -> void:
 		
 		if child == null or s != child.parent: continue
 		
-		wire(child, m, visited)	
+		r_wire(child, m, visited)	
+		

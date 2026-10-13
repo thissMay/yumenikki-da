@@ -67,15 +67,12 @@ var is_moving: 		bool = false:
 
 # - initial.
 func _ready() -> void:
-	if Engine.is_editor_hint(): return
-	
 	components = $sb_components
 	components._setup(self)
 		
 	self.motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	
-	dependency_components()
-	dependency_setup()
+	
 func _enter_tree() -> void: add_to_group("actors")
 func _exit_tree() -> void:  remove_from_group("actors")
 	
@@ -90,9 +87,6 @@ func _unfreeze() -> void:
 # - enter and exit.
 func _exit() -> void: _freeze()
 func _enter() -> void: _unfreeze()
-	
-func dependency_components() -> void: pass 	
-func dependency_setup() -> void: pass 
 
 # ---- base processes ----
 func _physics_update(_delta: float) -> void:

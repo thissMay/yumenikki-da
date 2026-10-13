@@ -6,9 +6,3 @@ const DAMNED_LOCATION_CHANCE: float = 0.3
 var chance_value: 			float = 0:
 	set(_val): chance_value = clampf(_val, 0, 1)
 var rolled: 				bool = false
-
-func _primary_action	(_pl: Player) -> void: 
-	if  _pl.components.get_component_by_name(Player_YN.Components.ANIMATION) != null:
-		_pl.force_change_state("action")
-		_pl.components.get_component_by_name(Player_YN.Components.ANIMATION).play_animation(str(ACTION_PATH, "medamaude_teleport"))
-		

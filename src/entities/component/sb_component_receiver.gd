@@ -41,7 +41,7 @@ func _input_pass(_event: InputEvent) -> void:
 
 func get_component_by_name(_name: String) -> SBComponent:
 	for i in get_children():
-		if i and i.name == _name:
+		if i != null and i.name == _name:
 			return i
 			
 	return null

@@ -20,15 +20,14 @@ static var time_elapsed: float
 static var data		: Dictionary
 static var curr_data: Dictionary
 
-const SAVE_DIR := "user://save/"
-static var save_files: Array
+#static var save_files: Array
 
 static func _setup() -> void:
 	time_elapsed = 0
 	
 	data = TEMPLATE_DATA.duplicate()
-	if !DirAccess.dir_exists_absolute(SAVE_DIR): 
-		DirAccess.make_dir_absolute(SAVE_DIR)
+	if !DirAccess.dir_exists_absolute(Global.SAVE_DIR): 
+		DirAccess.make_dir_absolute(Global.SAVE_DIR)
 
 static func save_data(_number: int = 0) -> void: pass
 	#if !DirAccess.dir_exists_absolute(SAVE_DIR): 
@@ -48,7 +47,7 @@ static func save_data(_number: int = 0) -> void: pass
 	#save_data_file.close()
 	#save_data_file = null
 
-	#EventManager.invoke_event("GAME_FILE_SAVE", curr_data)
+	#EventManager.invoke_event("GAME_SAVE", curr_data)
 #static func load_data(_number: int = 0) -> Error:
 	#if FileAccess.file_exists(str(SAVE_DIR, "save_%s.json" % [_number])): 
 		#var load_file := FileAccess.open(str(SAVE_DIR, "save_%s.json" % [_number]), FileAccess.READ)
@@ -69,14 +68,11 @@ static func save_data(_number: int = 0) -> void: pass
 	#return OK
 
 static func get_data_as_json(_json_file_name: String) -> JSON:
-	var json_file_path := str(SAVE_DIR, "%s.json" % [_json_file_name])
+	var json_file_path := str(Global.SAVE_DIR, "%s.json" % [_json_file_name])
 	if json_file_path.is_empty() or json_file_path == ".json": return
 	
 	return ResourceLoader.load(json_file_path)
-static func get_data(_number: int = 0) -> Dictionary:
-	var load_file := FileAccess.open(str(SAVE_DIR, "save_%s.json" % [_number]), FileAccess.READ)
-	var content = JSON.parse_string(load_file.get_as_text())
-	return content
+
 
 static func clear_data() -> Error:
 	data = TEMPLATE_DATA

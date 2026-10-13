@@ -10,7 +10,7 @@ var player: Player
 
 func _ready() -> void:
 	dream_component._setup()
-	player = Player.Instance.get_pl()
+	player = PlayerInstance.instance
 	player_updated.do_on_notify(func(): player = EventManager.get_event_param("PLAYER_UPDATED")[0], "PLAYER_UPDATED")
 		
 func _state_enter() -> void:

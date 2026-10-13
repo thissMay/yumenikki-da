@@ -56,13 +56,10 @@ func select_at_idx(_idx: int = 0, _leave_menu: bool = true) -> void:
 	if _idx < effects.size():
 		if effects[_idx] != null:
 			if _leave_menu: EventManager.invoke_event("SPECIAL_INVERT_END_REQUEST")
-			Player.Instance.get_pl().components.get_component_by_name(Player_YN.Components.EQUIP).change_effect(
-				Player.Instance.get_pl(), 
-				effects[_idx])
 				
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_favourite_effect"):
 		if hovered_button != null:  
-			Player.Instance.equipment_favourite = get_at_idx(effect_buttons.find(hovered_button))
+			PlayerInstance.equipment_favourite = get_at_idx(effect_buttons.find(hovered_button))
 			favourite_icon.global_position = hovered_button.global_position

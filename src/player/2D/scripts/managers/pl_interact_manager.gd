@@ -1,4 +1,4 @@
-class_name PLInteractionManager
+class_name InteractionComponent
 extends SBComponent
 
 @export var field: Area2D

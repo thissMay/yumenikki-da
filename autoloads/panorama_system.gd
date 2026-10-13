@@ -18,14 +18,12 @@ func _setup() -> void:
 	panorama_rect.global_position = Vector2.ZERO
 	
 func _physics_update(_delta: float) -> void:
-	if 	Player.Instance.get_pl() != null and \
-		Player.Instance.get_pl().can_process():
-		eqn += (Player.Instance.get_pl().desired_vel / 100) / Application.get_viewport_dimens()
+
+		#eqn += (Player.Instance.get_pl().desired_vel / 100) / Application.get_viewport_dimens()
 
 	RenderingServer.global_shader_parameter_set("uv_offset",  eqn)
 
 func apply_panorama(_panorama: SubViewport, _pivot: Vector2) -> void:
-	eqn = ((Player.Instance.get_pos(true) - _pivot) / Application.get_viewport_dimens())
 	panorama_rect.texture 				= _panorama.get_texture()
 func remove_panorama() -> void:
 	panorama_rect.texture 				= default_panorama_texture

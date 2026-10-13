@@ -1,6 +1,5 @@
 [gd_resource type="Resource" script_class="PLEffect" format=3 uid="uid://b3ej66fhp7a0e"]
 
-[ext_resource type="Resource" uid="uid://fbyv4ifpj1q5" path="res://src/player/2D/madotsuki/effects/_none/_behaviour.tres" id="1_5a2w6"]
 [ext_resource type="Texture2D" uid="uid://cxuiuvus52slt" path="res://src/player/inventory/menu/eff_cosmetic.png" id="2_y2gw5"]
 [ext_resource type="Script" uid="uid://cycsi2jsiuie0" path="res://src/player/2D/scripts/pl_effect.gd" id="3_hmlce"]
 [ext_resource type="Script" uid="uid://jf85vmwx4pj" path="res://src/player/2D/scripts/pl_variables.gd" id="4_y2gw5"]
@@ -17,6 +16,10 @@ metadata/_custom_type_script = "uid://jf85vmwx4pj"
 [resource]
 script = ExtResource("3_hmlce")
 name = "Cat"
+desc = null
 icon = ExtResource("2_y2gw5")
+skip_equip_animation = null
+skip_deequip_animation = null
 variables = SubResource("Resource_y2gw5")
+player_component_prefab = null
 metadata/_custom_type_script = "uid://cycsi2jsiuie0"

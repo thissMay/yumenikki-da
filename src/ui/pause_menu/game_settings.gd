@@ -47,7 +47,7 @@ func pop_page(_page: Control) -> void:
 		_page.visible = false
 		active_stack.top.visible = true
 	else:
-		Game.pause_options(false)
+		EventManager.invoke_event("GAME_RESUME")
 		ConfigManager.save_settings_data()
 		reset()
 

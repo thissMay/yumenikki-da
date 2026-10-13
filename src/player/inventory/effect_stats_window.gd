@@ -19,7 +19,7 @@ var player: Player
 @export var sprint_noise: Control
 @export var sneak_noise: Control
 
-@onready var default_player_stats 		:= Player.Instance.DEFAULT_EQUIPMENT
+@onready var default_player_stats 		:= PlayerInstance.DEFAULT_EQUIPMENT
 @onready var stats_neutral_indicator 	:= load("res://src/player/inventory/stats_neutral.png")
 @onready var stats_positive_indicator 	:= load("res://src/player/inventory/stats_positive.png")
 @onready var stats_negative_indicator 	:= load("res://src/player/inventory/stats_negative.png")

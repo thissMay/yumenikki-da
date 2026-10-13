@@ -12,7 +12,7 @@ func _setup() -> void:
 	hud_fade.do_on_notify(func(): hud.show_ui(hud, false), "SCENE_CHANGE_REQUEST")
 	hud_fade.do_on_notify(func(): hud.show_ui(hud, true), "SCENE_CHANGE_SUCCESS")
 	
-	game_save = EventListener.new(self, "GAME_FILE_SAVE", "GAME_CONFIG_SAVE")
+	game_save = EventListener.new(self, "GAME_SAVE", "CONFIG_SAVE")
 	game_save.do_on_notify(
 		func(): 
 			icon.texture = preload("res://src/images/config_save.png")
@@ -21,7 +21,7 @@ func _setup() -> void:
 			icon_timer.start()
 			await icon_timer.timeout
 			hud.show_ui(icon, false),
-		"GAME_CONFIG_SAVE"
+		"CONFIG_SAVE"
 			)	
 	game_save.do_on_notify(
 		func(): 
@@ -31,6 +31,6 @@ func _setup() -> void:
 			icon_timer.start()
 			await icon_timer.timeout
 			hud.show_ui(icon, false),
-		"GAME_FILE_SAVE"
+		"GAME_SAVE"
 			)
 	

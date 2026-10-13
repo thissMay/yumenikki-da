@@ -33,7 +33,7 @@ func _ready() -> void:
 	timer.wait_time = 10
 	
 	Utils.connect_to_signal(
-		func(): SceneManager.change_scene_to(load(Game.MENU_SCENE)), 
+		func(): SceneManager.change_scene_to(load(Global.MENU_SCENE)), 
 		timer.timeout,
 		CONNECT_ONE_SHOT)
 
@@ -61,10 +61,10 @@ func _on_push() -> void:
 		timer.start()
 	
 		Save.data["game"]["read_warning"] 	= true
-		Game.finished_preloading_content 	= true
+		GameBootstrapper.finished_preloading_content 	= true
 	
 	else:
-		SceneManager.change_scene_to(load(Game.MENU_SCENE))
+		SceneManager.change_scene_to(load(Global.MENU_SCENE))
 	
 func compile_shader_material(_shader: Shader) -> void: 
 	shader_garbage_placeholder.material.shader = _shader

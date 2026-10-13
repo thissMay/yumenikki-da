@@ -34,12 +34,12 @@ func _setup(_owner: Node, _skip_initial_state_setup: bool = false) -> void:
 		"PLAYER_DEEQUIP")
 	player_equip_listener.do_on_notify( 
 		func(): 
-			if EventManager.get_event_param("PLAYER_EQUIP")[0] == Player.Instance.DEFAULT_EQUIPMENT: 
+			if EventManager.get_event_param("PLAYER_EQUIP")[0] == PlayerInstance.DEFAULT_EQUIPMENT: 
 				return
 			deequip_prompt.button.set_active(true)
 			effect_indicator.progress = 0,
 		"PLAYER_EQUIP")
 	
-	Utils.connect_to_signal(func():(Player.Instance.get_pl() as Player_YN).deequip_effect(), deequip_prompt.button.pressed)
+	Utils.connect_to_signal(func():(PlayerInstance.instance as Player_YN).deequip_effect(), deequip_prompt.button.pressed)
 	Utils.connect_to_signal(func(): change_to_state("white_petal"), white_petal_button.button.pressed)
 	Utils.connect_to_signal(func(): change_to_state("pink_petal"), pink_petal_button.button.pressed)

@@ -1,4 +1,4 @@
-class_name Footstep
+class_name FootstepComponent
 extends SBComponent
 
 # update the sounds later.

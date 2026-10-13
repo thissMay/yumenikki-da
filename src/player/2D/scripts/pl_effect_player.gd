@@ -15,22 +15,22 @@ func _ready() -> void:
 		func():
 			if (EventManager.get_event_param("PLAYER_EQUIP_SKIP_ANIM")[0] == true): return
 			flash_player_sprite()
-			self.global_position = Player.Instance.get_pl().global_position
+			self.global_position = PlayerInstance.instance.global_position
 			animation_player.play("effect_equip"), 
 		"PLAYER_EQUIP")		
 	on_player_effect.do_on_notify( # - Dequip
 		func(): 
 			if (EventManager.get_event_param("PLAYER_DEEQUIP_SKIP_ANIM")[0] == true): return
 			flash_player_sprite()
-			self.global_position = Player.Instance.get_pl().global_position
+			self.global_position = PlayerInstance.instance.global_position
 			animation_player.play("effect_deequip"),
 		"PLAYER_DEEQUIP")
 			
 
 func flash_player_sprite() -> void:
-	if Player.Instance.get_pl() != null:
-		(Player.Instance.get_pl().sprite_renderer.get_node("shader") as ColorRect).color.a = 1
+	if PlayerInstance.instance != null:
+		(PlayerInstance.instance.sprite_renderer.get_node("shader") as ColorRect).color.a = 1
 		if flash_tween != null: flash_tween.kill()
 		flash_tween = self.create_tween()
-		flash_tween.tween_property((Player.Instance.get_pl().sprite_renderer.get_node("shader") as ColorRect), "color:a", 0, .5)
+		flash_tween.tween_property((PlayerInstance.instance.sprite_renderer.get_node("shader") as ColorRect), "color:a", 0, .5)
 			

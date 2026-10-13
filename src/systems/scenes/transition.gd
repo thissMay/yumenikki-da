@@ -14,8 +14,6 @@ var fade_tween: Tween
 var fade_progress: float = 0:
 	set = set_fade_progress
 
-enum fade_type {FADE_IN, FADE_OUT}
-
 # - transition animation properties.
 var transition_type: 	Tween.TransitionType = Tween.TRANS_LINEAR
 var ease_type: 			Tween.EaseType = Tween.EASE_OUT
@@ -36,15 +34,14 @@ func _ready() -> void:
 	fade_in_shader = default_shader
 	fade_out_shader = default_shader
 	
-	self.set_size.call_deferred(Vector2(Application.get_viewport_dimens()))
+	self.set_size.call_deferred(Vector2(Application.viewport_size))
 	self.material = default_shader
 	self.visible = false
 
 func fade(
 	_gradient: Gradient = DEFAULT_GRADIENT,
 	_start_progress: float = 1,
-	_end_progress: float = 0,
-	_hide_if_alpha_zero: bool = true) -> void:
+	_end_progress: float = 0) -> void:
 		self.visible = true 
 		self.gradient = _gradient
 		
@@ -60,9 +57,6 @@ func fade(
 			duration).set_trans(transition_type).set_ease(ease_type)
 			
 		await fade_tween.finished
-		
-		if _hide_if_alpha_zero and fade_progress <= 0:
-			if modulate.a <= 0: self.visible = false
 			
 func set_fade_progress(_progress: float):
 	fade_progress = _progress

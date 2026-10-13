@@ -8,7 +8,7 @@ func _state_enter() -> void:
 	
 	Game.set_cinematic_bars(true)
 	Game.player_hud.indicators.visible = false
-	Game.options.visible = true
+	Game.options_menu.visible = true
 	pause_menu	.visible = true
 	hud			.visible = false
 
@@ -18,7 +18,7 @@ func _state_enter() -> void:
 func _state_exit() -> void: 
 	AudioBusManager.adjust_bus_effect(AudioBusManager.BUS_MUSIC, 1, "cutoff_hz", 16000)
 
-	Game.options.visible = false
+	Game.options_menu.visible = false
 	pause_menu	.visible = false
 	hud			.visible = true
 	

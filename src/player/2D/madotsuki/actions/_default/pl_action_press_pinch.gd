@@ -26,10 +26,8 @@ func _perform(_pl: Player) -> void:
 	_pl._freeze()
 	
 	var seq = SequencerManager.create_sequence("go_to_real_world")
-	var transition 			:= EVN_ScreenTransition.new(ScreenTransition.fade_type.FADE_IN)
 	var wait 				:= EVN_WaitSeconds.new(1)
 	
-	seq.append(transition, 	"transition")
 	seq.append(wait, 		"wait")
 	
 	SequencerManager.invoke(seq)

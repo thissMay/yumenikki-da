@@ -1,4 +1,4 @@
-class_name PLActionManager 
+class_name ActionComponent
 extends SBComponent
 
 # - actions
@@ -36,13 +36,7 @@ func _physics_update(_delta: float) -> void:
 func _input_pass(_event: InputEvent) -> void: 
 	if curr != null:  curr._action_input(actor, _event)
 	
-	if		Input.is_action_just_pressed("pl_emote"): perform_action(actor, emote)
-	elif 	Input.is_action_just_pressed("pl_primary_action"): 
-		if !actor.components.get_component_by_name(Player_YN.Components.EQUIP).effect_data: return	
-		actor.components.get_component_by_name(Player_YN.Components.EQUIP).effect_data._primary_action(actor)
-	elif 	Input.is_action_just_pressed("pl_secondary_action"): 
-		if !actor.components.get_component_by_name(Player_YN.Components.EQUIP).effect_data: return
-		actor.components.get_component_by_name(Player_YN.Components.EQUIP).effect_data._secondary_action(actor)
+
 
 func perform_action(_pl: Player, _action: PLAction) -> void:
 	if is_cooldown: return 

@@ -1,33 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwdmn5kwner1y"]
+[gd_scene format=3 uid="uid://dwdmn5kwner1y"]
 
 [ext_resource type="Script" uid="uid://duppitaqm6mdv" path="res://src/ui/pause_menu/scripts/selection_audio.gd" id="1_jrbv8"]
 [ext_resource type="Texture2D" uid="uid://cqg1xufl2vdws" path="res://src/images/ui/pause_menu_audio.png" id="2_ctj78"]
 [ext_resource type="Texture2D" uid="uid://q4w830lc0dma" path="res://src/ui/pause_menu/ui_options.png" id="3_gts7h"]
 [ext_resource type="Script" uid="uid://dlvvx5cthl4bp" path="res://src/systems/utils/spritesheet_formatter.gd" id="4_k57ep"]
 
-[node name="audio" type="VBoxContainer" node_paths=PackedStringArray("music_slider", "amb_slider", "sfx_slider", "control")]
+[node name="audio" type="VBoxContainer" unique_id=837573252 node_paths=PackedStringArray("music_slider", "amb_slider", "sfx_slider")]
 offset_right = 184.0
 offset_bottom = 92.0
 script = ExtResource("1_jrbv8")
 music_slider = NodePath("music/slider")
 amb_slider = NodePath("ambience/slider")
 sfx_slider = NodePath("sound/slider")
-control = [NodePath("music/slider"), NodePath("ambience/slider"), NodePath("sound/slider")]
 
-[node name="text" type="TextureRect" parent="."]
+[node name="text" type="TextureRect" parent="." unique_id=1459278198]
 layout_mode = 2
 texture = ExtResource("2_ctj78")
 stretch_mode = 2
 
-[node name="music" type="HBoxContainer" parent="."]
+[node name="music" type="HBoxContainer" parent="." unique_id=536725953]
 layout_mode = 2
 
-[node name="image_container" type="Control" parent="music"]
+[node name="image_container" type="Control" parent="music" unique_id=1437251947]
 custom_minimum_size = Vector2(80, 16)
 layout_mode = 2
 tooltip_text = "Sets the screen to borderless (might result in awkward pixels)."
 
-[node name="sprite" type="Sprite2D" parent="music/image_container"]
+[node name="sprite" type="Sprite2D" parent="music/image_container" unique_id=178439598]
 texture = ExtResource("3_gts7h")
 centered = false
 vframes = 10
@@ -38,21 +37,21 @@ frame_dimensions = Vector2i(80, 16)
 frame_v_count = 10
 progress = 1
 
-[node name="slider" type="HSlider" parent="music"]
+[node name="slider" type="HSlider" parent="music" unique_id=941767087]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 max_value = 1.0
 step = 0.05
 
-[node name="ambience" type="HBoxContainer" parent="."]
+[node name="ambience" type="HBoxContainer" parent="." unique_id=918001464]
 layout_mode = 2
 
-[node name="image_container" type="Control" parent="ambience"]
+[node name="image_container" type="Control" parent="ambience" unique_id=476082239]
 custom_minimum_size = Vector2(80, 16)
 layout_mode = 2
 tooltip_text = "Sets the screen to borderless (might result in awkward pixels)."
 
-[node name="sprite" type="Sprite2D" parent="ambience/image_container"]
+[node name="sprite" type="Sprite2D" parent="ambience/image_container" unique_id=1665957041]
 texture = ExtResource("3_gts7h")
 centered = false
 vframes = 10
@@ -63,21 +62,21 @@ frame_dimensions = Vector2i(80, 16)
 frame_v_count = 10
 progress = 2
 
-[node name="slider" type="HSlider" parent="ambience"]
+[node name="slider" type="HSlider" parent="ambience" unique_id=585093777]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 max_value = 1.0
 step = 0.05
 
-[node name="sound" type="HBoxContainer" parent="."]
+[node name="sound" type="HBoxContainer" parent="." unique_id=631733361]
 layout_mode = 2
 
-[node name="image_container" type="Control" parent="sound"]
+[node name="image_container" type="Control" parent="sound" unique_id=492361619]
 custom_minimum_size = Vector2(80, 16)
 layout_mode = 2
 tooltip_text = "Sets the screen to borderless (might result in awkward pixels)."
 
-[node name="sprite" type="Sprite2D" parent="sound/image_container"]
+[node name="sprite" type="Sprite2D" parent="sound/image_container" unique_id=360283354]
 texture = ExtResource("3_gts7h")
 centered = false
 vframes = 10
@@ -86,7 +85,7 @@ strip_style = 1
 frame_dimensions = Vector2i(80, 16)
 frame_v_count = 10
 
-[node name="slider" type="HSlider" parent="sound"]
+[node name="slider" type="HSlider" parent="sound" unique_id=1596133073]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 max_value = 1.0

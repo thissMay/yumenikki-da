@@ -1,8 +1,8 @@
 extends LegacyState
 
-func _state_enter() -> void: 
-	Game.player_hud.visible 		= false
-	
-	Player.Instance.equipment_favourite = null
-	Player.Instance.equipment_pending 	= null
+func _state_enter() -> void: pass
+	#Game.player_hud.visible 		= false
+	#
+	#PlayerInstance.equipment_favourite = null
+	#PlayerInstance.equipment_pending 	= null
 	

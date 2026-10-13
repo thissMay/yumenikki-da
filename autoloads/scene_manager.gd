@@ -8,6 +8,12 @@ var scene_node: SceneNode
 var curr_scene_resource: PackedScene
 var prev_scene_resource: PackedScene
 
+var curr_scene_path: String: 
+	get: return curr_scene_resource.resource_path if curr_scene_resource != null else ""
+
+var prev_scene_path: String: 
+	get: return prev_scene_resource.resource_path if prev_scene_resource != null else ""
+
 var scene_change_pending: bool = false
 
 # ---------- 	BACKGROUND LOADING 		---------- #
@@ -111,7 +117,7 @@ func change_scene_to(_scene: PackedScene, _fade_in: bool = true, _fade_out: bool
 		if !scene_change_pending:
 			scene_change_pending = true
 			EventManager.invoke_event("SCENE_CHANGE_REQUEST")
-			Global.change_to_state("CHANGING_SCENES")
+			#Global.change_to_state("CHANGIG_SCENES")
 			scene_stack.queue_pop()
 			
 			if _fade_in: await Game.screen_transition.fade(ScreenTransition.DEFAULT_GRADIENT, 0, 1)

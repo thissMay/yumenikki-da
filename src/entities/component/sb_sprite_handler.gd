@@ -1,3 +1,4 @@
+class_name ImmersiveSpriteComponent
 extends SBComponent
 
 const DEFAULT_DYNAMIC_ROT_MULTI = 1

@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="PLVariables" load_steps=2 format=3 uid="uid://bkposgoemqwvu"]
+[gd_resource type="Resource" script_class="SBVariables" format=3 uid="uid://bkposgoemqwvu"]
 
-[ext_resource type="Script" uid="uid://jf85vmwx4pj" path="res://src/player/2D/scripts/pl_variables.gd" id="1_a5kl1"]
+[ext_resource type="Script" uid="uid://bxe7uci7t77tx" path="res://src/entities/sb_variables.gd" id="1_a5kl1"]
 
 [resource]
 resource_local_to_scene = true

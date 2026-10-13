@@ -53,4 +53,8 @@ func is_empty() -> bool:
 	return array.is_empty()
 
 func _to_string() -> String:
-	return str("stak", " -- TOP : %s, STACK : %s " % [top, array])
+	var s = "stack id: %s -- [TOP -> " % self.get_instance_id()
+	for i in array: 
+		s += "%s -> " % i
+	s += "BOTTOM]"
+	return s

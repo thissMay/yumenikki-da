@@ -15,7 +15,7 @@ func _setup() -> void:
 	active_state_listener.do_on_notify( # - switch to INVERT_SCENE
 		func(): set_sub_state("special_invert_scene"), "SPECIAL_INVERT_START_REQUEST")
 	  
-	Player.Instance.setup()
+	PlayerInstance.setup()
 
 func _enter_sub_state() -> void: 
 	set_sub_state("play")
