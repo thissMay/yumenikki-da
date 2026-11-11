@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="SBVariables" format=3 uid="uid://bkposgoemqwvu"]
-
-[ext_resource type="Script" uid="uid://bxe7uci7t77tx" path="res://src/entities/sb_variables.gd" id="1_a5kl1"]
-
-[resource]
-resource_local_to_scene = true
-resource_name = "default"
-script = ExtResource("1_a5kl1")
-metadata/_custom_type_script = "uid://bxe7uci7t77tx"

@@ -23,11 +23,16 @@ var timescale_factor: float = 0
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_PAUSABLE
 	
+func play_random_sound(
+	_streams: Array[AudioStream],
+	_vol: float = 1, 
+	_pitch: float = 1) -> void:
+		play_sound(_streams.pick_random(), _vol, _pitch)
+
 func play_sound(
 	_stream: AudioStream, 
 	_vol: float = 1, 
-	_pitch: float = 1, 
-	_forget_after: bool = false) -> void:
+	_pitch: float = 1) -> void:
 	if _stream and not muted: 
 		if ResourceLoader.exists(_stream.resource_path):
 			if playing: stop()
@@ -36,6 +41,7 @@ func play_sound(
 			pitch_scale = _pitch
 			play()
 			await finished
+			
 func mute() -> void: 
 	pre_mute_vol = volume_db
 	pre_mute_pit = pitch_scale

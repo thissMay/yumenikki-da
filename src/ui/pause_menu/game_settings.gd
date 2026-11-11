@@ -48,7 +48,6 @@ func pop_page(_page: Control) -> void:
 		active_stack.top.visible = true
 	else:
 		EventManager.invoke_event("GAME_RESUME")
-		ConfigManager.save_settings_data()
 		reset()
 
 func reset() -> void:

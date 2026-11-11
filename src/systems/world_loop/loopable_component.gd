@@ -92,12 +92,13 @@ func _ready() -> void:
 			#__hide_line_dupe_nodes(-1, true)
 
 func _enter_tree() -> void:	
-	Utils.u_add_to_group(self, LOOPABLE_ID)
+	add_to_group(LOOPABLE_ID)
 	target 		= self.get_parent()
 	children 	= target.get_children()
 	children.remove_at(children.find(self))
+	
 func _exit_tree() -> void: 	
-	Utils.u_remove_from_group(self, LOOPABLE_ID)
+	remove_from_group(LOOPABLE_ID)
 	
 func assign_region(_region: LoopRegion) -> void:
 	if 	region != null: 

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c1crevnw4c26l"]
+
+[ext_resource type="Texture2D" uid="uid://bdxfluwfvmhwx" path="res://src/map/_dream/upper_abyss/sprites/jellyfish_medium/jellyfish_med.png" id="1_xpjjg"]
+[ext_resource type="Script" uid="uid://cdjphp77kgyqr" path="res://src/systems/utils/spritesheet_formatter_animated.gd" id="2_0x8td"]
+
+[node name="jellyfish" type="Sprite2D" unique_id=1958363467]
+texture = ExtResource("1_xpjjg")
+hframes = 6
+script = ExtResource("2_0x8td")
+autoplay = true
+loop = true
+fps = 7.984844324622368
+random_fps_range = true
+fps_min = 7.0
+fps_max = 10.0
+frame_dimensions = Vector2i(1500, 250)
+frame_count = 6

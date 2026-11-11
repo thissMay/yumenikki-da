@@ -77,17 +77,7 @@ func disconnect_from_signal(
 			return
 		_signal.disconnect(_conectee)
 
-# - groups
-func u_add_to_group(_node: Node, _name: String, _persist: bool = false) -> void:
-	if _node.is_in_group(_name):
-		push("GLOBAL UTILS: Node %s is already in group %s!" % [_node, _name])
-		return
-	_node.add_to_group(_name, _persist)
-func u_remove_from_group(_node: Node, _name: String) -> void:
-	if 	_node.is_in_group(_name):
-		_node.remove_from_group(_name)
-
-func get_group_arr(_name: String) -> Array[Node]:
+func get_group_array(_name: String) -> Array[Node]:
 	if get_tree().has_group(_name):
 		return get_tree().get_nodes_in_group(_name)
 	return [null]

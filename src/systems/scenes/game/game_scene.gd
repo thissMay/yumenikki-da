@@ -11,14 +11,6 @@ extends SceneNode
 
 @export_group("Transitions.")
 
-var save_invoker: EventListener
-	
-# - initial
-func _initialize() -> void: 
-	
-	process_mode = Node.PROCESS_MODE_DISABLED
-	save_invoker = EventListener.new(self, "SCENE_CHANGE_REQUEST")
-
 # - scene exclusive objects.
 # sequences
 func create_on_initial() -> void:
@@ -39,28 +31,20 @@ func create_on_free() -> void:
 	seq_free =  Utils.add_child_node(self, Sequence.new(), "on_free")
 	seq_free.skip_invalid_events = true
 
-# overall control
-	
 # - stack functions.	
 func _on_push() -> void: 
 	load_scene()
 	save_scene()
 	
-	process_mode = Node.PROCESS_MODE_INHERIT
-	
-	for s in Utils.get_group_arr("actors"): 
-		if s != null: s._enter()
-	
 	if seq_initial != null: SequencerManager.invoke(seq_initial)
-	process_mode = Node.PROCESS_MODE_INHERIT
+	super()
 func _on_pre_pop() -> void: 
 	if seq_free != null: SequencerManager.invoke(seq_free)
-	for s in Utils.get_group_arr("actors"): 
-		if s != null: s._exit()
+
 func _on_pop() -> void:
 	save_scene()
 	queue_free()
-	process_mode = Node.PROCESS_MODE_DISABLED
+	super()
 	
 # - saving. 
 func save_scene() -> void: NodeSaveService.save_scene_data(self)

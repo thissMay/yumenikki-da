@@ -42,10 +42,10 @@ func _handle_player_enter() -> 	void: pass
 func _handle_player_exit() -> 	void: pass
 
 func handle_player_enter(_pl: Area2D) -> void:
-	if _pl.get_parent() != null and _pl.get_parent() is Player:
+	if _pl.get_parent() != null and _pl.get_parent() is Player2D:
 		_handle_player_enter()
 		player_enter.emit()
 func handle_player_exit(_pl: Area2D) -> void:
-	if _pl.get_parent() != null and _pl.get_parent() is Player:
+	if _pl.get_parent() != null and _pl.get_parent() is Player2D:
 		_handle_player_exit()
 		player_exit.emit()

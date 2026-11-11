@@ -1,8 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://by60xu5a4jc32"]
-
-[ext_resource type="Script" uid="uid://lp8pbs3ge7pp" path="res://src/player/2D/madotsuki/actions/_default/pl_action_hold_pinch.gd" id="1_u6cpc"]
-
-[resource]
-script = ExtResource("1_u6cpc")
-return_location = "uid://dwst4o7pf4ye7"
-metadata/_custom_type_script = "uid://gqxupngqpt0n"

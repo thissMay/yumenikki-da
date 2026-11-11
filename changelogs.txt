@@ -1,0 +1,33 @@
+-- Miscellaneous -- 
+    UI:
+    - changed the inventory UI design.
+    - changed the title screen design.
+
+    Changes:
+    - slightly changed madotsuki's sprites.
+
+    Dev:
+    - improved overall state-handling logic.
+    - improved Player logic.
+
+-- World --
+    Changes:
+    - improved Upper Abyss visuals.
+    - improved Apartment and Balcony visuals.
+    - changed the bike effect's location to make it less obscure.
+
+-- Gameplay --
+    Additions:
+    - saving and loading.
+        it sucks that it took this long to implement such an easy thing.
+        it kinda puts me on-par with yandere dev's coding skills.
+
+    Changes:
+    - slightly changed player behaviour.
+    - improved overall performance (hopefully!) 
+
+    Removals:
+    - stamina penalty 
+        the intended reason for the stamina existing in the first place is to not make the bike effect obsolete.
+        however, it has become more of a frustration and the penalities simply were too much so running was effectively useless most of the time.
+

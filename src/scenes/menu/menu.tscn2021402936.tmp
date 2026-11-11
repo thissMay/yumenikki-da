@@ -1,0 +1,595 @@
+[gd_scene format=3 uid="uid://btg3e240ltjxx"]
+
+[ext_resource type="Texture2D" uid="uid://je4i3rhyniaw" path="res://src/images/panorama/morning_sun.png" id="2_6sr68"]
+[ext_resource type="Shader" uid="uid://dqxrs4a4y611c" path="res://src/shaders/panorama/linear.gdshader" id="2_uj1l6"]
+[ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://themes/global_theme.tres" id="3_5atdl"]
+[ext_resource type="Texture2D" uid="uid://bkiyc7axrhgdt" path="res://src/images/panorama/deep.png" id="3_8cjbf"]
+[ext_resource type="PackedScene" uid="uid://7gkxfsran1js" path="res://src/scenes/credits.tscn" id="3_k4drn"]
+[ext_resource type="Texture2D" uid="uid://dgilrv0qps4ve" path="res://src/levels/_neutral/menu/title.png" id="3_omn5r"]
+[ext_resource type="Shader" uid="uid://bjc3g4hpc28r1" path="res://src/shaders/screen_overlay/ocean_lights.gdshader" id="3_uj1l6"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="5_bmll1"]
+[ext_resource type="Shader" uid="uid://bhdcejnx8m6be" path="res://src/shaders/ui/button_texture_grad_mask.gdshader" id="7_dwoed"]
+[ext_resource type="Script" uid="uid://dhvrb58iweuo0" path="res://src/ui/gui/gui_button.gd" id="10_d7jyh"]
+[ext_resource type="LabelSettings" uid="uid://dbxux4dchsxxt" path="res://themes/global_label_settings.tres" id="11_vexp4"]
+[ext_resource type="Script" uid="uid://sptd6yjcf24k" path="res://src/ui/abstract_button.gd" id="12_msekq"]
+[ext_resource type="Script" uid="uid://c1od80bn28h0l" path="res://src/systems/sequencing_legacy/sequence_interface.gd" id="14_d7jyh"]
+[ext_resource type="AudioStream" uid="uid://qlkbvjfnvqll" path="res://src/audio/bgm/may_yta_candlebath.ogg" id="15_d7jyh"]
+[ext_resource type="Script" uid="uid://ctqw6a8qsvnv4" path="res://src/systems/sequencing_legacy/event/audio/play_bgm.gd" id="15_vexp4"]
+
+[sub_resource type="GDScript" id="GDScript_h18ho"]
+resource_name = "menu"
+script/source = "@tool
+
+extends GameScene
+
+@export var button_credits: GUIPanelButton
+@export var button_quit: GUIPanelButton
+
+@export var credits_go_back: GUIPanelButton
+@export var credits_panel: Control
+@export var version_label: Label
+
+
+func _initialize() -> void:
+	super()
+	version_label.text = str(\"VERSION: \", ProjectSettings.get_setting(\"application/config/version\"))
+	
+	button_credits.pressed.	connect(func(): credits_panel.visible = true)
+	button_quit.pressed.	connect(func(): Application.quit())
+	credits_go_back.pressed.connect(func(): credits_panel.visible = false)
+	
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vexp4"]
+shader = ExtResource("2_uj1l6")
+shader_parameter/dirX = 1.0
+shader_parameter/dirY = 1.0
+shader_parameter/scroll_speed = 0.01999999955296
+shader_parameter/initial_uv_offset = Vector2(0, 0)
+shader_parameter/offset_strength = 0.0
+shader_parameter/offset_strength_influence = Vector2(1, 1)
+shader_parameter/overlay_modulate = Color(1, 1, 1, 1)
+shader_parameter/transparency = 0.0
+shader_parameter/optional_gradient = false
+
+[sub_resource type="Gradient" id="Gradient_d7jyh"]
+offsets = PackedFloat32Array(0, 0.32534248, 0.739726, 1)
+colors = PackedColorArray(1, 0.55845606, 0.7409539, 1, 0.30225146, 0.1478208, 0.50191313, 1, 0.29511154, 0.16334203, 0.4665798, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vexp4"]
+gradient = SubResource("Gradient_d7jyh")
+fill_from = Vector2(0.025641026, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_msekq"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ppdc2"]
+noise = SubResource("FastNoiseLite_msekq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_37vgk"]
+shader = ExtResource("3_uj1l6")
+shader_parameter/initial_uv_offset = Vector2(0, 0)
+shader_parameter/offset_strength = 0.0
+shader_parameter/offset_strength_influence = Vector2(1, 1)
+shader_parameter/opacity = 1.0
+shader_parameter/noise = SubResource("NoiseTexture2D_ppdc2")
+shader_parameter/scroll_speed = 0.01499999687072999
+shader_parameter/gradient = SubResource("GradientTexture2D_vexp4")
+shader_parameter/rot_radians = 0.0
+shader_parameter/ray_strength = 2.12
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jissf"]
+blend_mode = 3
+
+[sub_resource type="Gradient" id="Gradient_dwoed"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6sr68"]
+gradient = SubResource("Gradient_dwoed")
+width = 128
+height = 128
+fill_from = Vector2(0.32692307, 0.48504272)
+fill_to = Vector2(1, 0.7)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_msekq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_msekq"]
+shader = ExtResource("7_dwoed")
+shader_parameter/first_color = Color(0, 0, 0, 1)
+shader_parameter/second_color = Color(0, 0, 0, 0)
+shader_parameter/position = 0.0
+shader_parameter/size = 1.0
+shader_parameter/angle = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d7jyh"]
+shader = ExtResource("7_dwoed")
+shader_parameter/first_color = Color(0, 0, 0, 1)
+shader_parameter/second_color = Color(0, 0, 0, 0)
+shader_parameter/position = 0.0
+shader_parameter/size = 1.0
+shader_parameter/angle = 0.0
+
+[node name="menu" type="Node2D" unique_id=1926380828 node_paths=PackedStringArray("credits_panel", "version_label", "seq_initial")]
+script = SubResource("GDScript_h18ho")
+button_credits = null
+button_quit = null
+credits_go_back = null
+credits_panel = NodePath("ui/theme_applier/credtis_panel")
+version_label = NodePath("ui/theme_applier/game_ver")
+seq_initial = NodePath("on_initial")
+
+[node name="camera" parent="." unique_id=1368085752 instance=ExtResource("5_bmll1")]
+position = Vector2(180, 135)
+
+[node name="bg" type="CanvasLayer" parent="." unique_id=65263426]
+
+[node name="Control" type="Control" parent="bg" unique_id=1679237005]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bg" type="TextureRect" parent="bg/Control" unique_id=955437948]
+z_index = -1
+material = SubResource("ShaderMaterial_vexp4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -144.0
+offset_top = -168.0
+offset_right = 163.0
+offset_bottom = 87.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_8cjbf")
+
+[node name="godrays" type="TextureRect" parent="bg/Control" unique_id=153982313]
+material = SubResource("ShaderMaterial_37vgk")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -32.0
+offset_right = 77.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_6sr68")
+
+[node name="ColorRect" type="TextureRect" parent="bg/Control" unique_id=688585721]
+material = SubResource("CanvasItemMaterial_jissf")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_6sr68")
+metadata/_edit_use_anchors_ = true
+
+[node name="ui" type="CanvasLayer" parent="." unique_id=1262800983]
+
+[node name="theme_applier" type="Control" parent="ui" unique_id=1247101301]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="ui/theme_applier" unique_id=1568644043]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 64.0
+texture = ExtResource("3_omn5r")
+stretch_mode = 3
+
+[node name="menu" type="VBoxContainer" parent="ui/theme_applier" unique_id=1923015]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 176.0
+offset_right = 198.0
+offset_bottom = 260.0
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="Button" type="Button" parent="ui/theme_applier/menu" unique_id=945012690]
+layout_mode = 2
+text = "hey"
+
+[node name="game_ver" type="Label" parent="ui/theme_applier" unique_id=728625337]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 256.0
+offset_right = 352.0
+offset_bottom = 264.0
+text = "VERSION: pre-alpha 02"
+
+[node name="credtis_panel" parent="ui/theme_applier" unique_id=1140656086 instance=ExtResource("3_k4drn")]
+visible = false
+layout_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="ui_theme_applier_credtis_panel_PanelContainer_MarginContainer_VBoxContainer_HBoxContainer_VBoxContainer#go_back" type="Control" parent="." unique_id=12498211 node_paths=PackedStringArray("abstract_button", "display_bg", "main_container", "inner_main_container", "icon_content_seperator", "margin_container", "icon_display_container", "icon_display", "text_display")]
+custom_minimum_size = Vector2(60, 18)
+layout_mode = 3
+anchors_preset = 0
+focus_mode = 2
+mouse_filter = 1
+theme = ExtResource("3_5atdl")
+script = ExtResource("10_d7jyh")
+button_display_texture = SubResource("CanvasTexture_msekq")
+abstract_button = NodePath("main_container/abstract_button")
+display_bg = NodePath("main_container/display_bg")
+main_container = NodePath("main_container")
+inner_main_container = NodePath("main_container/margin_container/icon_content_seperator/inner_main_container")
+icon_content_seperator = NodePath("main_container/margin_container/icon_content_seperator")
+margin_container = NodePath("main_container/margin_container")
+icon_display_container = NodePath("main_container/margin_container/icon_content_seperator/icon_display_container")
+icon_display = NodePath("main_container/margin_container/icon_content_seperator/icon_display_container/icon_display")
+text_display = NodePath("main_container/margin_container/icon_content_seperator/inner_main_container/text_display")
+metadata/_custom_type_script = "uid://dhvrb58iweuo0"
+
+[node name="main_container" type="PanelContainer" parent="ui_theme_applier_credtis_panel_PanelContainer_MarginContainer_VBoxContainer_HBoxContainer_VBoxContainer#go_back" unique_id=929073336]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -60.0
+offset_bottom = -18.0
+mouse_filter = 2
+
+[node name="display_bg" type="ColorRect" parent="ui_theme_applier_credtis_panel_PanelContainer_MarginContainer_VBoxContainer_HBoxContainer_VBoxContainer#go_back/main_container" unique_id=644163814]
+material = SubResource("ShaderMaterial_msekq")
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+
+[node name="margin_container" type="MarginContainer" parent="ui_theme_applier_credtis_panel_PanelContainer_MarginContainer_VBoxContainer_HBoxContainer_VBoxContainer#go_back/main_container" unique_id=1928971180]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 2
+
+[node name="icon_content_seperator" type="HBoxContainer" parent="ui_theme_applier_credtis_panel_PanelContainer_MarginContainer_VBoxContainer_HBoxContainer_VBoxContainer#go_back/main_container/margin_container" unique_id=1384266687]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="icon_display_container" type="CenterContainer" parent="ui_theme_applier_credtis_panel_PanelContainer_MarginContainer_VBoxContainer_HBoxContainer_VBoxContainer#go_back/main_container/margin_container/icon_content_seperator" unique_id=869501277]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="icon_display" type="TextureRect" parent="ui_theme_applier_credtis_panel_PanelContainer_MarginContainer_VBoxContainer_HBoxContainer_VBoxContainer#go_back/main_container/margin_container/icon_content_seperator/icon_display_container" unique_id=2007771537]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="inner_main_container" type="CenterContainer" parent="ui_theme_applier_credtis_panel_PanelContainer_MarginContainer_VBoxContainer_HBoxContainer_VBoxContainer#go_back/main_container/margin_container/icon_content_seperator" unique_id=846957866]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="text_display" type="Label" parent="ui_theme_applier_credtis_panel_PanelContainer_MarginContainer_VBoxContainer_HBoxContainer_VBoxContainer#go_back/main_container/margin_container/icon_content_seperator/inner_main_container" unique_id=1935399809]
+layout_mode = 2
+label_settings = ExtResource("11_vexp4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="abstract_button" type="Control" parent="ui_theme_applier_credtis_panel_PanelContainer_MarginContainer_VBoxContainer_HBoxContainer_VBoxContainer#go_back/main_container" unique_id=1781370562 node_paths=PackedStringArray("button")]
+layout_mode = 2
+mouse_filter = 1
+script = ExtResource("12_msekq")
+button = NodePath("button")
+
+[node name="button" type="BaseButton" parent="ui_theme_applier_credtis_panel_PanelContainer_MarginContainer_VBoxContainer_HBoxContainer_VBoxContainer#go_back/main_container/abstract_button" unique_id=1560572463]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(0, 0)
+layout_direction = 0
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+rotation = 0.0
+scale = Vector2(1, 1)
+pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 1
+focus_behavior_recursive = 0
+mouse_filter = 0
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 2
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = false
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = null
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = null
+
+[node name="ui_theme_applier_credtis_panel_PanelContainer_MarginContainer_VBoxContainer_HBoxContainer_VBoxContainer_go_back#main_container" type="PanelContainer" parent="." unique_id=407311685]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -60.0
+offset_bottom = -18.0
+mouse_filter = 2
+
+[node name="ui_theme_applier_credtis_panel_PanelContainer_MarginContainer_VBoxContainer_HBoxContainer_VBoxContainer_go_back_main_container#display_bg" type="ColorRect" parent="." unique_id=248465595]
+material = SubResource("ShaderMaterial_d7jyh")
+size_flags_horizontal = 0
+mouse_filter = 2
+
+[node name="ui_theme_applier_credtis_panel_PanelContainer_MarginContainer_VBoxContainer_HBoxContainer_VBoxContainer_go_back_main_container#margin_container" type="MarginContainer" parent="." unique_id=250993842]
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 2
+
+[node name="ui_theme_applier_credtis_panel_PanelContainer_MarginContainer_VBoxContainer_HBoxContainer_VBoxContainer_go_back_main_container_margin_container#icon_content_seperator" type="HBoxContainer" parent="." unique_id=1062950104]
+mouse_filter = 2
+
+[node name="ui_theme_applier_credtis_panel_PanelContainer_MarginContainer_VBoxContainer_HBoxContainer_VBoxContainer_go_back_main_container_margin_container_icon_content_seperator#icon_display_container" type="CenterContainer" parent="." unique_id=1501862371]
+mouse_filter = 2
+
+[node name="ui_theme_applier_credtis_panel_PanelContainer_MarginContainer_VBoxContainer_HBoxContainer_VBoxContainer_go_back_main_container_margin_container_icon_content_seperator_icon_display_container#icon_display" type="TextureRect" parent="." unique_id=1324176915]
+mouse_filter = 2
+
+[node name="ui_theme_applier_credtis_panel_PanelContainer_MarginContainer_VBoxContainer_HBoxContainer_VBoxContainer_go_back_main_container_margin_container_icon_content_seperator#inner_main_container" type="CenterContainer" parent="." unique_id=1943727987]
+mouse_filter = 2
+
+[node name="ui_theme_applier_credtis_panel_PanelContainer_MarginContainer_VBoxContainer_HBoxContainer_VBoxContainer_go_back_main_container_margin_container_icon_content_seperator_inner_main_container#text_display" type="Label" parent="." unique_id=1692477056]
+text = "Go Back."
+label_settings = ExtResource("11_vexp4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ui_theme_applier_credtis_panel_PanelContainer_MarginContainer_VBoxContainer_HBoxContainer_VBoxContainer_go_back_main_container#abstract_button" type="Control" parent="." unique_id=1016654522 node_paths=PackedStringArray("button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource("12_msekq")
+button = NodePath("button")
+
+[node name="button" type="BaseButton" parent="ui_theme_applier_credtis_panel_PanelContainer_MarginContainer_VBoxContainer_HBoxContainer_VBoxContainer_go_back_main_container#abstract_button" unique_id=881765406]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(0, 0)
+layout_direction = 0
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+rotation = 0.0
+scale = Vector2(1, 1)
+pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 1
+focus_behavior_recursive = 0
+mouse_filter = 0
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 2
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = false
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = null
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = null
+
+[node name="ui_theme_applier_credtis_panel_PanelContainer_MarginContainer_VBoxContainer_HBoxContainer_VBoxContainer_go_back_main_container_abstract_button#button" type="BaseButton" parent="." unique_id=81794144]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(0, 0)
+layout_direction = 0
+layout_mode = 3
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+rotation = 0.0
+scale = Vector2(1, 1)
+pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 1
+focus_behavior_recursive = 0
+mouse_filter = 0
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 2
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = false
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = null
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = null
+
+[node name="on_initial" type="Node" parent="." unique_id=243673689 node_paths=PackedStringArray("order", "front", "back")]
+script = ExtResource("14_d7jyh")
+order = [NodePath("play_music")]
+front = NodePath("play_music")
+back = NodePath("play_music")
+
+[node name="play_music" type="Node" parent="on_initial" unique_id=283294226]
+process_mode = 4
+script = ExtResource("15_vexp4")
+stream = ExtResource("15_d7jyh")
+metadata/_custom_type_script = "uid://0v2nidb8jsha"
+
+[editable path="camera"]
+[editable path="ui/theme_applier/credtis_panel"]

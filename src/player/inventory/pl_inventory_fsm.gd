@@ -40,6 +40,6 @@ func _setup(_owner: Node, _skip_initial_state_setup: bool = false) -> void:
 			effect_indicator.progress = 0,
 		"PLAYER_EQUIP")
 	
-	Utils.connect_to_signal(func():(PlayerInstance.instance as Player_YN).deequip_effect(), deequip_prompt.button.pressed)
+	Utils.connect_to_signal(func():(PlayerInstance.instance as Player2D).deequip_effect(), deequip_prompt.button.pressed)
 	Utils.connect_to_signal(func(): change_to_state("white_petal"), white_petal_button.button.pressed)
 	Utils.connect_to_signal(func(): change_to_state("pink_petal"), pink_petal_button.button.pressed)

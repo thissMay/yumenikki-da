@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bf8qqx3n7u2bk"]
+
+[ext_resource type="Texture2D" uid="uid://gidmuvadr6fe" path="res://src/map/_dream/salt_beach/sprites/salt.png" id="1_bhams"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v1ngm"]
+polygon = PackedVector2Array(-19, 28, -12, 35, 0, 38, 12, 35, 19, 28)
+
+[node name="Salt" type="Sprite2D"]
+texture = ExtResource("1_bhams")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+show_behind_parent = true
+occluder = SubResource("OccluderPolygon2D_v1ngm")

@@ -1,0 +1,2 @@
+class_name CamStateStatic
+extends CamState

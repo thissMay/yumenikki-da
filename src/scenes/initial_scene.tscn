@@ -1,8 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://l35l1wxusycr"]
+[gd_scene format=3 uid="uid://l35l1wxusycr"]
 
 [ext_resource type="Script" uid="uid://dcos3dvfrola8" path="res://src/systems/scenes/scene_node.gd" id="1_qaom4"]
 
-[node name="initial_scene" type="Node"]
-process_mode = 3
+[node name="initial_scene" type="Node" unique_id=1983682217]
 script = ExtResource("1_qaom4")
 metadata/_custom_type_script = "uid://dcos3dvfrola8"

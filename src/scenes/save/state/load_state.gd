@@ -18,7 +18,7 @@ func _state_enter() -> void:
 	for load in load_buttons: 
 		Utils.connect_to_signal(_load_data.bind(int(load.name)), load.pressed)
 		
-	Utils.connect_to_signal(Save.load_data.bind(pending_load_id), prompt_yes.pressed)
+	Utils.connect_to_signal(SaveManager.load_data.bind(pending_load_id), prompt_yes.pressed)
 	
 	to_load_button.set_active(false)
 	
@@ -31,10 +31,10 @@ func _state_enter() -> void:
 func _state_exit() -> void:
 	for load in load_buttons:
 		Utils.disconnect_from_signal(open_prompt, load.pressed)
-	Utils.disconnect_from_signal(Save.load_data.bind(pending_load_id), prompt_yes.pressed)
+	Utils.disconnect_from_signal(SaveManager.load_data.bind(pending_load_id), prompt_yes.pressed)
 	to_load_button.set_active(true)
 
 func _load_data(_slot: int = 0) -> void: 
-	Save.load_data(_slot)
+	SaveManager.load_data(_slot)
 	
 func open_prompt() -> void: prompt.visible = true

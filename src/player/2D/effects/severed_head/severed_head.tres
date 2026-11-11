@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="PLSystemData" format=3 uid="uid://qtff4h12n6en"]
+
+[ext_resource type="Resource" uid="uid://fbyv4ifpj1q5" path="res://src/player/2D/effects/_none/_behaviour.tres" id="1_1to8x"]
+[ext_resource type="Texture2D" path="res://src/player/inventory/menu/eff_cosmetic.png" id="2_bgbcr"]
+[ext_resource type="Script" uid="uid://cycsi2jsiuie0" path="res://src/player/2D/scripts/pl_effect.gd" id="3_memsf"]
+[ext_resource type="Script" uid="uid://bxe7uci7t77tx" path="res://src/entities/sb_variables.gd" id="4_re2kt"]
+
+[sub_resource type="Resource" id="Resource_hs2vl"]
+script = ExtResource("4_re2kt")
+walk_multi = 0.8
+sprint_multi = 2.9
+sneak_multi = 0.735
+exhaust_multi = 0.9
+stamina_drain = 0.0
+stamina_regen = 2.0
+can_run = false
+walk_noise_mult = 1.0
+sneak_noise_mult = 0.5
+run_noise_mult = 2.2
+metadata/_custom_type_script = "uid://bxe7uci7t77tx"
+
+[resource]
+script = ExtResource("3_memsf")
+name = "Severed Head"
+desc = ""
+icon = ExtResource("2_bgbcr")
+skip_equip_animation = false
+skip_deequip_animation = false
+stats = SubResource("Resource_hs2vl")
+behaviour = ExtResource("1_1to8x")
+sprite_override = "uid://b1ucacy4jrv6l"
+emote = ""
+player_component_prefab = ""
+metadata/_custom_type_script = "uid://cycsi2jsiuie0"

@@ -30,6 +30,6 @@ func get_max_clamp_pos() -> Vector2:
 	return (rect.global_position) + (rect.shape.size / 2) - Vector2(480, 270) * .5
 
 func _handle_player_enter() -> void: 
-	CameraHolder.instance.components.get_component_by_name("deadzone_manager").__push_dz(self)
+	CCamera2D.instance.components.get_component_by_name("deadzone_manager").__push_dz(self)
 func _handle_player_exit() -> void: 
-	CameraHolder.instance.components.get_component_by_name("deadzone_manager").__pop_dz()
+	CCamera2D.instance.components.get_component_by_name("deadzone_manager").__pop_dz()

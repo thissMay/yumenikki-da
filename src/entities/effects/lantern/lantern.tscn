@@ -1,14 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://d16fq6x3pv6mv"]
+[gd_scene format=3 uid="uid://d16fq6x3pv6mv"]
 
 [ext_resource type="PackedScene" uid="uid://qvbki1ipp72p" path="res://src/entities/sentients/template_sentient.tscn" id="1_molju"]
 [ext_resource type="Texture2D" uid="uid://vn6paag4ef7l" path="res://src/entities/effects/lantern/lantern.png" id="2_ta76c"]
 [ext_resource type="Script" uid="uid://dklkysmgxwdv2" path="res://src/entities/component/sb_animator.gd" id="3_xui3l"]
 [ext_resource type="Script" uid="uid://cvno7u6wdvsg8" path="res://src/entities/footsteps/footstep_system.gd" id="5_5j888"]
 [ext_resource type="Script" uid="uid://b8o626ec7226k" path="res://src/systems/audio/sound_player_2d.gd" id="6_grvug"]
-[ext_resource type="Script" uid="uid://crifn6lgacpv6" path="res://src/systems/sequencing/sequence/game/on_state.gd" id="7_addxj"]
+[ext_resource type="Script" uid="uid://crifn6lgacpv6" path="res://src/systems/sequencing_legacy/sequence/game/on_state.gd" id="7_addxj"]
 [ext_resource type="PackedScene" uid="uid://36fsvg2ttglw" path="res://src/entities/effects/_template_effect_collect.tscn" id="8_d620m"]
-[ext_resource type="Script" uid="uid://dlp3m6fps0h2j" path="res://src/systems/sequencing/event/animation/play_yield_animation.gd" id="8_smbp0"]
-[ext_resource type="Resource" uid="uid://dtb7ixtykb6a0" path="res://src/player/2D/madotsuki/effects/lamp/lamp.tres" id="9_4o1dq"]
+[ext_resource type="Script" uid="uid://dlp3m6fps0h2j" path="res://src/systems/sequencing_legacy/event/animation/play_yield_animation.gd" id="8_smbp0"]
+[ext_resource type="Resource" uid="uid://dtb7ixtykb6a0" path="res://src/player/2D/effects/lamp/lamp.tres" id="9_4o1dq"]
 
 [sub_resource type="Animation" id="Animation_n4eku"]
 length = 0.001

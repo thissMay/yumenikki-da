@@ -10,8 +10,13 @@ func _init(sm: SM, parent: State, actor: Actor2D):
 	run = PlayerStateMoveRun.new(sm, self, actor)
 
 func on_phys_update(_delta: float) -> void:
-	actor.handle_heading()
 	actor.handle_velocity()
+	actor.handle_heading()
+	actor.handle_direction(InputManager.dir_input)
+
+func get_transition() -> State:
+	if (actor.desired_speed <= 0):	return (parent as PlayerStateRoot).idle
+	return null
 
 func get_initial() -> State:
 	return walk

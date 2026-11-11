@@ -26,6 +26,12 @@ func _notification(what: int) -> void:
 	if what == NOTIFICATION_PAUSED:   stream_paused = true
 	if what == NOTIFICATION_UNPAUSED: stream_paused = false
 	
+func play_random_sound(
+	_streams: Array[AudioStream],
+	_vol: float = 1, 
+	_pitch: float = 1) -> void:
+		play_sound(_streams.pick_random(), _vol, _pitch)
+
 func play_sound(
 	_stream: AudioStream, 
 	_vol: float = 1, 
@@ -33,11 +39,9 @@ func play_sound(
 	if _stream and not muted: 
 		if ResourceLoader.exists(_stream.resource_path):
 			if playing: stop()
-			
-			stream 			= _stream
-			volume_linear 	= _vol
-			pitch_scale 	= _pitch
-			
+			stream = _stream
+			volume_db = linear_to_db(_vol)
+			pitch_scale = _pitch
 			play()
 			await finished
 

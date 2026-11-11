@@ -1,6 +1,6 @@
 extends Control
 
-var player: Player
+var player: Player2D
 
 @export var positive_colour: Color = Color.GREEN
 @export var negative_colour: Color = Color.RED
@@ -19,7 +19,6 @@ var player: Player
 @export var sprint_noise: Control
 @export var sneak_noise: Control
 
-@onready var default_player_stats 		:= PlayerInstance.DEFAULT_EQUIPMENT
 @onready var stats_neutral_indicator 	:= load("res://src/player/inventory/stats_neutral.png")
 @onready var stats_positive_indicator 	:= load("res://src/player/inventory/stats_positive.png")
 @onready var stats_negative_indicator 	:= load("res://src/player/inventory/stats_negative.png")
@@ -45,13 +44,13 @@ func update_stats_display() -> void:
 	handle_stats_display_value(sprint_noise, "SPRINT NOISE: \t%.2f db" 	% (player.values.sprint_noise_multi / 1.8 * 55))
 	handle_stats_display_value(sneak_noise, "SNEAK NOISE: \t%.2f db" 	% (player.values.sneak_noise_multi / 1.8 * 55))
 	
-	handle_stats_display_improvement(walk_speed, 	player.values.walk_multi, Player.WALK_MULTI)
-	handle_stats_display_improvement(sprint_speed, 	player.values.sprint_multi, Player.SPRINT_MULTI)
-	handle_stats_display_improvement(sneak_speed, 	player.values.sneak_multi, Player.SNEAK_MULTI)
+	handle_stats_display_improvement(walk_speed, 	player.values.walk_multi, Player2D.WALK_MULTI)
+	handle_stats_display_improvement(sprint_speed, 	player.values.sprint_multi, Player2D.SPRINT_MULTI)
+	handle_stats_display_improvement(sneak_speed, 	player.values.sneak_multi, Player2D.SNEAK_MULTI)
 			
-	handle_stats_display_improvement(walk_noise, 	-player.values.walk_noise_multi, -Player.WALK_NOISE_MULTI)
-	handle_stats_display_improvement(sprint_noise, -player.values.sprint_noise_multi, -Player.SPRINT_NOISE_MULTI)
-	handle_stats_display_improvement(sneak_noise, -player.values.sneak_noise_multi, -Player.SNEAK_NOISE_MULTI)
+	handle_stats_display_improvement(walk_noise, 	-player.values.walk_noise_multi, -Player2D.WALK_NOISE_MULTI)
+	handle_stats_display_improvement(sprint_noise, -player.values.sprint_noise_multi, -Player2D.SPRINT_NOISE_MULTI)
+	handle_stats_display_improvement(sneak_noise, -player.values.sneak_noise_multi, -Player2D.SNEAK_NOISE_MULTI)
 				
 
 func handle_stats_display_value(_stat: Control, _text: String) -> void:

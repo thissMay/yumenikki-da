@@ -56,6 +56,7 @@ static func build(root: State) -> SM:
 	var sm := SM.new(root)
 	r_wire(root, sm, Set.new())
 	return sm
+	
 static func r_wire(s: State, m: SM, visited: Set) -> void: 
 	if (s == null): return
 	if (!visited.add(s)): return 
@@ -63,10 +64,11 @@ static func r_wire(s: State, m: SM, visited: Set) -> void:
 	s.sm = m
 	
 	for p in s.get_property_list():
-		if p["class_name"] != "State": continue
+		if !("State" in p["class_name"]): continue
 		if p["name"] == "parent" or p["name"] == "active": continue
 		
 		var child: State = s.get(p["name"])  
+		print(s.get_script().resource_path, " -> ",child.get_script().resource_path)
 		
 		if child == null or s != child.parent: continue
 		

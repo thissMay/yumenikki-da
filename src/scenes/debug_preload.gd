@@ -56,12 +56,11 @@ func _on_push() -> void:
 	EventManager.invoke_event("GAME_PRELOADING_CONTENT_FINISH")
 	print("Preloading content finished!")
 	
-	if !Save.data["game"]["read_warning"]:
+	if !SaveManager.data["game"]["read_warning"]:
 		preload_control.visible = false
 		timer.start()
 	
-		Save.data["game"]["read_warning"] 	= true
-		GameBootstrapper.finished_preloading_content 	= true
+		SaveManager.data["game"]["read_warning"] 	= true
 	
 	else:
 		SceneManager.change_scene_to(load(Global.MENU_SCENE))

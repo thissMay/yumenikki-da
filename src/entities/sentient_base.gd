@@ -6,9 +6,9 @@ extends CharacterBody2D
 	set = set_values
 
 # - input
-signal input_vector(_input: Vector2)
+var desired_speed: 	float = 0 :
+	get: return desired_vel.length()
 var desired_vel: Vector2
-var desired_speed: 			float = 0
 
 var vel_input: Vector2i:
 	set(input): 
@@ -34,19 +34,12 @@ const SPRINT_NOISE_MULTI: 	float = 2.2
 const SNEAK_NOISE_MULTI: 	float = 0.3
 
 # - direction
-enum compass_headings {
-	NORTH = 0,
-	NORTH_HORIZ = 1,
-	HORIZ = 2,
-	SOUTH_HORIZ = 3,
-	SOUTH = 4}
-@export var heading: compass_headings = compass_headings.SOUTH
+var heading: String = "";
 
 var direction: Vector2 = Vector2(0, 1):
 	set(dir): 
 		direction.x = clamp(dir.x, -1, 1)
 		direction.y = clamp(dir.y, -1, 1)
-var lerped_direction: Vector2 = Vector2.DOWN
 
 # - mobility
 var speed: 				float = 0: 
@@ -71,7 +64,7 @@ func _ready() -> void:
 	components._setup(self)
 		
 	self.motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
-	
+	self.up_direction = Vector2(0, 1)
 	
 func _enter_tree() -> void: add_to_group("actors")
 func _exit_tree() -> void:  remove_from_group("actors")
@@ -84,10 +77,6 @@ func _unfreeze() -> void:
 	self.velocity = Vector2.ZERO
 	components.set_bypass(false)
 	
-# - enter and exit.
-func _exit() -> void: _freeze()
-func _enter() -> void: _unfreeze()
-
 # ---- base processes ----
 func _physics_update(_delta: float) -> void:
 	(self as Actor2D).move_and_slide()
@@ -103,21 +92,23 @@ func handle_velocity() -> void:
 	if (self.velocity.is_equal_approx(Vector2.ZERO)): self.position = self.position.round()
 func handle_desired_velocity(_dir: Vector2) -> void:
 	desired_vel 	= ((_dir.normalized() * BASE_SPEED)) * speed_multiplier
-	desired_speed 	= desired_vel.length()
 
 # - direction handling.
 func handle_direction(_dir: Vector2) -> void: 
 	if _dir != Vector2.ZERO:
 		direction = _dir
-		lerped_direction = lerped_direction.lerp(_dir, 1)
+
 func handle_heading() -> void:
-		if abs(direction.x) > .5: 
-			if 		direction.y > .5: heading = compass_headings.SOUTH_HORIZ
-			elif 	direction.y < -.5: heading = compass_headings.NORTH_HORIZ
-			else: 	heading = compass_headings.HORIZ
-		else:
-			if 		direction.y > .5	: heading = compass_headings.SOUTH
-			elif 	direction.y < -.5	: heading = compass_headings.NORTH
+	var horizontal: 	String = ""
+	var vertical: 		String = ""
+	
+	if direction.x > 0: 	horizontal = "RIGHT"
+	elif direction.x < 0:	horizontal = "LEFT"
+
+	if direction.y > 0: 	horizontal = "DOWN"
+	elif direction.y < 0:	horizontal = "UP"
+
+	heading = "%s%s" % [horizontal, vertical]
 
 # - movement logic related.
 func get_calculated_speed(_speed_mult: float) -> float:

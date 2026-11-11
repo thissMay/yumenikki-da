@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://pv68n6xubxic"]
+
+[ext_resource type="Script" uid="uid://b1ofr4umso5jf" path="res://src/systems/scenes/game/game_scene.gd" id="1_ah5rn"]
+[ext_resource type="Script" uid="uid://c1od80bn28h0l" path="res://src/systems/sequencing_legacy/sequence_interface.gd" id="3_dj02f"]
+[ext_resource type="Script" uid="uid://ctqw6a8qsvnv4" path="res://src/systems/sequencing_legacy/event/audio/play_bgm.gd" id="6_8wpfw"]
+[ext_resource type="Script" uid="uid://bxh774473av7t" path="res://src/systems/interaction/interactable.gd" id="7_e6mh2"]
+[ext_resource type="Script" uid="uid://dspsbq33tl0wa" path="res://src/systems/sequencing_legacy/event/game/invoke_game_event.gd" id="7_p7cap"]
+[ext_resource type="AudioStream" uid="uid://b4ccjxsuwusfl" path="res://src/audio/bgm/2kki_zaza.wav" id="7_ut3ag"]
+[ext_resource type="Script" uid="uid://dxx2gbg56i1ts" path="res://src/systems/sequencing_legacy/event/scene/apply_panorama.gd" id="7_wa1an"]
+[ext_resource type="Shader" uid="uid://crclnnrqddewa" path="res://src/shaders/panorama/depth.gdshader" id="8_aoe6l"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="8_d6ort"]
+[ext_resource type="Texture2D" uid="uid://bkiyc7axrhgdt" path="res://src/images/panorama/deep.png" id="8_qwdne"]
+[ext_resource type="PackedScene" uid="uid://ryhx8o46er7i" path="res://src/player/2D/madotsuki.tscn" id="9_u75xj"]
+[ext_resource type="Script" path="res://src/player/2D/scripts/pl_variables.gd" id="10_p7cap"]
+[ext_resource type="Texture2D" uid="uid://bs2a73qsfukul" path="res://src/map/__ignore/sterling_LOOOL.png" id="13_ut3ag"]
+[ext_resource type="Script" uid="uid://bkadpjx8csm75" path="res://src/systems/sequencing_legacy/sequence/game/on_interact.gd" id="14_ut3ag"]
+[ext_resource type="Script" uid="uid://b8vm7vkk5240d" path="res://src/systems/sequencing_legacy/event/player/append_effect.gd" id="15_6i208"]
+[ext_resource type="Resource" uid="uid://b3ej66fhp7a0e" path="res://src/player/2D/effects/cat/cat.tres" id="16_6i208"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ttrd8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q0ft1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e6mh2"]
+shader = ExtResource("8_aoe6l")
+shader_parameter/initial_uv_offset = Vector2(0, 0)
+shader_parameter/offset_strength = 0.575
+shader_parameter/offset_strength_influence = Vector2(1, 1)
+shader_parameter/overlay_modulate = Color(0, 0, 0, 1)
+shader_parameter/transparency = 0.0
+shader_parameter/optional_gradient = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wa1an"]
+size = Vector2(48, 48)
+
+[sub_resource type="Resource" id="Resource_e6mh2"]
+resource_local_to_scene = true
+resource_name = "pl_variables"
+script = ExtResource("10_p7cap")
+metadata/_custom_type_script = "uid://jf85vmwx4pj"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qgmrj"]
+size = Vector2(144, 112)
+
+[node name="asas" type="Node" node_paths=PackedStringArray("seq_initial")]
+script = ExtResource("1_ah5rn")
+seq_initial = NodePath("on_initial")
+load_transition = SubResource("ShaderMaterial_ttrd8")
+unload_transition = SubResource("ShaderMaterial_q0ft1")
+metadata/_custom_type_script = "uid://b1ofr4umso5jf"
+
+[node name="on_initial" type="Node" parent="." node_paths=PackedStringArray("order", "front", "back")]
+script = ExtResource("3_dj02f")
+order = [NodePath("panorama"), NodePath("Event2D"), NodePath("EVN_InvokeGlobalEvent")]
+front = NodePath("panorama")
+back = NodePath("EVN_InvokeGlobalEvent")
+
+[node name="panorama" type="Node" parent="on_initial" node_paths=PackedStringArray("subviewport", "pivot", "next")]
+process_mode = 4
+script = ExtResource("7_wa1an")
+subviewport = NodePath("subviewport")
+pivot = NodePath("pivot")
+next = NodePath("../Event2D")
+metadata/_custom_type_script = "uid://0v2nidb8jsha"
+
+[node name="pivot" type="Marker2D" parent="on_initial/panorama"]
+
+[node name="subviewport" type="SubViewport" parent="on_initial/panorama"]
+own_world_3d = true
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+canvas_item_default_texture_repeat = 2
+size = Vector2i(480, 270)
+size_2d_override = Vector2i(480, 270)
+
+[node name="TextureRect" type="TextureRect" parent="on_initial/panorama/subviewport"]
+material = SubResource("ShaderMaterial_e6mh2")
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("8_qwdne")
+
+[node name="Event2D" type="Node2D" parent="on_initial" node_paths=PackedStringArray("prev", "next")]
+process_mode = 4
+script = ExtResource("6_8wpfw")
+stream = ExtResource("7_ut3ag")
+prev = NodePath("../panorama")
+next = NodePath("../EVN_InvokeGlobalEvent")
+metadata/_custom_type_script = "uid://bio3xmckvb8oq"
+
+[node name="EVN_InvokeGlobalEvent" type="Node" parent="on_initial" node_paths=PackedStringArray("prev")]
+script = ExtResource("7_p7cap")
+event_id = "OVERRIDE_TO_DREAM_STATE"
+prev = NodePath("../Event2D")
+metadata/_custom_type_script = "uid://dspsbq33tl0wa"
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Interactable" type="Area2D" parent="Node2D" node_paths=PackedStringArray("rect")]
+process_mode = 3
+position = Vector2(-72, 24)
+collision_layer = 2
+collision_mask = 1073741824
+script = ExtResource("7_e6mh2")
+secret = true
+area_trgger = true
+rect = NodePath("rect")
+metadata/_custom_type_script = "uid://bxh774473av7t"
+
+[node name="rect" type="CollisionShape2D" parent="Node2D/Interactable"]
+shape = SubResource("RectangleShape2D_wa1an")
+debug_color = Color(0.2, 0, 0.7, 0.2)
+
+[node name="camera_handler" parent="." node_paths=PackedStringArray("initial_target") instance=ExtResource("8_d6ort")]
+position = Vector2(-72, 16)
+initial_target = NodePath("../madotsuki")
+
+[node name="madotsuki" parent="." instance=ExtResource("9_u75xj")]
+position = Vector2(-72, 16)
+values = SubResource("Resource_e6mh2")
+
+[node name="Bike2" type="Sprite2D" parent="."]
+position = Vector2(48, 8)
+texture = ExtResource("13_ut3ag")
+
+[node name="Interactable" type="Area2D" parent="Bike2" node_paths=PackedStringArray("rect")]
+process_mode = 3
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("7_e6mh2")
+rect = NodePath("rect")
+metadata/_custom_type_script = "uid://bxh774473av7t"
+
+[node name="rect" type="CollisionShape2D" parent="Bike2/Interactable"]
+shape = SubResource("RectangleShape2D_qgmrj")
+debug_color = Color(0.2, 0, 0.7, 0.2)
+
+[node name="OnInteract" type="Node" parent="Bike2/Interactable" node_paths=PackedStringArray("order", "front", "back")]
+script = ExtResource("14_ut3ag")
+order = [NodePath("EVN_PLAppendEffect")]
+front = NodePath("EVN_PLAppendEffect")
+back = NodePath("EVN_PLAppendEffect")
+metadata/_custom_type_script = "uid://bkadpjx8csm75"
+
+[node name="EVN_PLAppendEffect" type="Node" parent="Bike2/Interactable/OnInteract"]
+script = ExtResource("15_6i208")
+effect = ExtResource("16_6i208")
+metadata/_custom_type_script = "uid://b8vm7vkk5240d"

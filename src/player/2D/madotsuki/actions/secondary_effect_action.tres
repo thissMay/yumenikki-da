@@ -1,7 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bebk7mext6qn4"]
-
-[ext_resource type="Script" uid="uid://5lvhwdhmrc0f" path="res://src/player/2D/madotsuki/actions/pl_action_secondary_effect.gd" id="1_mvkys"]
-
-[resource]
-script = ExtResource("1_mvkys")
-metadata/_custom_type_script = "uid://gqxupngqpt0n"

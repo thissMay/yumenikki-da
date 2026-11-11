@@ -2,8 +2,8 @@ class_name ActionComponent
 extends SBComponent
 
 # - actions
-const PINCH_HOLD_ACTION: PLAction = preload("res://src/player/2D/madotsuki/actions/_default/hold_to_pinch.tres")
-const PINCH_PRESS_ACTION: PLAction = preload("res://src/player/2D/madotsuki/actions/_default/press_to_pinch.tres")
+const PINCH_HOLD_ACTION: PLAction = preload("res://src/player/2D/actions/_default/hold_to_pinch.tres")
+const PINCH_PRESS_ACTION: PLAction = preload("res://src/player/2D/actions/_default/press_to_pinch.tres")
 
 var curr: 	PLAction
 var emote: 	PLAction:
@@ -38,7 +38,7 @@ func _input_pass(_event: InputEvent) -> void:
 	
 
 
-func perform_action(_pl: Player, _action: PLAction) -> void:
+func perform_action(_pl: Player2D, _action: PLAction) -> void:
 	if is_cooldown: return 
 	if curr != null:
 		cancel_action(actor)
@@ -49,7 +49,7 @@ func perform_action(_pl: Player, _action: PLAction) -> void:
 	curr = _action
 	curr._perform(_pl) 
 
-func cancel_action(_pl: Player, _force: bool = false) -> void:
+func cancel_action(_pl: Player2D, _force: bool = false) -> void:
 	if 	curr != null:
 		Utils.disconnect_from_signal(empty_action, curr.finished)
 		did_something.emit()

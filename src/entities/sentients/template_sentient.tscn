@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://jbydpt773v5a" path="res://src/entities/hostile/nav_entity.gd" id="1_l8d6l"]
 [ext_resource type="Script" uid="uid://bxe7uci7t77tx" path="res://src/entities/sb_variables.gd" id="2_2w8np"]
 [ext_resource type="Texture2D" uid="uid://05eixr261ttf" path="res://src/entities/shadow.png" id="2_xd2xn"]
-[ext_resource type="Texture2D" uid="uid://51l0bvgjidxn" path="res://src/player/2D/madotsuki/display/default/_RESET.png" id="3_l8d6l"]
+[ext_resource type="Texture2D" uid="uid://51l0bvgjidxn" path="res://src/player/2D/display/default/_RESET.png" id="3_l8d6l"]
 [ext_resource type="Script" uid="uid://dlvvx5cthl4bp" path="res://src/systems/utils/spritesheet_formatter.gd" id="4_ausy4"]
 [ext_resource type="Script" uid="uid://dd0qxrsakskma" path="res://src/entities/component/sb_component_receiver.gd" id="5_33g5e"]
 [ext_resource type="Script" uid="uid://bnajku7ggsr2q" path="res://src/systems/world_loop/loopable_component.gd" id="5_yha0i"]

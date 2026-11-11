@@ -4,9 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bkfvddho8eetw" path="res://game_icon.png" id="2_d62i2"]
 [ext_resource type="Texture2D" uid="uid://dj68nb6nuamgi" path="res://src/images/loading.png" id="2_nlmqr"]
 [ext_resource type="Script" uid="uid://cdjphp77kgyqr" path="res://src/systems/utils/spritesheet_formatter_animated.gd" id="3_d62i2"]
-[ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://themes/global_theme.tres" id="3_frv6y"]
 
-[node name="preload" type="Node" node_paths=PackedStringArray("timer", "preload_control", "pregame_control", "shader_garbage_placeholder")]
+[node name="preload" type="Node" unique_id=633276446 node_paths=PackedStringArray("timer", "preload_control", "pregame_control", "shader_garbage_placeholder")]
 script = ExtResource("1_vbtsf")
 timer = NodePath("caution_timer")
 preload_control = NodePath("canvas/preload")
@@ -14,10 +13,10 @@ pregame_control = NodePath("canvas/pregame")
 shader_garbage_placeholder = NodePath("canvas/preload/dump")
 metadata/_custom_type_script = "uid://dcos3dvfrola8"
 
-[node name="canvas" type="CanvasLayer" parent="."]
+[node name="canvas" type="CanvasLayer" parent="." unique_id=522308811]
 layer = 0
 
-[node name="pregame" type="Control" parent="canvas"]
+[node name="pregame" type="Control" parent="canvas" unique_id=1219832696]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,63 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="warning" type="MarginContainer" parent="canvas/pregame"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 22.0
-offset_top = 18.0
-offset_right = -22.0
-offset_bottom = -18.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme = ExtResource("3_frv6y")
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="Control" type="CenterContainer" parent="canvas/pregame/warning"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="canvas/pregame/warning/Control"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/separation = 12
-
-[node name="header" type="RichTextLabel" parent="canvas/pregame/warning/Control/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 10
-text = "Please read before proceeding."
-fit_content = true
-scroll_active = false
-
-[node name="text" type="RichTextLabel" parent="canvas/pregame/warning/Control/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-bbcode_enabled = true
-text = "This project is a fan tribute to Kikiyama's original Yume Nikki project.
-The project  at its current state does not contain the following: [color=yellow]events, effects, all the worlds, and saving[/color].
-
-You are playing the demo version of the game. 
--> The game's continuity and support is subject to change. 
--> The game uses both Keyboard and Mouse in certain scenarios.
-
-It's also important to note; THIS GAME IS ALL EXPLORATION AND THERE IS NO END GOAL, for now.  
-Thank you for your understanding! 
-[color=gray]
-(you will be taken to the menu in 10 seconds)
-[/color]
-"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="preload" type="Control" parent="canvas"]
+[node name="preload" type="Control" parent="canvas" unique_id=904370148]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -91,11 +34,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="dump" type="Sprite2D" parent="canvas/preload"]
+[node name="dump" type="Sprite2D" parent="canvas/preload" unique_id=1651644938]
 position = Vector2(236, 144)
 texture = ExtResource("2_d62i2")
 
-[node name="bg" type="ColorRect" parent="canvas/preload"]
+[node name="bg" type="ColorRect" parent="canvas/preload" unique_id=1666193928]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -104,32 +47,19 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="text" type="RichTextLabel" parent="canvas/preload"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("3_frv6y")
-bbcode_enabled = true
-text = "[wave amp=10.0 freq=4.0]preloading shaders, please wait.[/wave]
-(wait until a sound is played!)"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="loading_icon" type="Sprite2D" parent="canvas/preload"]
-position = Vector2(240, 196)
+[node name="loading_icon" type="Sprite2D" parent="canvas/preload" unique_id=916207291]
+position = Vector2(340, 252)
 texture = ExtResource("2_nlmqr")
 hframes = 4
+frame = 1
 script = ExtResource("3_d62i2")
 autoplay = true
 loop = true
 fps = 5.0
 frame_dimensions = Vector2i(16, 16)
-frame_h_count = 4
+progress = 1
 metadata/_custom_type_script = "uid://cdjphp77kgyqr"
 
-[node name="caution_timer" type="Timer" parent="."]
+[node name="caution_timer" type="Timer" parent="." unique_id=1032288832]
 wait_time = 10.0
 one_shot = true

@@ -28,8 +28,7 @@ func _ready() -> void:
 func play_sound(
 	_stream: AudioStream, 
 	_vol: 	float = 1, 
-	_pitch: float = 1,
-	_abrupt: bool = false) -> void:
+	_pitch: float = 1) -> void:
 	
 	if playing: set_music_dict(pending_music, _stream, _vol, _pitch)
 		
@@ -44,8 +43,7 @@ func play_sound(
 		set_pitch(get_bgm_pitch())
 		set_stream(get_bgm_stream()) 
 		
-		if _abrupt: volume_db = get_bgm_volume()
-		else:		fade_in()			
+		fade_in()			
 		self.play()
 
 func set_music_dict(

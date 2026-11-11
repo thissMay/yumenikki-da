@@ -6,7 +6,6 @@ extends Node
 
 # the problem with this it doesn't apply to the ui layer, namely the hud node.
 # ill figure the fix for this later.
-
 const STATE_PRELOAD_CONTENT 	:= "preload_content"
 const STATE_PREGAME 			:= "pregame"
 const STATE_ACTIVE 				:= "active"
@@ -16,18 +15,21 @@ const STATE_SWITCHING_SCENES 	:= "changing_scenes"
 var sm: SM
 var state_root: State
 
-
 const GAME_VER := "DEMO"
 
-static var is_paused: bool = false
+static var started: bool = false
+
+static var is_editor: bool = false:
+	get: return Engine.is_editor_hint()
+static var is_paused: bool:
+	get: return main_tree.paused
+
 static var root: Window
 static var main_tree: SceneTree
 
 # -- 
 static var bloom: bool = false
-
 static var global_screen_effect: WorldEnvironment
-static var global_components: ComponentReceiver
 
 static var instance: Game
 
@@ -40,11 +42,12 @@ static var aud_ui: SoundPlayer
 static var screen_transition: 		ScreenTransition
 
 # ---- process parents ----
-static var scene_container: Node
+@export var _scene_container: Node
+static var scene_container: 
+	get: return instance._scene_container
 static var always_parent: Node
 
 # ---- UI ----
-static var player_hud: Control
 static var options_menu: IngameSettings
 var inventory_menu: Control
 
@@ -52,27 +55,18 @@ var inventory_menu: Control
 static var cinematic_bars: TextureRect
 static var cb_tween: Tween
 
-# ---- components
-static var state_handle: Component
-
-
-func state_setup() -> void:
+func _setup() -> void:
 	state_root = GameStateRoot.new(null, null)
 	sm = SM.build(state_root)
-	sm.start()
-
-func _setup() -> void:
+	
 	instance = self
-	player_hud = PLHUDManager.instance
 	
 	aud_music = $aud_music
 	aud_amb = $aud_amb
 	aud_ui = $aud_ui
 	
-	global_components 		= get_node("global_components")
 	global_screen_effect 	= get_node("global_screen_effect")
 	
-	scene_container 		= get_node("scene_container")
 	always_parent 			= get_node("always")
 
 	inventory_menu 			= get_node("always/ui_parent/inventory_display")
@@ -81,27 +75,43 @@ func _setup() -> void:
 	
 	screen_transition 		= get_node("always/ui_parent/transition")
 
-	scene_container.process_mode = Node.PROCESS_MODE_PAUSABLE
-	always_parent.process_mode = Node.PROCESS_MODE_ALWAYS
+	process_mode 					= Node.PROCESS_MODE_ALWAYS
+	always_parent.process_mode 		= Node.PROCESS_MODE_ALWAYS
+	scene_container.process_mode 	= Node.PROCESS_MODE_PAUSABLE
 	
 	global_screen_effect.environment.glow_enabled = bloom
 	
-	state_setup()
+	sm.start()
 	
-	
-func update(_delta: float) -> void: 
-	sm.update(_delta)
-	if global_components: global_components._update(_delta)
-func physics_update(_delta: float) -> void: 
-	sm.phys_update(_delta)
-	if global_components: global_components._physics_update(_delta)
-func input_pass(_event: InputEvent) -> void: 
+func _notification(what: int) -> void:
+	match what:
+		NOTIFICATION_READY:
+			main_tree 	= get_tree()
+			root 		= get_tree().root
+			
+		NOTIFICATION_INTERNAL_PROCESS:
+			InputManager.		_update(Global.delta)
+			SequencerManager.	_update(Global.delta)
+			sm.					 update(Global.delta)
+			
+		NOTIFICATION_INTERNAL_PHYSICS_PROCESS:
+			InputManager.		_physics_update(Global.phys_delta)
+			SequencerManager.	_physics_update(Global.phys_delta)
+			sm.						phys_update(Global.phys_delta)
+			
+		NOTIFICATION_WM_CLOSE_REQUEST:
+			Application.quit()
+			
+		NOTIFICATION_APPLICATION_FOCUS_OUT:
+			Application.pause()
+			
+func _input(_event: InputEvent) -> void:
+	InputManager._input_pass(_event)
 	sm.input_pass(_event)
 	
+func _unhandled_input(_event: InputEvent) -> void:
+	InputManager._unhandled_input_pass(_event)
 	
-# - game functionality
-	
-# - UI stuff
 static func set_cinematic_bars(_active: bool) -> void: 
 	if cb_tween != null: cb_tween.kill()
 	cb_tween = cinematic_bars.create_tween()
@@ -119,5 +129,3 @@ static func set_cinematic_bars(_active: bool) -> void:
 			cb_tween.tween_property(cinematic_bars, "position:y", -45, 1)
 			await cb_tween.finished
 			cinematic_bars.visible = false
-
-# - state based stuff

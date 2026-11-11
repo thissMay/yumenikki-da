@@ -1,0 +1,7 @@
+[gd_resource type="Resource" format=3 uid="uid://cvgshu47lxvrk"]
+
+[ext_resource type="Script" uid="uid://do20ao35nyeqw" path="res://src/player/2D/actions/pl_action_primary_effect.gd" id="1_u0xj8"]
+
+[resource]
+script = ExtResource("1_u0xj8")
+metadata/_custom_type_script = "uid://gqxupngqpt0n"

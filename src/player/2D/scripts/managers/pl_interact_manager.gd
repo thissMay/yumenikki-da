@@ -75,7 +75,7 @@ func handle_interaction(_choice: int = 0) -> void:
 	
 		if 	curr_interactable is Interactable and curr_interactable.can_interact : 
 			Utils.connect_to_signal(
-				AudioService.play_sound.bind(Player.ERR_SOUNDS.pick_random()), 
+				AudioService.play_sound.bind(PlayerInstance.ERR_SOUNDS.pick_random()), 
 				curr_interactable.fail, 
 				CONNECT_ONE_SHOT)
 					

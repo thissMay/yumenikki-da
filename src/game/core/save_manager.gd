@@ -1,4 +1,4 @@
-class_name Save
+class_name SaveManager
 extends GameDependency
 
 static var TEMPLATE_DATA := {

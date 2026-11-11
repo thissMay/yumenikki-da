@@ -1,2 +1,0 @@
-class_name EVN_ChangeDefaultFootstep
-extends Event

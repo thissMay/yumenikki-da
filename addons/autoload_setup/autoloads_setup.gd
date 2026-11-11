@@ -11,5 +11,9 @@ const SCRIPT_REFERENCES: Dictionary[String, String] = {
 	"NodeSaveService" 	: "res://autoloads/node_save_service.gd",
 }
 
-func _enter_tree() -> void: for i in SCRIPT_REFERENCES: add_autoload_singleton(i, SCRIPT_REFERENCES[i])
-func _exit_tree() -> void: 	for i in SCRIPT_REFERENCES.keys(): remove_autoload_singleton(i)
+func _enter_tree() -> void: 
+	if !Engine.is_editor_hint(): return
+	for i in SCRIPT_REFERENCES: add_autoload_singleton(i, SCRIPT_REFERENCES[i])
+func _exit_tree() -> void: 	
+	if !Engine.is_editor_hint(): return
+	for i in SCRIPT_REFERENCES.keys(): remove_autoload_singleton(i)

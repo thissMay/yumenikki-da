@@ -13,7 +13,6 @@ var playing: bool = false
 		autoplay = _auto
 		if Engine.is_editor_hint(): playing = _auto
 @export var loop: bool = false
-#@export var random_seed: bool = false
 
 @export var reverse: bool = false
 @export var end_frame: bool = false
@@ -23,8 +22,24 @@ var reached_first: bool = false
 
 # ---- time ----
 @export_group("Animation Properties")
+@export var progress_offset: int = 0
 @export var fps: float = 1
-#@export var seed: float = 0
+
+@export_subgroup("Randomness")
+@export_subgroup("Randomness/FPS")
+@export var random_fps_range: bool = false
+@export var fps_min: float = 0 
+@export var fps_max: float = 1 
+
+@export_subgroup("Randomness/Offset")
+@export var random_offset_range: bool = false
+@export var offset_min: int = 0:
+	set(_val):
+		if (_val) < frame_h_count - (frame_h_count - offset_max): offset_min = _val
+@export var offset_max: int = 0:
+	set(_val):
+		if (_val) < frame_h_count: offset_max = _val
+
 var time_elapsed: float = 0
 
 # ---- signals ----s
@@ -32,43 +47,26 @@ signal animation_loop
 signal animation_finished
 
 func _ready() -> void:
-	#if random_seed: 
-		#seed = randf_range(0, 1) * fps
-		#time_elapsed = seed
-	if autoplay: play(texture)
-	if !playing: set_process(false) 
-	animation_loop.connect(func(): if !loop: playing = false)
 	super()
-func format(_spr: Texture2D = texture) -> void:
-	super(_spr)
-
-
+	
+	if (random_fps_range):
+		fps = randf_range(fps_min, fps_max)
+		
+	if autoplay: play(texture)
+	if !playing: set_physics_process(false) 
+	animation_loop.connect(func(): if !loop: playing = false)
+	
 func play(
 	_sprite: Texture2D, 
-	_reverse: bool = false, 
-	_fps: float = 1) -> void:
-		set_process(true)
+	_reverse: bool = false) -> void:
+		set_physics_process(true)
 		set_sprite(_sprite)
 		playing = true
-		
-		progress = 0 if !_reverse else frame_h_count - 1
-		if _fps > 1: fps = _fps
+
+		progress = 0 + progress_offset if !_reverse else frame_h_count - 1 - progress_offset
 		reverse = _reverse
 	
-func play_one_shot(
-	_sprite: Texture2D, 
-	_reverse: bool = false, 
-	_fps: float = 1) -> void:
-		set_process(true)
-		set_sprite(_sprite)
-		playing = true
-		
-		end_frame = true
-		progress = 0 if !_reverse else frame_h_count - 1
-		if _fps > 1: fps = _fps
-		reverse = _reverse
-	
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if playing:
 		time_elapsed += delta
 		

@@ -13,8 +13,9 @@ enum style {HORIZONTAL, VERTICAL}
 		if Engine.is_editor_hint(): frame_dimensions = _dims.clamp(Vector2i.ZERO, texture.get_size())
 		else: frame_dimensions = _dims
 
-@export var frame_h_count	: int = 1
-@export var frame_v_count	: int = 1
+@export var frame_count		: int = 1;
+var frame_h_count	: int = 1
+var frame_v_count	: int = 1
 
 @export_group("Sheet progress")
 @export var progress: int = 0:
@@ -30,8 +31,8 @@ var cached_row: float = 0
 var row_within_bounds: bool = false
 
 func _ready() -> void: 
-	set_process(!Engine.is_editor_hint())
-	set_physics_process(false)
+	set_physics_process(!Engine.is_editor_hint())
+	set_process(false)
 	set_process_input(false)
 	texture_changed		.connect(format)
 	visibility_changed	.connect(set_process.bind(self.visible))
@@ -41,10 +42,15 @@ func refresh_frame_splitting() -> void:
 	
 func format(_spr: Texture2D = texture) -> void:	
 	if _spr:
-		progress = 0 
 		
-		frame_h_count = int(_spr.get_width() / clampi(frame_dimensions.x, 1, frame_dimensions.x))
-		frame_v_count = int(_spr.get_height() / clampi(frame_dimensions.y, 1, frame_dimensions.y))
+		
+		match strip_style:
+			style.HORIZONTAL:
+				frame_h_count = int(_spr.get_width() / clampi(frame_dimensions.x, 1, frame_dimensions.x / frame_count))
+				frame_v_count = int(_spr.get_height() / clampi(frame_dimensions.y, 1, frame_dimensions.y))
+			style.VERTICAL:
+				frame_h_count = int(_spr.get_width() / clampi(frame_dimensions.x, 1, frame_dimensions.x))
+				frame_v_count = int(_spr.get_height() / clampi(frame_dimensions.y, 1, frame_dimensions.y / frame_count))
 	 
 		cached_row = row
 		check_row()
@@ -65,15 +71,12 @@ func set_sprite(_spr: Texture2D) -> void:
 
 # - internal
 func __set_row(_r: float) -> void:
-	row = _r
-	if row <= frame_v_count - 1: row = clamp(_r, 0, frame_v_count - 1)
-	else: row = frame_v_count - 1
+	row = clamp(_r, 0, frame_v_count - 1)
 	__set_progress(progress)
 func __set_column(_c: float) -> void:
-	column = _c
-	if column <= frame_h_count - 1: column = clamp(_c, 0, frame_h_count - 1)
-	else: column = frame_h_count - 1
+	column = clamp(_c, 0, frame_h_count - 1)
 	__set_progress(progress)
+	
 func __set_progress(_progress: int) -> void:
 	match strip_style:
 		style.HORIZONTAL:

@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://qiaa6liyh0gs"]
+
+[ext_resource type="Texture2D" uid="uid://c4xdm2th6act5" path="res://src/map/_dream/footprint_path/thing_yellow.png" id="1_fkaag"]
+[ext_resource type="Script" uid="uid://dlvvx5cthl4bp" path="res://src/systems/utils/spritesheet_formatter.gd" id="2_eji5h"]
+[ext_resource type="Texture2D" uid="uid://b8l1jq8htfaaq" path="res://src/map/_dream/footprint_path/tumor_yellow.png" id="3_1yr7l"]
+[ext_resource type="Script" uid="uid://bxh774473av7t" path="res://src/systems/interaction/interactable.gd" id="4_3378m"]
+[ext_resource type="Script" uid="uid://bkadpjx8csm75" path="res://src/systems/sequencing_legacy/sequence/game/on_interact.gd" id="5_dnubs"]
+[ext_resource type="Script" uid="uid://vk574kc3l7av" path="res://src/systems/sequencing_legacy/event/audio/play_sound.gd" id="6_678bv"]
+[ext_resource type="AudioStream" uid="uid://dux6ah6eoctfc" path="res://src/audio/se/se_punch.WAV" id="7_m2mwh"]
+[ext_resource type="Script" uid="uid://d1ojbn5jneejv" path="res://src/systems/sequencing_legacy/event/node/set_property.gd" id="8_ul3i8"]
+[ext_resource type="Script" uid="uid://d01atxbr8elfs" path="res://src/systems/sequencing_legacy/event/camera/shake_cam.gd" id="9_0vy4g"]
+[ext_resource type="Script" uid="uid://dyaslht461mw2" path="res://src/systems/sequencing_legacy/event/game/wait_seconds.gd" id="10_8x6ap"]
+[ext_resource type="AudioStream" uid="uid://b2q207o7484gs" path="res://src/audio/se/se_thing_cry.WAV" id="11_5xro6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c6g2w"]
+size = Vector2(48, 48)
+
+[node name="thing_yellow" type="Node2D"]
+
+[node name="thing" type="Sprite2D" parent="."]
+texture = ExtResource("1_fkaag")
+hframes = 2
+script = ExtResource("2_eji5h")
+frame_dimensions = Vector2i(80, 96)
+frame_h_count = 2
+metadata/_custom_type_script = "uid://dlvvx5cthl4bp"
+
+[node name="tumor" type="Sprite2D" parent="."]
+position = Vector2(0, 72)
+texture = ExtResource("3_1yr7l")
+hframes = 2
+script = ExtResource("2_eji5h")
+frame_dimensions = Vector2i(32, 32)
+frame_h_count = 2
+metadata/_custom_type_script = "uid://dlvvx5cthl4bp"
+
+[node name="interactable" type="Area2D" parent="tumor" node_paths=PackedStringArray("rect")]
+collision_layer = 1073741826
+collision_mask = 1073741824
+script = ExtResource("4_3378m")
+rect = NodePath("rect")
+metadata/_custom_type_script = "uid://bxh774473av7t"
+
+[node name="rect" type="CollisionShape2D" parent="tumor/interactable"]
+shape = SubResource("RectangleShape2D_c6g2w")
+debug_color = Color(0.2, 0, 0.7, 0.2)
+
+[node name="punch" type="Node" parent="tumor/interactable" node_paths=PackedStringArray("order", "front", "back")]
+script = ExtResource("5_dnubs")
+order = [NodePath("play_sound_punch"), NodePath("change_sprite_1"), NodePath("cam_shake"), NodePath("wait"), NodePath("play_sound2"), NodePath("wait2"), NodePath("change_sprite_0")]
+front = NodePath("play_sound_punch")
+back = NodePath("change_sprite_0")
+metadata/_custom_type_script = "uid://bkadpjx8csm75"
+
+[node name="play_sound_punch" type="Node" parent="tumor/interactable/punch" node_paths=PackedStringArray("next")]
+process_mode = 4
+script = ExtResource("6_678bv")
+sound = ExtResource("7_m2mwh")
+wait_til_finished = false
+next = NodePath("../change_sprite_1")
+metadata/_custom_type_script = "uid://vk574kc3l7av"
+
+[node name="change_sprite_1" type="Node" parent="tumor/interactable/punch" node_paths=PackedStringArray("node", "prev", "next")]
+process_mode = 4
+script = ExtResource("8_ul3i8")
+node = NodePath("../../../../thing")
+property_name = "progress"
+property_info = {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "progress",
+"type": 2,
+"usage": 4102
+}
+property_value = 0
+new_value = 1
+prev = NodePath("../play_sound_punch")
+next = NodePath("../cam_shake")
+metadata/_custom_type_script = "uid://0v2nidb8jsha"
+
+[node name="cam_shake" type="Node" parent="tumor/interactable/punch" node_paths=PackedStringArray("prev", "next")]
+script = ExtResource("9_0vy4g")
+magnitude = 2.0
+speed = 2.0
+prev = NodePath("../change_sprite_1")
+next = NodePath("../wait")
+metadata/_custom_type_script = "uid://0v2nidb8jsha"
+
+[node name="wait" type="Node" parent="tumor/interactable/punch" node_paths=PackedStringArray("prev", "next")]
+script = ExtResource("10_8x6ap")
+seconds = 0.5
+prev = NodePath("../cam_shake")
+next = NodePath("../play_sound2")
+metadata/_custom_type_script = "uid://0v2nidb8jsha"
+
+[node name="play_sound2" type="Node" parent="tumor/interactable/punch" node_paths=PackedStringArray("prev", "next")]
+process_mode = 4
+script = ExtResource("6_678bv")
+sound = ExtResource("11_5xro6")
+prev = NodePath("../wait")
+next = NodePath("../wait2")
+metadata/_custom_type_script = "uid://vk574kc3l7av"
+
+[node name="wait2" type="Node" parent="tumor/interactable/punch" node_paths=PackedStringArray("prev", "next")]
+script = ExtResource("10_8x6ap")
+seconds = 0.2
+prev = NodePath("../play_sound2")
+next = NodePath("../change_sprite_0")
+metadata/_custom_type_script = "uid://0v2nidb8jsha"
+
+[node name="change_sprite_0" type="Node" parent="tumor/interactable/punch" node_paths=PackedStringArray("node", "prev")]
+process_mode = 4
+script = ExtResource("8_ul3i8")
+node = NodePath("../../../../thing")
+property_name = "progress"
+property_info = {
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "progress",
+"type": 2,
+"usage": 4102
+}
+property_value = 0
+new_value = 0
+prev = NodePath("../wait2")
+metadata/_custom_type_script = "uid://0v2nidb8jsha"

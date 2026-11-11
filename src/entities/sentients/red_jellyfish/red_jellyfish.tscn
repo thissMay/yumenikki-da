@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://umbl6vr4s630"]
+[gd_scene format=3 uid="uid://umbl6vr4s630"]
 
 [ext_resource type="PackedScene" uid="uid://qvbki1ipp72p" path="res://src/entities/sentients/template_sentient.tscn" id="1_4xce7"]
 [ext_resource type="Texture2D" uid="uid://b2wf3y71rd5l8" path="res://src/entities/sentients/red_jellyfish/flap.png" id="2_4xce7"]
@@ -6,11 +6,11 @@
 [ext_resource type="AnimationLibrary" uid="uid://ckrlxt13tw453" path="res://src/entities/sentients/animation_libs/red_jellyfish.tres" id="4_muomx"]
 [ext_resource type="Script" uid="uid://cvno7u6wdvsg8" path="res://src/entities/footsteps/footstep_system.gd" id="5_ggkqq"]
 [ext_resource type="Script" uid="uid://b8o626ec7226k" path="res://src/systems/audio/sound_player_2d.gd" id="6_xgabx"]
-[ext_resource type="Script" uid="uid://c1od80bn28h0l" path="res://src/systems/sequencing/sequence_interface.gd" id="7_3epvr"]
+[ext_resource type="Script" uid="uid://c1od80bn28h0l" path="res://src/systems/sequencing_legacy/sequence_interface.gd" id="7_3epvr"]
 [ext_resource type="Script" uid="uid://bxh774473av7t" path="res://src/systems/interaction/interactable.gd" id="9_58hj0"]
-[ext_resource type="Script" uid="uid://dlp3m6fps0h2j" path="res://src/systems/sequencing/event/animation/play_yield_animation.gd" id="10_btpse"]
-[ext_resource type="Script" uid="uid://bkadpjx8csm75" path="res://src/systems/sequencing/sequence/game/on_interact.gd" id="10_dsey1"]
-[ext_resource type="Script" uid="uid://vk574kc3l7av" path="res://src/systems/sequencing/event/audio/play_sound.gd" id="11_bibj7"]
+[ext_resource type="Script" uid="uid://dlp3m6fps0h2j" path="res://src/systems/sequencing_legacy/event/animation/play_yield_animation.gd" id="10_btpse"]
+[ext_resource type="Script" uid="uid://bkadpjx8csm75" path="res://src/systems/sequencing_legacy/sequence/game/on_interact.gd" id="10_dsey1"]
+[ext_resource type="Script" uid="uid://vk574kc3l7av" path="res://src/systems/sequencing_legacy/event/audio/play_sound.gd" id="11_bibj7"]
 [ext_resource type="AudioStream" uid="uid://i75icu3fpkca" path="res://src/audio/se/jellyfish_teleport-1.WAV" id="12_1tlec"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jg6uj"]

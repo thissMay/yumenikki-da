@@ -81,7 +81,7 @@ func set_world_size(_size: Vector2) -> void:
 
 # - loop components exclusive.
 func update_loopable_collection() -> void: 
-	loop_objects = Utils.get_group_arr(LoopableComponent.LOOPABLE_ID)
+	loop_objects = Utils.get_group_array(LoopableComponent.LOOPABLE_ID)
 	
 	for l in range(loop_objects.size()):
 		var loopable: LoopableComponent = loop_objects[l]

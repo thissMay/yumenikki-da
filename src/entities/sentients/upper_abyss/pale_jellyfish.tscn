@@ -1,13 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://c5vuul3xa6rqx"]
+[gd_scene format=3 uid="uid://c5vuul3xa6rqx"]
 
 [ext_resource type="PackedScene" uid="uid://qvbki1ipp72p" path="res://src/entities/sentients/template_sentient.tscn" id="1_u0e4e"]
-[ext_resource type="Texture2D" uid="uid://igeawgnb7dyk" path="res://src/levels/_dream/upper_abyss/sprites/jellyfish_small/transparent.png" id="2_ga86h"]
+[ext_resource type="Texture2D" uid="uid://igeawgnb7dyk" path="res://src/map/_dream/upper_abyss/sprites/jellyfish_small/transparent.png" id="2_ga86h"]
 [ext_resource type="Script" uid="uid://dklkysmgxwdv2" path="res://src/entities/component/sb_animator.gd" id="3_jqsh2"]
 [ext_resource type="Script" uid="uid://cdjphp77kgyqr" path="res://src/systems/utils/spritesheet_formatter_animated.gd" id="3_ycocl"]
 [ext_resource type="AnimationLibrary" uid="uid://ckrlxt13tw453" path="res://src/entities/sentients/animation_libs/red_jellyfish.tres" id="4_bjgll"]
 [ext_resource type="Script" uid="uid://cvno7u6wdvsg8" path="res://src/entities/footsteps/footstep_system.gd" id="5_djqh1"]
 [ext_resource type="Script" uid="uid://b8o626ec7226k" path="res://src/systems/audio/sound_player_2d.gd" id="6_e65x6"]
-[ext_resource type="Script" uid="uid://c1od80bn28h0l" path="res://src/systems/sequencing/sequence_interface.gd" id="7_2rqag"]
+[ext_resource type="Script" uid="uid://c1od80bn28h0l" path="res://src/systems/sequencing_legacy/sequence_interface.gd" id="7_2rqag"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jg6uj"]
 blend_mode = 1

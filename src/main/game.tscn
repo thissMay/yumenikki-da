@@ -1,23 +1,19 @@
 [gd_scene format=3 uid="uid://ra24ysq2f70c"]
 
-[ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://themes/global_theme.tres" id="1_3apph"]
 [ext_resource type="Script" uid="uid://b2yjestmw6ux7" path="res://src/game/game.gd" id="1_y4aoe"]
 [ext_resource type="Environment" uid="uid://be4tedt15qnrp" path="res://src/main/environment_2d.tres" id="2_3apph"]
 [ext_resource type="Script" uid="uid://d3r72epfndsge" path="res://autoloads/panorama_system.gd" id="3_y4aoe"]
-[ext_resource type="Texture2D" uid="uid://tot51cpm8hrq" path="res://src/images/panorama/mountains.jpg" id="4_3apph"]
-[ext_resource type="Script" uid="uid://dt42f6rbv7tp" path="res://src/player/inventory/pl_inventory_manager.gd" id="16_ci86m"]
-[ext_resource type="Script" uid="uid://ctbtfitoggtku" path="res://src/systems/components/component_receiver.gd" id="18_sjocp"]
+[ext_resource type="Texture2D" uid="uid://co64pugf2as81" path="res://src/shaders/ui/cinematic_bars_grad.tres" id="20_yso6c"]
 [ext_resource type="Script" uid="uid://dgrha4aqsx4kh" path="res://src/systems/audio/sound_player.gd" id="21_cy466"]
 [ext_resource type="Script" uid="uid://b28e410lfdesx" path="res://src/player/2D/scripts/pl_effect_player.gd" id="22_qof35"]
 [ext_resource type="AudioStream" uid="uid://b5ua6uth0mp44" path="res://src/audio/se/effect_unequip.WAV" id="23_t4e1t"]
 [ext_resource type="AudioStream" uid="uid://xxugef5ihpej" path="res://src/audio/se/effect_equip.WAV" id="24_ranl0"]
-[ext_resource type="Texture2D" uid="uid://bvntqmlvl36s0" path="res://src/player/2D/madotsuki/effects/effect_anim_petal_pink.png" id="25_hma5v"]
-[ext_resource type="Texture2D" uid="uid://daueebm63ch62" path="res://src/player/2D/madotsuki/effects/effect_anim_petal_white.png" id="26_0wivy"]
-[ext_resource type="Script" uid="uid://dmro0dra81fni" path="res://src/systems/scenes/transition.gd" id="29_3apph"]
+[ext_resource type="Texture2D" uid="uid://bvntqmlvl36s0" path="res://src/player/2D/effects/effect_anim_petal_pink.png" id="25_hma5v"]
+[ext_resource type="Texture2D" uid="uid://daueebm63ch62" path="res://src/player/2D/effects/effect_anim_petal_white.png" id="26_0wivy"]
+[ext_resource type="Script" uid="uid://dmro0dra81fni" path="res://src/systems/scenes/screen_transition.gd" id="29_3apph"]
 [ext_resource type="Script" uid="uid://cwji4a822mehj" path="res://src/ui/message_display/message_display_manager.gd" id="31_wfsxj"]
 [ext_resource type="PackedScene" uid="uid://c2sv1637gh6ub" path="res://src/ui/pause_menu/pause_screen.tscn" id="32_r2hvo"]
 [ext_resource type="PackedScene" uid="uid://q5moiijg0b7a" path="res://src/player/hud/pl_hud.tscn" id="33_a0tkc"]
-[ext_resource type="Texture2D" uid="uid://co64pugf2as81" path="res://src/shaders/ui/cinematic_bars_grad.tres" id="34_nnm53"]
 [ext_resource type="Script" uid="uid://dk81btxcpwmaw" path="res://src/ui/message_display/message_display.gd" id="36_8fuah"]
 [ext_resource type="Script" uid="uid://dyy2blk5ofm3n" path="res://src/ui/message_display/prompt/prompt.gd" id="37_aa7m6"]
 [ext_resource type="PackedScene" uid="uid://bl24ldxfxb508" path="res://src/player/inventory/inventory.tscn" id="37_tboue"]
@@ -371,9 +367,10 @@ colors = PackedColorArray(0, 0, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_8fuah"]
 gradient = SubResource("Gradient_tboue")
 
-[node name="game" type="Node" unique_id=946937007]
+[node name="game" type="Node" unique_id=946937007 node_paths=PackedStringArray("_scene_container")]
 process_mode = 3
 script = ExtResource("1_y4aoe")
+_scene_container = NodePath("scene_container")
 
 [node name="aud_ui" type="AudioStreamPlayer" parent="." unique_id=145651787]
 script = ExtResource("21_cy466")
@@ -393,70 +390,51 @@ affected_by_timescale = null
 [node name="global_screen_effect" type="WorldEnvironment" parent="." unique_id=1455979223]
 environment = ExtResource("2_3apph")
 
-[node name="Buildings" type="Sprite2D" parent="." unique_id=223665714]
-position = Vector2(704, 214)
-texture = ExtResource("4_3apph")
-
 [node name="sequencer_manager" type="Node" parent="." unique_id=302322327]
 
-[node name="global_components" type="Node" parent="." unique_id=591642159]
-script = ExtResource("18_sjocp")
-
-[node name="panorama_component" type="Node" parent="global_components" unique_id=186876674 node_paths=PackedStringArray("panorama_rect")]
+[node name="panorama" type="Node" parent="." unique_id=186876674 node_paths=PackedStringArray("panorama_rect")]
 script = ExtResource("3_y4aoe")
-panorama_rect = NodePath("../../panorma/display")
+panorama_rect = NodePath("../panorma/display")
 default_panorama_texture = SubResource("GradientTexture2D_jdkml")
 
-[node name="effect_equip_anim" type="Node2D" parent="global_components" unique_id=1350895473 node_paths=PackedStringArray("animation_player")]
+[node name="effect_equip_anim" type="Node2D" parent="." unique_id=1350895473 node_paths=PackedStringArray("animation_player")]
 script = ExtResource("22_qof35")
 animation_player = NodePath("player")
 
-[node name="player" type="AnimationPlayer" parent="global_components/effect_equip_anim" unique_id=654812084]
+[node name="player" type="AnimationPlayer" parent="effect_equip_anim" unique_id=654812084]
 libraries/ = SubResource("AnimationLibrary_lm638")
 
-[node name="pink_1" type="Sprite2D" parent="global_components/effect_equip_anim" unique_id=2096518644]
+[node name="pink_1" type="Sprite2D" parent="effect_equip_anim" unique_id=2096518644]
 modulate = Color(1, 1, 1, 0)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("25_hma5v")
 
-[node name="pink_2" type="Sprite2D" parent="global_components/effect_equip_anim" unique_id=1461249713]
+[node name="pink_2" type="Sprite2D" parent="effect_equip_anim" unique_id=1461249713]
 modulate = Color(1, 1, 1, 0)
 rotation = -0.785398
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("25_hma5v")
 
-[node name="white_1" type="Sprite2D" parent="global_components/effect_equip_anim" unique_id=1198214705]
+[node name="white_1" type="Sprite2D" parent="effect_equip_anim" unique_id=1198214705]
 modulate = Color(1, 1, 1, 0)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("26_0wivy")
 
-[node name="white_2" type="Sprite2D" parent="global_components/effect_equip_anim" unique_id=1209430173]
+[node name="white_2" type="Sprite2D" parent="effect_equip_anim" unique_id=1209430173]
 modulate = Color(1, 1, 1, 0)
 rotation = 0.528835
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("26_0wivy")
 
-[node name="sound" type="AudioStreamPlayer" parent="global_components/effect_equip_anim" unique_id=1841191134]
+[node name="sound" type="AudioStreamPlayer" parent="effect_equip_anim" unique_id=1841191134]
 bus = &"Effects"
 script = ExtResource("21_cy466")
 muted = null
 affected_by_timescale = null
 metadata/_custom_type_script = "uid://dgrha4aqsx4kh"
 
-[node name="inventory_manager" type="Node" parent="global_components" unique_id=1423604278 node_paths=PackedStringArray("inventory")]
-script = ExtResource("16_ci86m")
-inventory = NodePath("../../always/ui_parent/inventory_display")
-
-[node name="scene_container" type="Control" parent="." unique_id=2060173361]
+[node name="scene_container" type="Node" parent="." unique_id=844190223]
 process_mode = 1
-clip_contents = true
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_3apph")
 
 [node name="panorma" type="CanvasLayer" parent="." unique_id=1236070863]
 layer = -25
@@ -544,15 +522,17 @@ pivot_offset = Vector2(180, 135)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
-texture = ExtResource("34_nnm53")
+texture = ExtResource("20_yso6c")
 expand_mode = 1
 
 [node name="transition" type="TextureRect" parent="always/ui_parent" unique_id=510892102]
 visible = false
-custom_minimum_size = Vector2(480, 270)
-layout_mode = 0
-offset_right = 480.0
-offset_bottom = 270.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture1D_8fuah")
 script = ExtResource("29_3apph")

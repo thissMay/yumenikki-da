@@ -11,7 +11,7 @@ var entered: bool
 func _init(sm: SM, parent: State):  
 	self.sm = sm
 	self.parent = parent
-
+	
 func enter() -> void: 
 	if entered: return
 	entered = true

@@ -7,7 +7,6 @@ static var sb_input_controller	: SBInputController
 static var def_input_controller	: UIInputController
 static var curr_controller		: InputController
 
-
 static var dir_input				: Vector2i
 static var direction_vector_4		: Vector4i
 
@@ -21,10 +20,10 @@ static func request_curr_controller_change(_controller: InputController) -> void
 static func _update(_delta: float) -> void:
 	
 	direction_vector_4 = Vector4i(
-		int(Input.is_action_pressed("pl_move_right")) | int(Input.is_action_pressed("ui_right")), # pos x.
-		int(Input.is_action_pressed("pl_move_down")) | int(Input.is_action_pressed("ui_down")), # pos y.
-		int(Input.is_action_pressed("pl_move_left")) | int(Input.is_action_pressed("ui_left")), # neg x
-		int(Input.is_action_pressed("pl_move_up")) | int(Input.is_action_pressed("ui_up"))      # neg y
+		int(Input.is_action_pressed("usr_right")), # pos x.
+		int(Input.is_action_pressed("usr_down")), # pos y.
+		int(Input.is_action_pressed("usr_left")), # neg x
+		int(Input.is_action_pressed("usr_up"))      # neg y
 		)
 	
 	dir_input = Vector2i(
@@ -42,51 +41,3 @@ static func _unhandled_input_pass(_event: InputEvent) -> void:
 	if curr_controller != null: 
 		curr_controller._unhandled_input(_event)
 	
-# definitions:
-#	KEYBIND: 
-#				keybind defines all the controls and the actions they accept.
-#				these actions are ID'd by a string.
-#			 	for example: ACTION = "walk_right" : ALLOWED_INPUT = [KEY_D, RIGHT_ARROW]
-#			 	IMPORTANT: you need to define all possibile actions. the idea is to allow 
-#				the player to change the controls to their liking, and not actions
-
-#	SCHEME: 
-#				defines what the current input should do given the current scheme.
-#				a scheme contains the action ID's and the commands to-be-executed whenever
-#				an action has been triggered (press, screen touch, etc.)
-#				for example: 
-#					SCHEME_PLAYER:
-#						-> walk_right 		: PLAYER_WALK_RIGHT_COMMAND 
-#						-> primary_action 	: PLAYER_INTERACT_COMMAND
-
-#					SCHEME_UI:
-#						-> primary_action 	: UI_ACCEPT 
-#						-> secondary_action : UI_CANCEL 
-
-# 				IMPORTANT!: 
-# 					commands are instantiated in the schemes, NOT the objects that they're for.
-# 					schemes should hold references to key binds.
-
-
-
-#class Keybind:
-	#extends RefCounted
-		#
-	#func _setup() -> void:
-		#for action in bind:
-			#
-			#if !InputMap.has_action(action):  	
-				#InputMap.add_action(action)
-				#
-			#for key in bind[action]:
-				#var event_key := InputEventKey.new()
-				#event_key.keycode = key
-				#InputMap.action_add_event(action, event_key)
-	#
-	#func has_action(_action: String) -> bool: 
-		#return _action in bind
-		#
-	#func get_action_keys(_action: String) -> Array:
-		#if has_action(_action): return bind[_action]
-		#return []
-		#

@@ -11,25 +11,25 @@ var cam_initial_displacement: float
 func _ready() -> void:
 	await owner.ready
 	
-	# cameraholder is the cam defined in "To You" project (thissmay)
+	# CCamera2D is the cam defined in "To You" project (thissmay)
 	# just replace it with your camera reference.
-	self.global_position.x = r * cos((1 / distance * PI) * (-CameraHolder.instance.cam.global_position.x + cam_initial_displacement)) + poi.position.x
-	self.global_position.z = r * sin((1 / distance * PI) * (-CameraHolder.instance.cam.global_position.x + cam_initial_displacement)) + poi.position.z
+	self.global_position.x = r * cos((1 / distance * PI) * (-CCamera2D.instance.cam.global_position.x + cam_initial_displacement)) + poi.position.x
+	self.global_position.z = r * sin((1 / distance * PI) * (-CCamera2D.instance.cam.global_position.x + cam_initial_displacement)) + poi.position.z
 
 func _process(delta: float) -> void:
 	if poi: # if node3D exists:
 		look_at(poi.global_position) # adjusts camera rotation to the object's GLOBAL position (note: use global).
 
-		if CameraHolder.instance.cam: 	
+		if CCamera2D.instance.cam: 	
 			
 			# equation stuff, don't mind it.
-			# like mentioned, replace cameraholder with whatever x-axis you want the camera 3D to respond to.
+			# like mentioned, replace CCamera2D with whatever x-axis you want the camera 3D to respond to.
 			
 			self.global_position.x = lerp(
 				self.global_position.x,
-				r * cos((1 / distance * PI) * (-CameraHolder.instance.cam.global_position.x + cam_initial_displacement)) + poi.position.x,
+				r * cos((1 / distance * PI) * (-CCamera2D.instance.cam.global_position.x + cam_initial_displacement)) + poi.position.x,
 				delta * speed)
 			self.global_position.z = lerp(
 				self.global_position.z,
-				r * sin((1 / distance * PI) * (-CameraHolder.instance.cam.global_position.x + cam_initial_displacement)) + poi.position.z,
+				r * sin((1 / distance * PI) * (-CCamera2D.instance.cam.global_position.x + cam_initial_displacement)) + poi.position.z,
 				delta * speed)

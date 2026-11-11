@@ -20,16 +20,29 @@ void vertex()
 	UV = mat2( 
 		vec2(cos(rot_radians), sin(rot_radians)), 
 		vec2(-sin(rot_radians), cos(rot_radians)) ) * (UV / 2.);
+
+
+
+	UV.y = UV.y * 1.1;
 }
 
 void fragment()
 {
+	vec4 noise_scroll_fwd = texture(
+		noise, 
+		vec2(
+			UV.x + (TIME * scroll_speed), 
+			UV.y * .4)
+		);
+	
+	vec4 noise_scroll_back = texture(
+		noise, 
+		vec2(
+			UV.x + -(TIME * scroll_speed / 1.2), 
+			UV.y * .1)
+		);
 
-
-	vec4 noise_scroll_fwd = texture(noise, UV.x + vec2(TIME * scroll_speed));
-	vec4 noise_scroll_back = texture(noise, UV.x - vec2(TIME * scroll_speed / 5.0));
-
-	COLOR.rgb = (noise_scroll_fwd * noise_scroll_back).rgb * texture(gradient, UV).rgb * ray_strength;
+	COLOR.rgb = (noise_scroll_fwd * noise_scroll_back).rgb * texture(gradient, UV * 2.).rgb;
 	COLOR.a = opacity / (ray_strength / 3.);
 
 

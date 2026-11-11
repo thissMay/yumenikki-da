@@ -1,0 +1,17 @@
+[gd_resource type="TileSet" format=3 uid="uid://fc40lcfxh2rr"]
+
+[ext_resource type="Texture2D" uid="uid://6ajjtgk35j6l" path="res://src/map/_dream/unstable_void/sprites/tree.png" id="1_xonxo"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o6ltn"]
+texture = ExtResource("1_xonxo")
+texture_region_size = Vector2i(98, 175)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 80)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 80)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 80)
+
+[resource]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_o6ltn")

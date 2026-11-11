@@ -1,5 +1,5 @@
 extends Component
-@export var camera: CameraHolder
+@export var camera: CCamera2D
 
 func _physics_update(_delta: float) -> void:
 	if camera.rot_curve:
