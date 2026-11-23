@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b1ofr4umso5jf" path="res://src/systems/scenes/game/game_scene.gd" id="1_dxfgj"]
 [ext_resource type="PackedScene" uid="uid://ryhx8o46er7i" path="res://src/player/2D/madotsuki.tscn" id="2_is41i"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="3_7tpge"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="3_7tpge"]
 [ext_resource type="AudioStream" uid="uid://djnfqe8lp1evc" path="res://src/audio/bgm/world_guillotine.WAV" id="3_cdxl6"]
 [ext_resource type="Texture2D" uid="uid://bdk0y1pvoyc3v" path="res://src/map/__ignore/tile_atlas/guillo_world.png" id="4_1amk6"]
 [ext_resource type="Shader" uid="uid://dqxrs4a4y611c" path="res://src/shaders/panorama/linear.gdshader" id="6_pfd27"]

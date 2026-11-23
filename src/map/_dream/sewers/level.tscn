@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://crww51e03hpj2" path="res://src/map/__ignore/tile_set/world_tile_sets/sewers.tres" id="3_ik2yd"]
 [ext_resource type="PackedScene" uid="uid://ryhx8o46er7i" path="res://src/player/2D/madotsuki.tscn" id="3_jxt35"]
 [ext_resource type="Script" uid="uid://bau5lvtg1mbkj" path="res://src/systems/interaction/door_inscene.gd" id="4_ik2yd"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="6_7oykn"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="6_7oykn"]
 [ext_resource type="Script" uid="uid://ofyfa3d6ql28" path="res://src/systems/components/independent/spawn_point.gd" id="8_6j8lh"]
 [ext_resource type="Shader" uid="uid://crclnnrqddewa" path="res://src/shaders/panorama/depth.gdshader" id="8_45vsk"]
 [ext_resource type="Texture2D" uid="uid://c45p7grwfesnq" path="res://src/images/panorama/sewers_city_far.png" id="8_gmmal"]

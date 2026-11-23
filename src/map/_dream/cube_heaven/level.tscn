@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://c1od80bn28h0l" path="res://src/systems/sequencing_legacy/sequence_interface.gd" id="5_ysxm6"]
 [ext_resource type="PackedScene" uid="uid://ryhx8o46er7i" path="res://src/player/2D/madotsuki.tscn" id="6_7hp21"]
 [ext_resource type="Script" path="res://src/player/2D/scripts/pl_variables.gd" id="7_ysxm6"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="8_hsra8"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="8_hsra8"]
 [ext_resource type="Script" uid="uid://dxx2gbg56i1ts" path="res://src/systems/sequencing_legacy/event/scene/apply_panorama.gd" id="8_m5djw"]
 [ext_resource type="Shader" uid="uid://dqxrs4a4y611c" path="res://src/shaders/panorama/linear.gdshader" id="9_5khaj"]
 [ext_resource type="Texture2D" uid="uid://c8k1sxkde80gi" path="res://src/images/panorama/clouds.png" id="10_2njws"]

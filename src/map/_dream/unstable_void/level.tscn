@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b1ofr4umso5jf" path="res://src/systems/scenes/game/game_scene.gd" id="1_kphg3"]
 [ext_resource type="Script" path="res://src/player/2D/scripts/pl_variables.gd" id="5_t6avo"]
 [ext_resource type="PackedScene" uid="uid://ryhx8o46er7i" path="res://src/player/2D/madotsuki.tscn" id="8_22psq"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="9_hvmbn"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="9_hvmbn"]
 [ext_resource type="TileSet" uid="uid://b0kyfgy4bib24" path="res://src/map/__ignore/tile_set/_common_objs.tres" id="10_0x8fy"]
 [ext_resource type="Resource" uid="uid://buu266lqaqu16" path="res://src/audio/footsteps/grass.tres" id="10_orbtw"]
 [ext_resource type="Shader" uid="uid://dqxrs4a4y611c" path="res://src/shaders/panorama/linear.gdshader" id="11_67uyh"]

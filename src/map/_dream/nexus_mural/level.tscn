@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://d4buml4tyobvm"]
 
 [ext_resource type="Script" uid="uid://b1ofr4umso5jf" path="res://src/systems/scenes/game/game_scene.gd" id="1_lnh22"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="2_rb84o"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="2_rb84o"]
 [ext_resource type="Shader" uid="uid://crclnnrqddewa" path="res://src/shaders/panorama/depth.gdshader" id="3_f0ess"]
 [ext_resource type="Texture2D" uid="uid://tqehhyl167ty" path="res://src/images/panorama/mural_panorama.jpeg" id="4_60ane"]
 [ext_resource type="AudioStream" uid="uid://b01e5plqcruwi" path="res://src/audio/bgm/world_mural.WAV" id="4_g1xr1"]

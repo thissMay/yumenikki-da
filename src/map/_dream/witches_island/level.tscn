@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://yc54682vg70s"]
 
 [ext_resource type="Script" uid="uid://b1ofr4umso5jf" path="res://src/systems/scenes/game/game_scene.gd" id="1_07eot"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="2_6a16l"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="2_6a16l"]
 [ext_resource type="TileSet" uid="uid://fd37qogr0ale" path="res://src/map/__ignore/tile_set/world_tile_sets/dense_woods.tres" id="2_e6kmd"]
 [ext_resource type="TileSet" uid="uid://8ycy6oceth0s" path="res://src/map/__ignore/tile_set/world_tile_sets/sky_garden.tres" id="3_ciu6d"]
 [ext_resource type="Shader" uid="uid://5k0375eqfw0q" path="res://src/shaders/masks/sub.gdshader" id="3_cr6ct"]

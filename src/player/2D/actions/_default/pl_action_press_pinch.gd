@@ -6,7 +6,7 @@ extends PLAction
 
 func _perform(_pl: Player2D) -> void:
 	
-	if load(SceneManager.curr_scene_resource.resource_path) == load(return_location):
+	if load(SceneLoader.get_scene_resource().resource_path) == load(return_location):
 		
 		AudioService.play_sound(PlayerInstance.ERR_SOUNDS.pick_random()) 
 		return
@@ -31,6 +31,6 @@ func _perform(_pl: Player2D) -> void:
 	SequencerManager.invoke(seq)
 	await seq.finished
 	
-	SceneManager.change_scene_to(load(return_location))
+	SceneLoader.change_scene_to(load(return_location))
 	
 	

@@ -3,9 +3,6 @@
 class_name SceneNode
 extends StackNode
 
-var initialized: 	bool = false
-var pushed:			bool = false
-
 func _notification(what: int) -> void:
 	match what:
 		NOTIFICATION_SCENE_INSTANTIATED:
@@ -17,7 +14,6 @@ func _notification(what: int) -> void:
 
 func _on_pop() -> void:
 	queue_free()
-func _on_pre_pop() -> void: 
-	set_process_mode.call_deferred(Node.PROCESS_MODE_DISABLED)
-func _on_push() -> void: 
-	set_process_mode.call_deferred(Node.PROCESS_MODE_INHERIT)
+	
+func _on_pre_pop() -> void: set_process_mode.call_deferred(Node.PROCESS_MODE_DISABLED)
+func _on_push() -> void: set_process_mode.call_deferred(Node.PROCESS_MODE_INHERIT)

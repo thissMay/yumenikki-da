@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://vk574kc3l7av" path="res://src/systems/sequencing_legacy/event/audio/play_sound.gd" id="3_rhkvi"]
 [ext_resource type="AudioStream" uid="uid://berstp18uwqhm" path="res://src/audio/se/effect_found.WAV" id="4_a8id6"]
 [ext_resource type="Script" uid="uid://bueabxwtsde8h" path="res://src/systems/sequencing_legacy/event/message/open_message.gd" id="5_a8id6"]
-[ext_resource type="Script" uid="uid://bdm7kig80eqqk" path="res://src/systems/save/node/save_properties.gd" id="7_55c36"]
+[ext_resource type="Script" uid="uid://bdm7kig80eqqk" path="res://src/systems/save/node/node_properties_save.gd" id="7_55c36"]
 [ext_resource type="Script" uid="uid://d1ojbn5jneejv" path="res://src/systems/sequencing_legacy/event/node/set_property.gd" id="9_55c36"]
 [ext_resource type="Script" uid="uid://dyaslht461mw2" path="res://src/systems/sequencing_legacy/event/game/wait_seconds.gd" id="9_rhkvi"]
 

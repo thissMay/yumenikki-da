@@ -58,8 +58,8 @@ func select_at_idx(_idx: int = 0, _leave_menu: bool = true) -> void:
 			if _leave_menu: EventManager.invoke_event("SPECIAL_INVERT_END_REQUEST")
 				
 	
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("usr_pl_favourite_effect"):
-		if hovered_button != null:  
-			PlayerInstance.equipment_favourite = get_at_idx(effect_buttons.find(hovered_button))
-			favourite_icon.global_position = hovered_button.global_position
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_pressed("usr_pl_favourite_effect"):
+		#if hovered_button != null:  
+			#PlayerInstance.equipment_favourite = get_at_idx(effect_buttons.find(hovered_button))
+			#favourite_icon.global_position = hovered_button.global_position

@@ -11,7 +11,7 @@
 [ext_resource type="Resource" uid="uid://d00wteppboqwj" path="res://src/audio/footsteps/dirt_flesh.tres" id="5_h8pgd"]
 [ext_resource type="Script" uid="uid://bxh774473av7t" path="res://src/systems/interaction/interactable.gd" id="5_t0sb3"]
 [ext_resource type="TileSet" uid="uid://b0kyfgy4bib24" path="res://src/map/__ignore/tile_set/_common_objs.tres" id="5_y0igy"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="5_y1apy"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="5_y1apy"]
 [ext_resource type="Script" uid="uid://bqs7mvieiy4cw" path="res://src/map/__ignore/tilemap_collision_setup.gd" id="6_1upwg"]
 [ext_resource type="Script" uid="uid://ofyfa3d6ql28" path="res://src/systems/components/independent/spawn_point.gd" id="6_ro7kg"]
 [ext_resource type="Script" path="res://src/player/2D/scripts/pl_variables.gd" id="8_pk6p4"]

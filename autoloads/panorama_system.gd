@@ -10,10 +10,7 @@ var initial_screen_centre	: Vector2
 var screen_centre 			: Vector2
 var eqn 					: Vector2
 
-static var instance: PanoramaSystem
-
 func _ready() -> void:
-	instance = self
 	panorama_rect.custom_minimum_size 	= MINIMUM_SIZE
 	panorama_rect.global_position = Vector2.ZERO
 	

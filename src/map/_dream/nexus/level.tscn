@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dd2fydh6klxcc" path="res://src/images/panorama/n_3.png" id="5_1rd4d"]
 [ext_resource type="Shader" uid="uid://crclnnrqddewa" path="res://src/shaders/panorama/depth.gdshader" id="7_25aso"]
 [ext_resource type="Script" uid="uid://bptlrkdn0tpua" path="res://src/systems/components/overrides/wiggle.gd" id="7_jxym7"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="8_f8lfk"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="8_f8lfk"]
 [ext_resource type="PackedScene" uid="uid://ryhx8o46er7i" path="res://src/player/2D/madotsuki.tscn" id="10_scjaa"]
 [ext_resource type="TileSet" uid="uid://crsr3gx0s6ht5" path="res://src/map/__ignore/tile_set/world_tile_sets/apartment_dream.tres" id="11_r2slo"]
 [ext_resource type="Script" path="res://src/player/2D/scripts/pl_variables.gd" id="12_ksvw7"]

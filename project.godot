@@ -33,10 +33,11 @@ general/3d_panning_strength=1.0
 
 Utils="*uid://be3ebjrt2wqmt"
 GameBootstrapper="*uid://s8exb3p56o1o"
+GlobalSignals="*uid://cg6h84r88pqes"
 Global="*uid://cnshp56dbcnrv"
-SceneManager="*uid://crvymmbd1s00h"
+SceneLoader="*uid://crvymmbd1s00h"
 AudioService="*uid://dk4vlf7ervpgs"
-NodeSaveService="*uid://j13s8ehd4488"
+SceneSaver="*uid://j13s8ehd4488"
 
 [display]
 

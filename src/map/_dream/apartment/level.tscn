@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dl7sdjmo0vbkt"]
 
 [ext_resource type="Script" uid="uid://b1ofr4umso5jf" path="res://src/systems/scenes/game/game_scene.gd" id="1_5js63"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="2_flyuj"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="2_flyuj"]
 [ext_resource type="Script" uid="uid://dxx2gbg56i1ts" path="res://src/systems/sequencing_legacy/event/scene/apply_panorama.gd" id="2_ftpjc"]
 [ext_resource type="Script" uid="uid://bptlrkdn0tpua" path="res://src/systems/components/overrides/wiggle.gd" id="3_alusu"]
 [ext_resource type="PackedScene" uid="uid://dnh41fsltbilo" path="res://src/map/_dream/apartment/balcony_dream.tscn" id="3_r5q3p"]

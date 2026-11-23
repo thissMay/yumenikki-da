@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b1ofr4umso5jf" path="res://src/systems/scenes/game/game_scene.gd" id="1_euwtw"]
 [ext_resource type="Texture2D" uid="uid://b405u21xqpgib" path="res://src/map/_dream/melancholy_meadows/sprites/bg_far.png" id="2_g85wj"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="2_goouj"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="2_goouj"]
 [ext_resource type="Texture2D" uid="uid://b2j8ydr0wj50f" path="res://src/images/panorama/clouds_custom.png" id="3_ajlq5"]
 [ext_resource type="Texture2D" uid="uid://crkn3cbjxd770" path="res://src/map/_dream/melancholy_meadows/sprites/bg_med.png" id="3_if3f7"]
 [ext_resource type="AudioStream" uid="uid://dywv7qyigvflq" path="res://src/audio/bgm/madoxy_36.ogg" id="3_sivtw"]

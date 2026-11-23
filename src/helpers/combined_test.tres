@@ -1,63 +1,94 @@
 [gd_resource type="Resource" script_class="ShaderCombination" format=3 uid="uid://3oiyck1gw2i7"]
 
 [ext_resource type="Script" uid="uid://dq6kogocfonkn" path="res://src/helpers/shaders/ShaderCombination.cs" id="1_7kft1"]
+[ext_resource type="Shader" uid="uid://b4qcyrwpo36fo" path="res://src/shaders/panorama/distortion_texture.gdshader" id="3_feccq"]
 [ext_resource type="Shader" uid="uid://bjc3g4hpc28r1" path="res://src/shaders/screen_overlay/ocean_lights.gdshader" id="3_hxubo"]
 
-[sub_resource type="Shader" id="Shader_c2458"]
-code = "
-shader_type canvas_item;
+[sub_resource type="Shader" id="Shader_24a71"]
+code = "shader_type canvas_item;
 render_mode blend_add;
 
 #include \"res://src/shaders/_include/depth_base.gdshaderinc\"
+#include \"res://src/shaders/_include/general_base.gdshaderinc\"
+#include \"res://src/shaders/_include/linear_base.gdshaderinc\"
 
 uniform float opacity : hint_range(0.0, 1.0, 0.1) = 1;
 uniform sampler2D noise : repeat_enable;
-
-uniform float scroll_speed : hint_range(-0.085, 0.085, 0.01 ) = 0.05;
-
-uniform sampler2D gradient;
 uniform float rot_radians = 0;
-
 uniform float ray_strength = 1.225;
+uniform vec2  wave_stretch = vec2(1,1);
 
 void vertex()
 {
-	UV = _depth_vertex(UV, TEXTURE_PIXEL_SIZE);
 	UV = mat2( 
 		vec2(cos(rot_radians), sin(rot_radians)), 
 		vec2(-sin(rot_radians), cos(rot_radians)) ) * (UV / 2.);
-
-
-
-	UV.y = UV.y * 1.1;
+	UV.x = UV.x * wave_stretch.x;
+	UV.y = UV.y * wave_stretch.y;
 }
 
 void fragment()
 {
-	vec4 noise_scroll_fwd = texture(
+ 	vec2 uv = UV;
+ 	vec4 noise_scroll_fwd = texture(
 		noise, 
 		vec2(
 			UV.x + (TIME * scroll_speed), 
 			UV.y * .4)
-		);
+		) * texture(noise, uv + vec2(TIME * scroll_speed));
 	
 	vec4 noise_scroll_back = texture(
 		noise, 
 		vec2(
 			UV.x + -(TIME * scroll_speed / 1.2), 
-			UV.y * .1)
+			UV.y * .2)
 		);
-
-	COLOR.rgb = (noise_scroll_fwd * noise_scroll_back).rgb * texture(gradient, UV * 2.).rgb;
-	COLOR.a = opacity / (ray_strength / 3.);
-
-
+	vec4 wave_effect =  texture(
+		TEXTURE, 
+		uv + scroll_speed * vec2(noise_scroll_fwd.x,  noise_scroll_fwd.y));
+	
+	COLOR.rgb = (noise_scroll_fwd * noise_scroll_back).rgb * texture(gradient, UV * 2.).rgb  * wave_effect.rgb * ray_strength;
+	COLOR.a = (wave_effect.a);
+ 
 }
 "
 
+[sub_resource type="Gradient" id="Gradient_ntyve"]
+offsets = PackedFloat32Array(0, 0.8150685, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.42168102, 0.7295731, 0.9852455, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3cubj"]
+gradient = SubResource("Gradient_ntyve")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ntyve"]
+frequency = 0.0222
+fractal_lacunarity = 0.825
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3cubj"]
+noise = SubResource("FastNoiseLite_ntyve")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pot1w"]
+shader = SubResource("Shader_24a71")
+shader_parameter/initial_uv_offset = Vector2(0, 0)
+shader_parameter/offset_strength = 0.0
+shader_parameter/offset_strength_influence = Vector2(1, 1)
+shader_parameter/overlay_modulate = Color(1, 1, 1, 1)
+shader_parameter/transparency = 0.0
+shader_parameter/gradient = SubResource("GradientTexture2D_3cubj")
+shader_parameter/dirX = -1.0
+shader_parameter/dirY = 0.20000001788144006
+shader_parameter/scroll_speed = 0.0499999988824
+shader_parameter/opacity = 1.0
+shader_parameter/noise = SubResource("NoiseTexture2D_3cubj")
+shader_parameter/rot_radians = 0.0
+shader_parameter/ray_strength = 2.36
+shader_parameter/wave_stretch = Vector2(2.63, 1.385)
+
 [resource]
 script = ExtResource("1_7kft1")
-shaders = Array[Shader]([ExtResource("3_hxubo"), null])
-combinedShader = SubResource("Shader_c2458")
-blendMode = 1
+shaders = Array[Shader]([ExtResource("3_hxubo"), ExtResource("3_feccq")])
+combinedShader = SubResource("ShaderMaterial_pot1w")
+renderMode = 2
 metadata/_custom_type_script = "uid://dq6kogocfonkn"

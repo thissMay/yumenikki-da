@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b1ofr4umso5jf" path="res://src/systems/scenes/game/game_scene.gd" id="1_fvyim"]
 [ext_resource type="Texture2D" uid="uid://bc81mh8r5tjjh" path="res://src/map/_dream/salt_beach/sprites/salt_tiles.png" id="2_mr1w7"]
 [ext_resource type="PackedScene" uid="uid://ryhx8o46er7i" path="res://src/player/2D/madotsuki.tscn" id="3_q7tjn"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="4_tfumf"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="4_tfumf"]
 [ext_resource type="Texture2D" uid="uid://cp6cq0j0i7quu" path="res://src/map/_dream/salt_beach/sprites/bg/clouds_fg.png" id="6_elfu2"]
 [ext_resource type="Shader" uid="uid://hg6wywtqrlha" path="res://src/shaders/masks/additive.gdshader" id="7_3l5xf"]
 [ext_resource type="Texture2D" uid="uid://b2vf7gdphonx2" path="res://src/map/_dream/salt_beach/sprites/bg/clouds_bg.png" id="7_m05a5"]

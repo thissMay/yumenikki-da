@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://b4ccjxsuwusfl" path="res://src/audio/bgm/2kki_zaza.wav" id="7_ut3ag"]
 [ext_resource type="Script" uid="uid://dxx2gbg56i1ts" path="res://src/systems/sequencing_legacy/event/scene/apply_panorama.gd" id="7_wa1an"]
 [ext_resource type="Shader" uid="uid://crclnnrqddewa" path="res://src/shaders/panorama/depth.gdshader" id="8_aoe6l"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="8_d6ort"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="8_d6ort"]
 [ext_resource type="Texture2D" uid="uid://bkiyc7axrhgdt" path="res://src/images/panorama/deep.png" id="8_qwdne"]
 [ext_resource type="PackedScene" uid="uid://ryhx8o46er7i" path="res://src/player/2D/madotsuki.tscn" id="9_u75xj"]
 [ext_resource type="Script" path="res://src/player/2D/scripts/pl_variables.gd" id="10_p7cap"]

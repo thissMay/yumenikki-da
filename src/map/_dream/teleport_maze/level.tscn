@@ -17,7 +17,7 @@
 [ext_resource type="Script" uid="uid://bkadpjx8csm75" path="res://src/systems/sequencing_legacy/sequence/game/on_interact.gd" id="6_i5mah"]
 [ext_resource type="Shader" uid="uid://dqxrs4a4y611c" path="res://src/shaders/panorama/linear.gdshader" id="6_u0dtb"]
 [ext_resource type="Resource" uid="uid://v0li64uvi1ci" path="res://src/audio/footsteps/concrete.tres" id="7_m2rqk"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="7_pfxes"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="7_pfxes"]
 [ext_resource type="Texture2D" uid="uid://s2nqqie2idyj" path="res://src/images/panorama/teleport_maze.png" id="7_yjkwh"]
 [ext_resource type="PackedScene" uid="uid://ryhx8o46er7i" path="res://src/player/2D/madotsuki.tscn" id="8_p7bb4"]
 [ext_resource type="Script" uid="uid://cokcpecitxber" path="res://src/systems/sequencing_legacy/event/audio/set_bus_effects.gd" id="8_vekgu"]

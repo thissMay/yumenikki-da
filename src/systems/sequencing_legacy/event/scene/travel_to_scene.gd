@@ -16,7 +16,7 @@ extends Event
 
 func _execute() -> void:
 	EventManager.invoke_event("PLAYER_DOOR_USED", connection_id)
-	SceneManager.change_scene_to(load(scene_path))
+	SceneLoader.change_scene_to(load(scene_path))
 func _validate() -> bool:		
 	if (scene_path.is_empty() or
 		!ResourceLoader.exists(scene_path)):

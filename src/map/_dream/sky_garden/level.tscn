@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://src/systems/scenes/rules/change_default_footstep.gd" id="3_bvc3k"]
 [ext_resource type="AudioStream" uid="uid://dqx6tq3t444c1" path="res://src/audio/bgm/sky_garden.WAV" id="3_ei7bl"]
 [ext_resource type="Texture2D" uid="uid://b6avhj776wr2v" path="res://src/images/panorama/sky_garden.png" id="4_5fs6t"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="4_aw62g"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="4_aw62g"]
 [ext_resource type="Shader" uid="uid://crclnnrqddewa" path="res://src/shaders/panorama/depth.gdshader" id="4_bgmpq"]
 [ext_resource type="Script" uid="uid://bptlrkdn0tpua" path="res://src/systems/components/overrides/wiggle.gd" id="5_giiqj"]
 [ext_resource type="Shader" uid="uid://bjc3g4hpc28r1" path="res://src/shaders/screen_overlay/ocean_lights.gdshader" id="6_3igev"]

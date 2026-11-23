@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://4qtk6nnecrel"]
 
 [ext_resource type="Script" uid="uid://b1ofr4umso5jf" path="res://src/systems/scenes/game/game_scene.gd" id="1_7eh56"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="2_61b85"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="2_61b85"]
 [ext_resource type="Script" uid="uid://desxt7tbq37sf" path="res://src/systems/world_loop/loop_region.gd" id="2_o4ctc"]
 [ext_resource type="Shader" uid="uid://bwrguqumtsyrq" path="res://src/shaders/masks/sprite.gdshader" id="4_61b85"]
 [ext_resource type="PackedScene" uid="uid://ryhx8o46er7i" path="res://src/player/2D/madotsuki.tscn" id="4_a2suj"]

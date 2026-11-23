@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://he4hpqrfbk5w"]
 
 [ext_resource type="Script" uid="uid://b1ofr4umso5jf" path="res://src/systems/scenes/game/game_scene.gd" id="1_v0g1x"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="4_f8of1"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="4_f8of1"]
 [ext_resource type="Texture2D" uid="uid://lqin0be5aulg" path="res://src/map/_dream/goldfish_monarch/sprites/bg.png" id="7_465ow"]
 [ext_resource type="Shader" uid="uid://hg6wywtqrlha" path="res://src/shaders/masks/additive.gdshader" id="8_db0b4"]
 [ext_resource type="Texture2D" uid="uid://4t00djnyofcf" path="res://src/map/_dream/goldfish_monarch/sprites/bubble_l.png" id="9_yqlf5"]

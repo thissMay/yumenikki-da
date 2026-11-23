@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://dgcff10ohhvo7"]
 
 [ext_resource type="Script" uid="uid://b1ofr4umso5jf" path="res://src/systems/scenes/game/game_scene.gd" id="1_fu6ox"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="2_7ddji"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="2_7ddji"]
 [ext_resource type="AudioStream" uid="uid://cha5o14ds0qw3" path="res://src/audio/bgm/world_dense-woods-a.ogg" id="3_lpvjp"]
 [ext_resource type="TileSet" uid="uid://fd37qogr0ale" path="res://src/map/__ignore/tile_set/world_tile_sets/dense_woods.tres" id="4_0tk1k"]
 [ext_resource type="AudioStream" uid="uid://dlfw10qwka7su" path="res://src/audio/amb/amb_rain.ogg" id="4_lpvjp"]

@@ -14,10 +14,7 @@
 [ext_resource type="Script" uid="uid://cwji4a822mehj" path="res://src/ui/message_display/message_display_manager.gd" id="31_wfsxj"]
 [ext_resource type="PackedScene" uid="uid://c2sv1637gh6ub" path="res://src/ui/pause_menu/pause_screen.tscn" id="32_r2hvo"]
 [ext_resource type="PackedScene" uid="uid://q5moiijg0b7a" path="res://src/player/hud/pl_hud.tscn" id="33_a0tkc"]
-[ext_resource type="Script" uid="uid://dk81btxcpwmaw" path="res://src/ui/message_display/message_display.gd" id="36_8fuah"]
-[ext_resource type="Script" uid="uid://dyy2blk5ofm3n" path="res://src/ui/message_display/prompt/prompt.gd" id="37_aa7m6"]
 [ext_resource type="PackedScene" uid="uid://bl24ldxfxb508" path="res://src/player/inventory/inventory.tscn" id="37_tboue"]
-[ext_resource type="Script" uid="uid://c5wjko2om80oe" path="res://src/ui/message_display/dialogue/dialogue.gd" id="38_yapge"]
 
 [sub_resource type="Gradient" id="Gradient_dpjd1"]
 offsets = PackedFloat32Array(1)
@@ -25,6 +22,13 @@ colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_jdkml"]
 gradient = SubResource("Gradient_dpjd1")
+
+[sub_resource type="Gradient" id="Gradient_tboue"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8fuah"]
+gradient = SubResource("Gradient_tboue")
 
 [sub_resource type="Animation" id="Animation_arbwm"]
 resource_name = "effect_deequip"
@@ -360,17 +364,13 @@ _data = {
 &"effect_equip": SubResource("Animation_ylvyo")
 }
 
-[sub_resource type="Gradient" id="Gradient_tboue"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_8fuah"]
-gradient = SubResource("Gradient_tboue")
-
 [node name="game" type="Node" unique_id=946937007 node_paths=PackedStringArray("_scene_container")]
 process_mode = 3
 script = ExtResource("1_y4aoe")
 _scene_container = NodePath("scene_container")
+
+[node name="global_screen_effect" type="WorldEnvironment" parent="." unique_id=1455979223]
+environment = ExtResource("2_3apph")
 
 [node name="aud_ui" type="AudioStreamPlayer" parent="." unique_id=145651787]
 script = ExtResource("21_cy466")
@@ -387,54 +387,15 @@ script = ExtResource("21_cy466")
 muted = null
 affected_by_timescale = null
 
-[node name="global_screen_effect" type="WorldEnvironment" parent="." unique_id=1455979223]
-environment = ExtResource("2_3apph")
-
-[node name="sequencer_manager" type="Node" parent="." unique_id=302322327]
-
 [node name="panorama" type="Node" parent="." unique_id=186876674 node_paths=PackedStringArray("panorama_rect")]
 script = ExtResource("3_y4aoe")
 panorama_rect = NodePath("../panorma/display")
 default_panorama_texture = SubResource("GradientTexture2D_jdkml")
 
-[node name="effect_equip_anim" type="Node2D" parent="." unique_id=1350895473 node_paths=PackedStringArray("animation_player")]
-script = ExtResource("22_qof35")
-animation_player = NodePath("player")
-
-[node name="player" type="AnimationPlayer" parent="effect_equip_anim" unique_id=654812084]
-libraries/ = SubResource("AnimationLibrary_lm638")
-
-[node name="pink_1" type="Sprite2D" parent="effect_equip_anim" unique_id=2096518644]
-modulate = Color(1, 1, 1, 0)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("25_hma5v")
-
-[node name="pink_2" type="Sprite2D" parent="effect_equip_anim" unique_id=1461249713]
-modulate = Color(1, 1, 1, 0)
-rotation = -0.785398
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("25_hma5v")
-
-[node name="white_1" type="Sprite2D" parent="effect_equip_anim" unique_id=1198214705]
-modulate = Color(1, 1, 1, 0)
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("26_0wivy")
-
-[node name="white_2" type="Sprite2D" parent="effect_equip_anim" unique_id=1209430173]
-modulate = Color(1, 1, 1, 0)
-rotation = 0.528835
-scale = Vector2(1.1, 1.1)
-texture = ExtResource("26_0wivy")
-
-[node name="sound" type="AudioStreamPlayer" parent="effect_equip_anim" unique_id=1841191134]
-bus = &"Effects"
-script = ExtResource("21_cy466")
-muted = null
-affected_by_timescale = null
-metadata/_custom_type_script = "uid://dgrha4aqsx4kh"
-
 [node name="scene_container" type="Node" parent="." unique_id=844190223]
 process_mode = 1
+
+[node name="dev" type="CanvasLayer" parent="." unique_id=220622948]
 
 [node name="panorma" type="CanvasLayer" parent="." unique_id=1236070863]
 layer = -25
@@ -466,7 +427,7 @@ offset_left = 256.0
 offset_right = 360.0
 offset_bottom = 64.0
 
-[node name="message_display_manager" type="Control" parent="always/ui_parent" unique_id=134455122 node_paths=PackedStringArray("message_display", "prompt_display", "dialogue_display")]
+[node name="message_display_manager" type="Control" parent="always/ui_parent" unique_id=134455122]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -475,21 +436,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("31_wfsxj")
-message_display = NodePath("message_display")
-prompt_display = NodePath("prompt_display")
-dialogue_display = NodePath("dialogue_display")
-
-[node name="message_display" type="PanelContainer" parent="always/ui_parent/message_display_manager" unique_id=503351773]
-layout_mode = 0
-script = ExtResource("36_8fuah")
-
-[node name="prompt_display" type="PanelContainer" parent="always/ui_parent/message_display_manager" unique_id=275114996]
-layout_mode = 0
-script = ExtResource("37_aa7m6")
-
-[node name="dialogue_display" type="PanelContainer" parent="always/ui_parent/message_display_manager" unique_id=1163665994]
-layout_mode = 0
-script = ExtResource("38_yapge")
 
 [node name="hud_display" parent="always/ui_parent" unique_id=243965080 instance=ExtResource("33_a0tkc")]
 layout_mode = 1
@@ -499,15 +445,15 @@ mouse_filter = 1
 z_index = 1
 layout_mode = 0
 anchors_preset = 0
+anchor_top = 1.0074074
 anchor_right = 0.0
-anchor_bottom = 0.0
-offset_top = 272.0
-offset_right = 360.0
-offset_bottom = 542.0
+anchor_bottom = 2.0074074
 grow_horizontal = 1
 grow_vertical = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="pause_menu" parent="always/ui_parent" unique_id=1935369359 instance=ExtResource("32_r2hvo")]
+visible = false
 z_index = 80
 layout_mode = 1
 
@@ -536,3 +482,43 @@ grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture1D_8fuah")
 script = ExtResource("29_3apph")
+
+[node name="2d" type="Node" parent="." unique_id=1546238768]
+
+[node name="effect_anim_2d" type="Node2D" parent="2d" unique_id=1350895473 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("22_qof35")
+animation_player = NodePath("player")
+
+[node name="player" type="AnimationPlayer" parent="2d/effect_anim_2d" unique_id=654812084]
+libraries/ = SubResource("AnimationLibrary_lm638")
+
+[node name="pink_1" type="Sprite2D" parent="2d/effect_anim_2d" unique_id=2096518644]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("25_hma5v")
+
+[node name="pink_2" type="Sprite2D" parent="2d/effect_anim_2d" unique_id=1461249713]
+modulate = Color(1, 1, 1, 0)
+rotation = -0.785398
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("25_hma5v")
+
+[node name="white_1" type="Sprite2D" parent="2d/effect_anim_2d" unique_id=1198214705]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("26_0wivy")
+
+[node name="white_2" type="Sprite2D" parent="2d/effect_anim_2d" unique_id=1209430173]
+modulate = Color(1, 1, 1, 0)
+rotation = 0.528835
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("26_0wivy")
+
+[node name="sound" type="AudioStreamPlayer" parent="2d/effect_anim_2d" unique_id=1841191134]
+bus = &"Effects"
+script = ExtResource("21_cy466")
+muted = null
+affected_by_timescale = null
+metadata/_custom_type_script = "uid://dgrha4aqsx4kh"
+
+[node name="map_2d" type="Node2D" parent="2d" unique_id=1603863601]

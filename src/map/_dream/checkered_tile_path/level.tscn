@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b1ofr4umso5jf" path="res://src/systems/scenes/game/game_scene.gd" id="1_0dvx7"]
 [ext_resource type="AudioStream" uid="uid://1hp7ivcckk70" path="res://src/audio/bgm/world_checkered_path.WAV" id="3_842wn"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="4_7fv36"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="4_7fv36"]
 [ext_resource type="TileSet" uid="uid://b0kyfgy4bib24" path="res://src/map/__ignore/tile_set/_common_objs.tres" id="5_00emm"]
 [ext_resource type="PackedScene" uid="uid://ryhx8o46er7i" path="res://src/player/2D/madotsuki.tscn" id="6_h1qg2"]
 [ext_resource type="Script" uid="uid://bau5lvtg1mbkj" path="res://src/systems/interaction/door_inscene.gd" id="7_00emm"]

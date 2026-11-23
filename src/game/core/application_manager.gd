@@ -21,9 +21,9 @@ static func _setup() -> void:
 static func quit(): 
 	Game.main_tree.quit()
 static func pause(): 
-	Global.paused.emit()
+	GlobalSignals.paused.emit()
 static func resume(): 
-	Global.resumed.emit()
+	GlobalSignals.resumed.emit()
 
 static func window_setup() -> void:
 	Engine.max_fps = 60

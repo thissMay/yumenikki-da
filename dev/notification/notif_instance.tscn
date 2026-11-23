@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://cor3i0oyo6aef"]
+
+[ext_resource type="Texture2D" uid="uid://cmfqjmxgddwck" path="res://icon.svg" id="2_q0ddk"]
+
+[node name="message" type="Control" unique_id=720134536]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -160.0
+offset_bottom = -222.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="panel" type="PanelContainer" parent="." unique_id=1957706878]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="margin" type="MarginContainer" parent="panel" unique_id=1567034150]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="hbox" type="HBoxContainer" parent="panel/margin" unique_id=660894959]
+layout_mode = 2
+
+[node name="icon" type="TextureRect" parent="panel/margin/hbox" unique_id=1392482349]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_stretch_ratio = 0.25
+texture = ExtResource("2_q0ddk")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="vbox" type="VBoxContainer" parent="panel/margin/hbox" unique_id=1142460959]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="speaker" type="Label" parent="panel/margin/hbox/vbox" unique_id=1524612252]
+layout_mode = 2
+text = "title."
+
+[node name="sep" type="HSeparator" parent="panel/margin/hbox/vbox" unique_id=1199661942]
+layout_mode = 2
+
+[node name="text" type="RichTextLabel" parent="panel/margin/hbox/vbox" unique_id=265429022]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "placeholder text."
+scroll_active = false

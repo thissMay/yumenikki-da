@@ -4,9 +4,7 @@ render_mode blend_add;
 
 #include "res://src/shaders/_include/depth_base.gdshaderinc"
 
-uniform float opacity : hint_range(0.0, 1.0, 0.1) = 1;
 uniform sampler2D noise : repeat_enable;
-
 uniform float scroll_speed : hint_range(-0.085, 0.085, 0.01 ) = 0.05;
 
 uniform sampler2D gradient;
@@ -43,7 +41,5 @@ void fragment()
 		);
 
 	COLOR.rgb = (noise_scroll_fwd * noise_scroll_back).rgb * texture(gradient, UV * 2.).rgb;
-	COLOR.a = opacity / (ray_strength / 3.);
-
-
+	COLOR.a = (ray_strength / 3.);
 }

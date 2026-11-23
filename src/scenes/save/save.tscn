@@ -5,8 +5,6 @@
 [ext_resource type="Script" uid="uid://ctqw6a8qsvnv4" path="res://src/systems/sequencing_legacy/event/audio/play_bgm.gd" id="3_tpl3m"]
 [ext_resource type="Shader" uid="uid://bqp8m8worpqyn" path="res://src/shaders/panorama/linear_fog.gdshader" id="4_ctqsg"]
 [ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://themes/global_theme.tres" id="4_lviw6"]
-[ext_resource type="Script" uid="uid://chyunxyc0k0a3" path="res://src/scenes/save/state/save_state.gd" id="4_tbmd7"]
-[ext_resource type="Script" uid="uid://doidyfe8jy75n" path="res://src/scenes/save/state/load_state.gd" id="5_7lrnq"]
 [ext_resource type="Texture2D" uid="uid://cgkm4gcpsetqk" path="res://src/scenes/save/sprites/mado_save.png" id="5_hgjum"]
 [ext_resource type="Script" uid="uid://csbpxog45jj2s" path="res://src/systems/sequencing_legacy/event/audio/play_prev_bgm.gd" id="5_yn5r4"]
 [ext_resource type="Shader" uid="uid://dosa7qbgxuqjd" path="res://src/shaders/screen_overlay/vignette_rgb_abberation.gdshader" id="6_ctqsg"]
@@ -17,9 +15,9 @@
 [ext_resource type="Script" uid="uid://bqp8xu5yrv1tn" path="res://src/ui/gui/gui_texture_button.gd" id="15_2m3qo"]
 [ext_resource type="Texture2D" uid="uid://ecitk2xrkqhh" path="res://src/images/panorama/ourple.png" id="16_mvymp"]
 [ext_resource type="Script" uid="uid://c1od80bn28h0l" path="res://src/systems/sequencing_legacy/sequence_interface.gd" id="18_rgmiv"]
+[ext_resource type="Script" uid="uid://sptd6yjcf24k" path="res://src/ui/abstract_button.gd" id="19_4d4yk"]
 [ext_resource type="Script" uid="uid://dlvvx5cthl4bp" path="res://src/systems/utils/spritesheet_formatter.gd" id="19_tbmd7"]
 [ext_resource type="Texture2D" uid="uid://c0pf76njxs5ss" path="res://src/images/panorama/inv_petal_pink.jpeg" id="19_ucojc"]
-[ext_resource type="Shader" uid="uid://cqc638thw4csm" path="res://src/shaders/masks/multiply.gdshader" id="20_2m3qo"]
 [ext_resource type="Texture2D" uid="uid://dg8u266glj2nw" path="res://src/scenes/save/sprites/load_title.png" id="20_ucojc"]
 [ext_resource type="Texture2D" uid="uid://c2o0thblx8j8n" path="res://src/scenes/save/sprites/mado_load.png" id="21_yf5ir"]
 [ext_resource type="Script" uid="uid://6cyovrsx8aob" path="res://src/systems/scenes/game/game_additive_scene.gd" id="25_4d4yk"]
@@ -37,7 +35,7 @@ shader_parameter/angle = 0.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_tpl3m"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_80e1b"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mvymp"]
 shader = ExtResource("14_427to")
 shader_parameter/first_color = Color(0, 0, 0, 1)
 shader_parameter/second_color = Color(0, 0, 0, 0)
@@ -45,7 +43,7 @@ shader_parameter/position = 0.0
 shader_parameter/size = 1.0
 shader_parameter/angle = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_87wmh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wmnaw"]
 shader = ExtResource("14_427to")
 shader_parameter/first_color = Color(0, 0, 0, 1)
 shader_parameter/second_color = Color(0, 0, 0, 0)
@@ -80,7 +78,6 @@ shader_parameter/offset_strength = 0.0
 shader_parameter/offset_strength_influence = Vector2(1, 1)
 shader_parameter/overlay_modulate = Color(0, 0, 0, 1)
 shader_parameter/transparency = 0.0
-shader_parameter/optional_gradient = false
 shader_parameter/noise = SubResource("NoiseTexture2D_jf6pj")
 shader_parameter/color_overlay = Color(1, 1, 1, 1)
 shader_parameter/color_overlay_intensity = 1.0
@@ -95,19 +92,15 @@ shader_parameter/offset_strength = 0.0
 shader_parameter/offset_strength_influence = Vector2(1, 1)
 shader_parameter/overlay_modulate = Color(0, 0, 0, 1)
 shader_parameter/transparency = 0.0
-shader_parameter/optional_gradient = false
 shader_parameter/noise = SubResource("NoiseTexture2D_jf6pj")
 shader_parameter/color_overlay = Color(1, 1, 1, 1)
 shader_parameter/color_overlay_intensity = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8pwak"]
-shader = ExtResource("20_2m3qo")
-shader_parameter/overlay_modulate = Color(0, 0, 0, 1)
-shader_parameter/transparency = 0.0
-shader_parameter/optional_gradient = false
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_q5rxk"]
+blend_mode = 3
 
 [sub_resource type="Gradient" id="Gradient_q5rxk"]
-offsets = PackedFloat32Array(0, 0.3, 0.5, 0.7, 1)
+offsets = PackedFloat32Array(0, 0.4, 0.5, 0.6, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1)
 metadata/_snap_enabled = true
 
@@ -140,7 +133,7 @@ back = NodePath("play_prev_music")
 script = ExtResource("5_yn5r4")
 metadata/_custom_type_script = "uid://0v2nidb8jsha"
 
-[node name="save_menu" type="Control" parent="." unique_id=1464143161 node_paths=PackedStringArray("to_save_section", "to_load_section", "prompt_window", "prompt_yes", "prompt_no", "initial_state")]
+[node name="save_menu" type="Control" parent="." unique_id=1464143161 node_paths=PackedStringArray("to_load_section", "prompt_window", "prompt_yes", "prompt_no", "initial_state")]
 custom_minimum_size = Vector2(480, 270)
 layout_mode = 3
 anchors_preset = 15
@@ -152,30 +145,16 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_lviw6")
 script = ExtResource("3_q5rxk")
-to_save_section = NodePath("")
+to_save_section = null
 to_load_section = NodePath("SAVE/to_load")
 prompt_window = NodePath("screen_overlay/prompt_screen")
 prompt_yes = NodePath("screen_overlay/prompt_screen/prompt/main_container/margin_container/icon_content_seperator/selection/yes")
 prompt_no = NodePath("screen_overlay/prompt_screen/prompt/main_container/margin_container/icon_content_seperator/selection/no")
 initial_state = NodePath("SAVE_STATE")
 
-[node name="SAVE_STATE" type="Node" parent="save_menu" unique_id=1339146518 node_paths=PackedStringArray("path_follow_cam", "path_follow_ui", "to_save_button", "prompt_yes", "prompt_no", "prompt")]
-script = ExtResource("4_tbmd7")
-path_follow_cam = NodePath("")
-path_follow_ui = NodePath("")
-to_save_button = NodePath("")
-prompt_yes = NodePath("../screen_overlay/prompt_screen/prompt/main_container/margin_container/icon_content_seperator/selection/yes")
-prompt_no = NodePath("../screen_overlay/prompt_screen/prompt/main_container/margin_container/icon_content_seperator/selection/no")
-prompt = NodePath("../screen_overlay/prompt_screen")
+[node name="SAVE_STATE" type="Node" parent="save_menu" unique_id=1339146518]
 
-[node name="LOAD_STATE" type="Node" parent="save_menu" unique_id=1578405772 node_paths=PackedStringArray("path_follow_cam", "path_follow_ui", "to_load_button", "prompt_yes", "prompt_no", "prompt")]
-script = ExtResource("5_7lrnq")
-path_follow_cam = NodePath("")
-path_follow_ui = NodePath("")
-to_load_button = NodePath("../SAVE/to_load")
-prompt_yes = NodePath("../screen_overlay/prompt_screen/prompt/main_container/margin_container/icon_content_seperator/selection/yes")
-prompt_no = NodePath("../screen_overlay/prompt_screen/prompt/main_container/margin_container/icon_content_seperator/selection/no")
-prompt = NodePath("../screen_overlay/prompt_screen")
+[node name="LOAD_STATE" type="Node" parent="save_menu" unique_id=1578405772]
 
 [node name="screen_overlay" type="CanvasLayer" parent="save_menu" unique_id=807329212]
 layer = 10
@@ -236,7 +215,7 @@ icon_display = NodePath("main_container/margin_container/icon_content_seperator/
 text_display = NodePath("main_container/margin_container/icon_content_seperator/inner_main_container/text_display")
 
 [node name="display_bg" parent="save_menu/screen_overlay/prompt_screen/prompt/main_container/margin_container/icon_content_seperator/selection/yes/main_container" index="0"]
-material = SubResource("ShaderMaterial_80e1b")
+material = SubResource("ShaderMaterial_mvymp")
 
 [node name="text_display" parent="save_menu/screen_overlay/prompt_screen/prompt/main_container/margin_container/icon_content_seperator/selection/yes/main_container/margin_container/icon_content_seperator/inner_main_container" index="0"]
 text = "Yes."
@@ -271,7 +250,7 @@ icon_display = NodePath("main_container/margin_container/icon_content_seperator/
 text_display = NodePath("main_container/margin_container/icon_content_seperator/inner_main_container/text_display")
 
 [node name="display_bg" parent="save_menu/screen_overlay/prompt_screen/prompt/main_container/margin_container/icon_content_seperator/selection/no/main_container" index="0"]
-material = SubResource("ShaderMaterial_87wmh")
+material = SubResource("ShaderMaterial_wmnaw")
 
 [node name="text_display" parent="save_menu/screen_overlay/prompt_screen/prompt/main_container/margin_container/icon_content_seperator/selection/no/main_container/margin_container/icon_content_seperator/inner_main_container" index="0"]
 text = "No."
@@ -349,13 +328,14 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="transition_gradient" type="TextureRect" parent="save_menu/SAVE" unique_id=885027641]
-material = SubResource("ShaderMaterial_8pwak")
+material = SubResource("CanvasItemMaterial_q5rxk")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 120.0
-offset_right = -120.0
+offset_left = 112.0
+offset_right = -112.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_4d4yk")
@@ -370,7 +350,7 @@ offset_bottom = 44.0
 mouse_filter = 1
 script = ExtResource("15_2m3qo")
 texture_renderer = NodePath("texture_renderer")
-button = NodePath("")
+button = NodePath("button")
 hover_cell = 1
 press_cell = 2
 metadata/_custom_type_script = "uid://bqp8xu5yrv1tn"
@@ -378,8 +358,105 @@ metadata/_custom_type_script = "uid://bqp8xu5yrv1tn"
 [node name="texture_renderer" type="Sprite2D" parent="save_menu/SAVE/to_load" unique_id=2132802308]
 script = ExtResource("19_tbmd7")
 
+[node name="button" type="Control" parent="save_menu/SAVE/to_load" unique_id=404073554 node_paths=PackedStringArray("button")]
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource("19_4d4yk")
+button = NodePath("button")
+
+[node name="button" type="BaseButton" parent="save_menu/SAVE/to_load/button" unique_id=234719373]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(0, 0)
+layout_direction = 0
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+rotation = 0.0
+scale = Vector2(1, 1)
+pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 1
+focus_behavior_recursive = 0
+mouse_filter = 0
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 2
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = false
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = null
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = null
+
+[node name="mado2" type="Sprite2D" parent="save_menu/SAVE" unique_id=45915354]
+position = Vector2(216, 32)
+texture = ExtResource("21_yf5ir")
+centered = false
+flip_h = true
+
 [node name="title" type="Sprite2D" parent="save_menu/SAVE" unique_id=564309566]
-position = Vector2(200, 64)
+visible = false
+position = Vector2(192, 56)
 texture = ExtResource("6_v0tbb")
 
 [node name="ComponentReceiver" type="Node" parent="save_menu/SAVE/title" unique_id=481563621 node_paths=PackedStringArray("affector")]
@@ -394,32 +471,15 @@ wig_x_strn = 0.0
 wig_y_strn = 10.0
 metadata/_custom_type_script = "uid://bptlrkdn0tpua"
 
-[node name="title2" type="Sprite2D" parent="save_menu/SAVE" unique_id=751271595]
-position = Vector2(752, 64)
-texture = ExtResource("20_ucojc")
-
-[node name="ComponentReceiver" type="Node" parent="save_menu/SAVE/title2" unique_id=1885304748 node_paths=PackedStringArray("affector")]
-script = ExtResource("11_k7iwd")
-affector = NodePath("..")
-independent = true
-metadata/_custom_type_script = "uid://ctbtfitoggtku"
-
-[node name="Wiggle" type="Node" parent="save_menu/SAVE/title2/ComponentReceiver" unique_id=342975222]
-script = ExtResource("8_eui38")
-wig_x_strn = 0.0
-wig_y_strn = 10.0
-metadata/_custom_type_script = "uid://bptlrkdn0tpua"
-
-[node name="mado2" type="Sprite2D" parent="save_menu/SAVE" unique_id=45915354]
-position = Vector2(216, 32)
-texture = ExtResource("21_yf5ir")
-centered = false
-flip_h = true
-
 [node name="mado" type="Sprite2D" parent="save_menu/SAVE" unique_id=710351422]
 position = Vector2(0, 32)
 texture = ExtResource("5_hgjum")
 centered = false
+
+[node name="title2" type="Sprite2D" parent="save_menu/SAVE" unique_id=751271595]
+visible = false
+position = Vector2(144, 56)
+texture = ExtResource("20_ucojc")
 
 [editable path="save_menu/screen_overlay/prompt_screen/prompt"]
 [editable path="save_menu/screen_overlay/prompt_screen/prompt/main_container/margin_container/icon_content_seperator/selection/yes"]

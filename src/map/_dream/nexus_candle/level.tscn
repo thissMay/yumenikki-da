@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b1ofr4umso5jf" path="res://src/systems/scenes/game/game_scene.gd" id="1_g21c4"]
 [ext_resource type="TileSet" uid="uid://dqn55e6ldvawb" path="res://src/map/__ignore/tile_set/world_tile_sets/candle.tres" id="2_mqglx"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="5_mqglx"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="5_mqglx"]
 [ext_resource type="PackedScene" uid="uid://ryhx8o46er7i" path="res://src/player/2D/madotsuki.tscn" id="6_6kogc"]
 [ext_resource type="Script" path="res://src/player/2D/scripts/pl_variables.gd" id="6_ksaur"]
 [ext_resource type="Shader" uid="uid://dqxrs4a4y611c" path="res://src/shaders/panorama/linear.gdshader" id="7_246it"]

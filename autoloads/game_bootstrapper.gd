@@ -21,14 +21,14 @@ func _notification(what: int) -> void:
 		singleton_setup()
 		
 		Game.instance.		_setup()
-		PlayerInstance.		_setup()
 		Application.		_setup()
 		EventManager.		_setup()
-		SceneManager.		_setup()
+		SceneLoader.		_setup()
 		AudioBusManager.	_setup()
 		SaveManager.		_setup() 
 		InputManager.		_setup()
 		SequencerManager.	_setup()
+		PlayerInstance.		_setup()
 		
 		PhysicsServer2D.set_active(false)
 		

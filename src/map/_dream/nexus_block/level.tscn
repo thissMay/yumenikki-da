@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://syfectda645u" path="res://src/map/__ignore/tile_set/world_tile_sets/block_world.tres" id="2_a47ba"]
 [ext_resource type="PackedScene" uid="uid://ryhx8o46er7i" path="res://src/player/2D/madotsuki.tscn" id="2_tehsa"]
 [ext_resource type="AudioStream" uid="uid://cpvb1ir5fqqar" path="res://src/audio/bgm/world_block.wav" id="4_ne443"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="6_f2vy1"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="6_f2vy1"]
 
 [node name="block_world" type="Node"]
 script = ExtResource("1_o2siv")

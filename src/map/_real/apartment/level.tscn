@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dbyvt12xvets3" path="res://src/map/_real/apartment/background.png" id="4_kxofn"]
 [ext_resource type="Script" uid="uid://qo665eecfxcw" path="res://src/systems/sequencing_legacy/event/player/teleport_sentient.gd" id="4_lkp4h"]
 [ext_resource type="Texture2D" uid="uid://cr3septns1m3e" path="res://src/images/panorama/sunset_city.png" id="4_n1yad"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="6_ev3dy"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="6_ev3dy"]
 [ext_resource type="AudioStream" uid="uid://bxuxgojv4l7s3" path="res://src/audio/se/running_transition.ogg" id="6_nq133"]
 [ext_resource type="Script" uid="uid://dyaslht461mw2" path="res://src/systems/sequencing_legacy/event/game/wait_seconds.gd" id="7_1jqpe"]
 [ext_resource type="PackedScene" uid="uid://jioru3rh3jtn" path="res://src/map/_real/apartment/balcony_real.tscn" id="7_33y2f"]

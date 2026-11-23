@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b1ofr4umso5jf" path="res://src/systems/scenes/game/game_scene.gd" id="1_ku5ii"]
 [ext_resource type="TileSet" uid="uid://2yegmxnc57fl" path="res://src/map/__ignore/tile_set/world_tile_sets/shieldfolk.tres" id="2_oi6n0"]
 [ext_resource type="PackedScene" uid="uid://ryhx8o46er7i" path="res://src/player/2D/madotsuki.tscn" id="2_yqpiu"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="6_2lxk3"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="6_2lxk3"]
 [ext_resource type="Script" path="res://src/player/2D/scripts/pl_variables.gd" id="6_q5n6k"]
 [ext_resource type="PackedScene" uid="uid://bku0eqinjwowa" path="res://src/map/__ignore/door.tscn" id="7_8rl4g"]
 [ext_resource type="Texture2D" uid="uid://ub6vwdilgxwn" path="res://src/map/__ignore/doors/door_shield-folk.png" id="8_5luxr"]

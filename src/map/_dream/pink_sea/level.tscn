@@ -7,13 +7,12 @@
 [ext_resource type="AudioStream" uid="uid://b80lgan6qe000" path="res://src/audio/bgm/world_pink-sea.ogg" id="3_kodrg"]
 [ext_resource type="Script" uid="uid://br3wayftgqqpo" path="res://src/systems/sequencing_legacy/sequence/game/on_game_event.gd" id="5_acy13"]
 [ext_resource type="Script" uid="uid://bokon3yk8g4bw" path="res://src/systems/utils/on_screen_visible.gd" id="5_h0ytl"]
-[ext_resource type="Script" uid="uid://6x1ti0jbs4ek" path="res://src/systems/sequencing_legacy/event/audio/play_sound_array.gd" id="7_2t542"]
 [ext_resource type="Script" uid="uid://c1od80bn28h0l" path="res://src/systems/sequencing_legacy/sequence_interface.gd" id="7_8uxx6"]
 [ext_resource type="Shader" uid="uid://bau7jex01lc6n" path="res://src/shaders/masks/flat_water_reflec.gdshader" id="8_fdrto"]
 [ext_resource type="AudioStream" uid="uid://geldmc44ijbe" path="res://src/audio/se/jellyfish_teleport-2.WAV" id="8_ytu1i"]
 [ext_resource type="AudioStream" uid="uid://i75icu3fpkca" path="res://src/audio/se/jellyfish_teleport-1.WAV" id="9_xc33y"]
-[ext_resource type="Shader" uid="uid://cn0lcr1ewi4gp" path="res://src/shaders/masks/distortion_waves.gdshader" id="10_doh5e"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="11_m05o0"]
+[ext_resource type="Shader" path="res://src/shaders/masks/distortion_waves.gdshader" id="10_doh5e"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="11_m05o0"]
 [ext_resource type="Script" uid="uid://bptlrkdn0tpua" path="res://src/systems/components/overrides/wiggle.gd" id="11_omfi6"]
 [ext_resource type="TileSet" uid="uid://b0kyfgy4bib24" path="res://src/map/__ignore/tile_set/_common_objs.tres" id="16_3126n"]
 [ext_resource type="Script" uid="uid://bqs7mvieiy4cw" path="res://src/map/__ignore/tilemap_collision_setup.gd" id="16_vgv8p"]
@@ -88,31 +87,6 @@ load_transition = SubResource("ShaderMaterial_h0ytl")
 unload_transition = SubResource("ShaderMaterial_h0ytl")
 metadata/_custom_type_script = "uid://b1ofr4umso5jf"
 
-[node name="BGM" type="Node" parent="."]
-script = ExtResource("2_uju0w")
-stream = ExtResource("3_kodrg")
-metadata/_custom_type_script = "uid://b4b3kjcm65mv6"
-
-[node name="scene_load_sequence" type="Node" parent="."]
-script = ExtResource("7_8uxx6")
-
-[node name="scene_unload_sequence" type="Node" parent="."]
-script = ExtResource("7_8uxx6")
-
-[node name="on_balloon_teleport" type="Node" parent="." node_paths=PackedStringArray("sequence")]
-script = ExtResource("5_acy13")
-sequence = NodePath("sequence")
-metadata/_custom_type_script = "uid://br3wayftgqqpo"
-
-[node name="sequence" type="Node" parent="on_balloon_teleport"]
-script = ExtResource("7_8uxx6")
-metadata/_custom_type_script = "uid://c1od80bn28h0l"
-
-[node name="PlaySoundArray" type="Node" parent="on_balloon_teleport/sequence"]
-script = ExtResource("7_2t542")
-sound_arr = Array[AudioStream]([ExtResource("8_ytu1i"), ExtResource("9_xc33y")])
-metadata/_custom_type_script = "uid://6x1ti0jbs4ek"
-
 [node name="camera" parent="." instance=ExtResource("11_m05o0")]
 
 [node name="camera_handler" parent="camera" index="0" node_paths=PackedStringArray("target")]
@@ -161,9 +135,6 @@ metadata/_custom_type_script = "uid://bokon3yk8g4bw"
 
 [node name="y_order" type="Node2D" parent="sea_section"]
 y_sort_enabled = true
-
-[node name="Madotsuki" parent="sea_section/y_order" instance=ExtResource("2_bymik")]
-position = Vector2(72, 8)
 
 [node name="obstacles" type="TileMapLayer" parent="sea_section/y_order"]
 y_sort_enabled = true

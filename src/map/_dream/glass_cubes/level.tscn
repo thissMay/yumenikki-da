@@ -6,7 +6,7 @@
 [ext_resource type="Shader" uid="uid://hg6wywtqrlha" path="res://src/shaders/masks/additive.gdshader" id="2_kfc05"]
 [ext_resource type="AudioStream" uid="uid://dxkjhkg5y4lav" path="res://src/audio/amb/amb_space_mission_control.ogg" id="3_7bfsl"]
 [ext_resource type="AudioStream" uid="uid://bm7y6qujkfypq" path="res://src/audio/bgm/madoxy_46.ogg" id="3_c4hgi"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="5_50osm"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="5_50osm"]
 [ext_resource type="Texture2D" uid="uid://w120j1t1g6es" path="res://src/images/panorama/flare.png" id="6_2sm63"]
 [ext_resource type="Shader" uid="uid://hqppcc6e4xw2" path="res://src/shaders/panorama/lens_flare.gdshader" id="6_18jn3"]
 [ext_resource type="Shader" uid="uid://brem0ley6fcra" path="res://src/shaders/panorama/depth_additive.gdshader" id="10_bg4cs"]

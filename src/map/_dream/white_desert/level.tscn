@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b1ofr4umso5jf" path="res://src/systems/scenes/game/game_scene.gd" id="1_g633e"]
 [ext_resource type="AudioStream" uid="uid://dekaq6h380e0c" path="res://src/audio/bgm/world_white-desert-2.ogg" id="3_vl3hr"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="4_3po7v"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="4_3po7v"]
 [ext_resource type="TileSet" uid="uid://dk0nqtall8ktp" path="res://src/map/__ignore/tile_set/world_tile_sets/white_desert.tres" id="5_jkxhj"]
 [ext_resource type="PackedScene" uid="uid://ryhx8o46er7i" path="res://src/player/2D/madotsuki.tscn" id="6_k6ady"]
 [ext_resource type="Script" uid="uid://bokon3yk8g4bw" path="res://src/systems/utils/on_screen_visible.gd" id="8_ri4w7"]

@@ -7,7 +7,7 @@ extends Node
 const PROPERTIES_SAVER_ID := "save_properties"
 
 @export var properties: Dictionary = {}
-@export var properties_saver: NodePropertiesSaver
+@export var properties_saver: NodePropertiesSave
 
 @export_group("Flags")
 @export var skip_save: bool = false:
@@ -36,5 +36,5 @@ func __set_skip_save(_skip: bool) -> void:
 		false: 
 			properties_saver = Utils.get_child_node_or_null(self, PROPERTIES_SAVER_ID)
 			if properties_saver == null:
-				properties_saver = Utils.add_child_node(self, NodePropertiesSaver.new(), PROPERTIES_SAVER_ID)
+				properties_saver = Utils.add_child_node(self, NodePropertiesSave.new(), PROPERTIES_SAVER_ID)
 				properties_saver.properties.append("properties")

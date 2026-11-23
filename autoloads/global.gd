@@ -1,10 +1,5 @@
 extends Node
 
-signal paused
-signal resumed
-
-# -- 
-
 var delta: float:
 	get: return get_process_delta_time()
 var phys_delta: float:

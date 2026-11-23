@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://8ycy6oceth0s" path="res://src/map/__ignore/tile_set/world_tile_sets/sky_garden.tres" id="2_0u4d7"]
 [ext_resource type="PackedScene" uid="uid://ryhx8o46er7i" path="res://src/player/2D/madotsuki.tscn" id="2_hu0mm"]
 [ext_resource type="AudioStream" uid="uid://bo1cyh85ps0gg" path="res://src/audio/bgm/world_ghost.ogg" id="5_20vas"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="6_20vas"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="6_20vas"]
 [ext_resource type="Script" uid="uid://c1od80bn28h0l" path="res://src/systems/sequencing_legacy/sequence_interface.gd" id="7_0xipv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1mkmk"]

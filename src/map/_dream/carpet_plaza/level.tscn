@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://dupw6n0dhwek0"]
 
 [ext_resource type="Script" uid="uid://b1ofr4umso5jf" path="res://src/systems/scenes/game/game_scene.gd" id="1_cg8o4"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="2_hdi6y"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="2_hdi6y"]
 [ext_resource type="Texture2D" uid="uid://5bgyxa32p385" path="res://src/map/__ignore/tile_atlas/carpet_floor.png" id="3_i1247"]
 [ext_resource type="TileSet" uid="uid://b0kyfgy4bib24" path="res://src/map/__ignore/tile_set/_common_objs.tres" id="4_i1247"]
 [ext_resource type="Script" uid="uid://pksfkcvcsgx7" path="res://src/map/__ignore/tilemap_footstep_setup.gd" id="4_o1cqx"]

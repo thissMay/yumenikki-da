@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bku0eqinjwowa" path="res://src/map/__ignore/door.tscn" id="3_07q2v"]
 [ext_resource type="Script" uid="uid://bxh774473av7t" path="res://src/systems/interaction/interactable.gd" id="4_d5n0m"]
 [ext_resource type="Texture2D" uid="uid://cua8v3f5c3bwi" path="res://src/map/__ignore/doors/door_eyeball.png" id="4_ey7sl"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="4_sthxv"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="4_sthxv"]
 [ext_resource type="Script" uid="uid://bkadpjx8csm75" path="res://src/systems/sequencing_legacy/sequence/game/on_interact.gd" id="5_fot1s"]
 [ext_resource type="TileSet" uid="uid://ucja6rk8c0dh" path="res://src/map/__ignore/tile_set/world_tile_sets/eyeball.tres" id="5_pagnx"]
 [ext_resource type="AudioStream" uid="uid://dexpefjcufc0b" path="res://src/audio/bgm/world_eyeball.ogg" id="6_jutn4"]

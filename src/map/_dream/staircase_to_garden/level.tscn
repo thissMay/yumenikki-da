@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://bxbyiqlq3ywcr" path="res://src/map/__ignore/tile_set/world_tile_sets/wilderness.tres" id="2_wvc5e"]
 [ext_resource type="AudioStream" uid="uid://b2nuspx4k6ipv" path="res://src/audio/bgm/world_stair-to-sky.ogg" id="3_iuhpm"]
 [ext_resource type="PackedScene" uid="uid://ryhx8o46er7i" path="res://src/player/2D/madotsuki.tscn" id="3_rsnat"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="4_iuhpm"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="4_iuhpm"]
 [ext_resource type="Shader" uid="uid://hqppcc6e4xw2" path="res://src/shaders/panorama/lens_flare.gdshader" id="5_0tda1"]
 [ext_resource type="Texture2D" uid="uid://bu5u38wopg1fk" path="res://src/images/panorama/sun_flare.jpg" id="6_11tov"]
 [ext_resource type="Shader" uid="uid://bqp8m8worpqyn" path="res://src/shaders/panorama/linear_fog.gdshader" id="7_h44pk"]

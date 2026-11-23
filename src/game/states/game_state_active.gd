@@ -2,16 +2,16 @@ class_name GameStateActive
 extends State
 
 func _init(sm: SM, parent: State):
+	GlobalSignals.paused.connect(handle_pause)
 	super(sm, parent)
 	
 func handle_pause() -> void:
 	sm.change_state(self, (parent as GameStateRoot).state_pause)
 
-func on_exit() -> void:
-	Global.paused.disconnect(handle_pause)
+#func on_exit() -> void:
+	#GlobalSignals.paused.disconnect(handle_pause)
 
 func on_enter() -> void:
-	Global.paused.connect(handle_pause)
 	
 	#Game.player_hud.visible 				= true
 	Game.options_menu.visible 				= false

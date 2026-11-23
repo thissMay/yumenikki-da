@@ -1,11 +1,11 @@
 [gd_scene format=4 uid="uid://b7ixvvfnudrtd"]
 
 [ext_resource type="Script" uid="uid://b1ofr4umso5jf" path="res://src/systems/scenes/game/game_scene.gd" id="1_kijfi"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="2_3srwc"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="2_3srwc"]
 [ext_resource type="Shader" uid="uid://crclnnrqddewa" path="res://src/shaders/panorama/depth.gdshader" id="2_gpjm5"]
 [ext_resource type="Script" uid="uid://dxx2gbg56i1ts" path="res://src/systems/sequencing_legacy/event/scene/apply_panorama.gd" id="2_tdqbh"]
 [ext_resource type="Shader" uid="uid://bjc3g4hpc28r1" path="res://src/shaders/screen_overlay/ocean_lights.gdshader" id="3_w6cx3"]
-[ext_resource type="Shader" uid="uid://20gve0q01un3" path="res://src/shaders/screen_overlay/distortion_waves.gdshader" id="4_j70n8"]
+[ext_resource type="Shader" path="res://src/shaders/screen_overlay/distortion_waves.gdshader" id="4_j70n8"]
 [ext_resource type="TileSet" uid="uid://dyssxbp7xitvm" path="res://src/map/__ignore/tile_set/_footstep_material.tres" id="5_5m4g7"]
 [ext_resource type="Texture2D" uid="uid://c3byfy6b7jo86" path="res://src/map/_dream/upper_abyss/sprites/closed.png" id="5_hhe08"]
 [ext_resource type="TileSet" uid="uid://cydwtbt1yg005" path="res://src/map/__ignore/tile_set/world_tile_sets/docks.tres" id="5_r8oj2"]

@@ -21,4 +21,4 @@ func _ready() -> void:
 	subviewport.own_world_3d		= true
 				
 func _execute() -> void:
-	PanoramaSystem.instance.apply_panorama(subviewport, pivot.global_position)
+	PanoramaSystem.apply_panorama(subviewport, pivot.global_position)

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b1ofr4umso5jf" path="res://src/systems/scenes/game/game_scene.gd" id="1_4ckat"]
 [ext_resource type="PackedScene" uid="uid://ryhx8o46er7i" path="res://src/player/2D/madotsuki.tscn" id="1_28p51"]
 [ext_resource type="Shader" uid="uid://cccvkqo884ywx" path="res://src/shaders/masks/psychedelic.gdshader" id="2_4ckat"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="3_00xaa"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="3_00xaa"]
 [ext_resource type="Script" uid="uid://ctqw6a8qsvnv4" path="res://src/systems/sequencing_legacy/event/audio/play_bgm.gd" id="3_37x7p"]
 [ext_resource type="AudioStream" uid="uid://bjdwdwfoqtani" path="res://src/audio/bgm/luff_yta_calm.ogg" id="3_r2lfa"]
 [ext_resource type="Script" uid="uid://bptlrkdn0tpua" path="res://src/systems/components/overrides/wiggle.gd" id="4_d2u0k"]

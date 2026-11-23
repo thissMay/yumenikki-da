@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://bueabxwtsde8h" path="res://src/systems/sequencing_legacy/event/message/open_message.gd" id="10_mq2bj"]
 [ext_resource type="Script" uid="uid://d1ojbn5jneejv" path="res://src/systems/sequencing_legacy/event/node/set_property.gd" id="11_nd8pn"]
 [ext_resource type="Script" uid="uid://dyaslht461mw2" path="res://src/systems/sequencing_legacy/event/game/wait_seconds.gd" id="12_b4g2a"]
-[ext_resource type="Script" uid="uid://bdm7kig80eqqk" path="res://src/systems/save/node/save_properties.gd" id="13_rn3os"]
+[ext_resource type="Script" uid="uid://bdm7kig80eqqk" path="res://src/systems/save/node/node_properties_save.gd" id="13_rn3os"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_13ycl"]
 size = Vector2(16, 16)

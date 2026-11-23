@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://desxt7tbq37sf" path="res://src/systems/world_loop/loop_region.gd" id="2_m83g6"]
 [ext_resource type="TileSet" uid="uid://b01vptl0fltoy" path="res://src/map/__ignore/tile_set/world_tile_sets/hell.tres" id="2_ytbok"]
 [ext_resource type="Shader" uid="uid://cqc638thw4csm" path="res://src/shaders/masks/multiply.gdshader" id="4_hi7mu"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="6_tfuf7"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="6_tfuf7"]
 [ext_resource type="TileSet" uid="uid://b0kyfgy4bib24" path="res://src/map/__ignore/tile_set/_common_objs.tres" id="8_vfjqf"]
 [ext_resource type="Script" uid="uid://bqs7mvieiy4cw" path="res://src/map/__ignore/tilemap_collision_setup.gd" id="9_svtfn"]
 [ext_resource type="PackedScene" uid="uid://d2oedgst7bbj2" path="res://src/entities/sentients/hell/hell_spawn_template.tscn" id="11_3smme"]

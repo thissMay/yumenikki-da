@@ -9,7 +9,7 @@
 [ext_resource type="TileSet" uid="uid://bna2nixax04g8" path="res://src/map/__ignore/tile_set/world_tile_sets/footprint_path.tres" id="6_ivw7k"]
 [ext_resource type="PackedScene" uid="uid://ryhx8o46er7i" path="res://src/player/2D/madotsuki.tscn" id="6_oiy2o"]
 [ext_resource type="Texture2D" uid="uid://bvltvxeerhk8r" path="res://src/map/_dream/footprint_path/thing_gray.png" id="7_83tvd"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="7_jwq7s"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="7_jwq7s"]
 [ext_resource type="Texture2D" uid="uid://b3dk1r3e4j7iv" path="res://src/map/_dream/footprint_path/tumor_gray.png" id="9_c6g2w"]
 [ext_resource type="Script" uid="uid://bxh774473av7t" path="res://src/systems/interaction/interactable.gd" id="10_n4u68"]
 [ext_resource type="Texture2D" uid="uid://dhljr3l72tqg8" path="res://src/map/_dream/footprint_path/thing_pink.png" id="11_ce11j"]

@@ -3,14 +3,12 @@ extends State
 
 func _init(sm: SM, parent: State):
 	super(sm, parent)
+	GlobalSignals.resumed.connect(handle_resume)
 
 func handle_resume() -> void:
 	sm.change_state(self, (parent as GameStateRoot).state_active)
-	
-
 
 func on_enter() -> void:
-	Global.resumed.connect(handle_resume)
 	
 	Application.main_window.grab_focus()
 	
@@ -22,7 +20,7 @@ func on_enter() -> void:
 	Game.set_cinematic_bars(true)
 	
 func on_exit() -> void:
-	Global.resumed.disconnect(handle_resume)
+	#Global.resumed.disconnect(handle_resume)
 	
 	Application.main_window.gui_release_focus()
 	

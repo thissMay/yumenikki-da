@@ -1,9 +1,9 @@
-[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://buaywea4yxggu"]
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://buaywea4yxggu"]
 
-[ext_resource type="Texture2D" uid="uid://ddomvski7rl7" path="res://src/ui/overrides_panel/nine_patch_invisible.png" id="1_stakd"]
+[ext_resource type="Texture2D" uid="uid://cwdi22hn0i42t" path="res://src/ui/overrides_panel/nine_patch.png" id="1_ptgaa"]
 
 [resource]
-texture = ExtResource("1_stakd")
+texture = ExtResource("1_ptgaa")
 texture_margin_left = 2.0
 texture_margin_top = 2.0
 texture_margin_right = 2.0

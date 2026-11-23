@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bvxntqsu3uuqt"]
+[gd_scene format=3 uid="uid://daqen3qy27x08"]
 
 [ext_resource type="Texture2D" uid="uid://jyyt5bquldaa" path="res://src/images/panorama/glow_sea.png" id="2_juckd"]
 [ext_resource type="Theme" uid="uid://bv8atq67jgwrc" path="res://themes/global_theme.tres" id="2_o2rco"]
@@ -36,7 +36,6 @@ shader_parameter/offset_strength = 0.0
 shader_parameter/offset_strength_influence = Vector2(1, 1)
 shader_parameter/overlay_modulate = Color(1, 1, 1, 1)
 shader_parameter/transparency = 0.0
-shader_parameter/optional_gradient = false
 
 [sub_resource type="Curve" id="Curve_o2rco"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.8496, 0.0, 0, 0]
@@ -55,25 +54,25 @@ shader_parameter/position = 0.0
 shader_parameter/size = 1.0
 shader_parameter/angle = 0.0
 
-[node name="pre_menu" type="Node" node_paths=PackedStringArray("proceed")]
+[node name="pre_menu" type="Node" unique_id=428978075 node_paths=PackedStringArray("proceed")]
 script = SubResource("GDScript_x008i")
 scene_path = "uid://btg3e240ltjxx"
-proceed = NodePath("warning/Control/VBoxContainer/GUIPanelButton")
 load_transition = SubResource("ShaderMaterial_juckd")
 unload_transition = SubResource("ShaderMaterial_tcehx")
+proceed = NodePath("warning/Control/VBoxContainer/GUIPanelButton")
 metadata/_custom_type_script = "uid://dcos3dvfrola8"
 
-[node name="panorama (top_layer)" type="CanvasLayer" parent="."]
+[node name="panorama (top_layer)" type="CanvasLayer" parent="." unique_id=472462390]
 layer = -20
 
-[node name="TextureRect" type="TextureRect" parent="panorama (top_layer)"]
+[node name="TextureRect" type="TextureRect" parent="panorama (top_layer)" unique_id=1938066239]
 material = SubResource("ShaderMaterial_k0aey")
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 texture = ExtResource("2_juckd")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="panorama (top_layer)"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="panorama (top_layer)" unique_id=1838609936]
 position = Vector2(240, 288)
 amount = 12
 lifetime = 3.0
@@ -87,7 +86,7 @@ initial_velocity_max = 50.0
 scale_amount_curve = SubResource("Curve_o2rco")
 color_ramp = SubResource("Gradient_05aq0")
 
-[node name="warning" type="MarginContainer" parent="."]
+[node name="warning" type="MarginContainer" parent="." unique_id=1562863043]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -102,16 +101,16 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Control" type="CenterContainer" parent="warning"]
+[node name="Control" type="CenterContainer" parent="warning" unique_id=1728676162]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="warning/Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="warning/Control" unique_id=1426692123]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 12
 
-[node name="header" type="RichTextLabel" parent="warning/Control/VBoxContainer"]
+[node name="header" type="RichTextLabel" parent="warning/Control/VBoxContainer" unique_id=1197875890]
 layout_mode = 2
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 10
@@ -119,7 +118,7 @@ text = "Please read before proceeding."
 fit_content = true
 scroll_active = false
 
-[node name="text" type="RichTextLabel" parent="warning/Control/VBoxContainer"]
+[node name="text" type="RichTextLabel" parent="warning/Control/VBoxContainer" unique_id=1687338521]
 layout_mode = 2
 mouse_filter = 2
 bbcode_enabled = true
@@ -138,7 +137,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="GUIPanelButton" type="Control" parent="warning/Control/VBoxContainer" node_paths=PackedStringArray("abstract_button", "display_bg", "main_container", "inner_main_container", "icon_content_seperator", "margin_container", "icon_display_container", "icon_display", "text_display")]
+[node name="GUIPanelButton" type="Control" parent="warning/Control/VBoxContainer" unique_id=1420561878 node_paths=PackedStringArray("abstract_button", "display_bg", "main_container", "inner_main_container", "icon_content_seperator", "margin_container", "icon_display_container", "icon_display", "text_display")]
 custom_minimum_size = Vector2(60, 18)
 layout_mode = 2
 focus_mode = 2
@@ -157,19 +156,19 @@ icon_display = NodePath("main_container/margin_container/icon_content_seperator/
 text_display = NodePath("main_container/margin_container/icon_content_seperator/inner_main_container/text_display")
 metadata/_custom_type_script = "uid://dhvrb58iweuo0"
 
-[node name="main_container" type="PanelContainer" parent="warning/Control/VBoxContainer/GUIPanelButton"]
+[node name="main_container" type="PanelContainer" parent="warning/Control/VBoxContainer/GUIPanelButton" unique_id=1460648241]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 
-[node name="display_bg" type="ColorRect" parent="warning/Control/VBoxContainer/GUIPanelButton/main_container"]
+[node name="display_bg" type="ColorRect" parent="warning/Control/VBoxContainer/GUIPanelButton/main_container" unique_id=236259877]
 material = SubResource("ShaderMaterial_qwet7")
 layout_mode = 2
 size_flags_horizontal = 0
 mouse_filter = 2
 
-[node name="margin_container" type="MarginContainer" parent="warning/Control/VBoxContainer/GUIPanelButton/main_container"]
+[node name="margin_container" type="MarginContainer" parent="warning/Control/VBoxContainer/GUIPanelButton/main_container" unique_id=2050566214]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 4
@@ -177,38 +176,37 @@ theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 2
 
-[node name="icon_content_seperator" type="HBoxContainer" parent="warning/Control/VBoxContainer/GUIPanelButton/main_container/margin_container"]
+[node name="icon_content_seperator" type="HBoxContainer" parent="warning/Control/VBoxContainer/GUIPanelButton/main_container/margin_container" unique_id=1388646176]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="icon_display_container" type="CenterContainer" parent="warning/Control/VBoxContainer/GUIPanelButton/main_container/margin_container/icon_content_seperator"]
+[node name="icon_display_container" type="CenterContainer" parent="warning/Control/VBoxContainer/GUIPanelButton/main_container/margin_container/icon_content_seperator" unique_id=79460851]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="icon_display" type="TextureRect" parent="warning/Control/VBoxContainer/GUIPanelButton/main_container/margin_container/icon_content_seperator/icon_display_container"]
+[node name="icon_display" type="TextureRect" parent="warning/Control/VBoxContainer/GUIPanelButton/main_container/margin_container/icon_content_seperator/icon_display_container" unique_id=1536179601]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="inner_main_container" type="CenterContainer" parent="warning/Control/VBoxContainer/GUIPanelButton/main_container/margin_container/icon_content_seperator"]
+[node name="inner_main_container" type="CenterContainer" parent="warning/Control/VBoxContainer/GUIPanelButton/main_container/margin_container/icon_content_seperator" unique_id=1487530766]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="text_display" type="Label" parent="warning/Control/VBoxContainer/GUIPanelButton/main_container/margin_container/icon_content_seperator/inner_main_container"]
+[node name="text_display" type="Label" parent="warning/Control/VBoxContainer/GUIPanelButton/main_container/margin_container/icon_content_seperator/inner_main_container" unique_id=2140376513]
 layout_mode = 2
 text = "Proceed."
 label_settings = ExtResource("8_kfffw")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="abstract_button" type="Control" parent="warning/Control/VBoxContainer/GUIPanelButton/main_container" node_paths=PackedStringArray("button")]
+[node name="abstract_button" type="Control" parent="warning/Control/VBoxContainer/GUIPanelButton/main_container" unique_id=1977189979 node_paths=PackedStringArray("button")]
 layout_mode = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 script = ExtResource("9_wghfn")
 button = NodePath("button")
 
-[node name="button" type="BaseButton" parent="warning/Control/VBoxContainer/GUIPanelButton/main_container/abstract_button"]
-_import_path = NodePath("")
+[node name="button" type="BaseButton" parent="warning/Control/VBoxContainer/GUIPanelButton/main_container/abstract_button" unique_id=96149466]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -250,6 +248,7 @@ grow_vertical = 1
 rotation = 0.0
 scale = Vector2(1, 1)
 pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
 size_flags_horizontal = 1
 size_flags_vertical = 1
 size_flags_stretch_ratio = 1.0

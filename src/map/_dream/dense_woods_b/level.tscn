@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://dhb4h12jpspjg"]
 
 [ext_resource type="Script" uid="uid://b1ofr4umso5jf" path="res://src/systems/scenes/game/game_scene.gd" id="1_wjh5h"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="2_6hpsn"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="2_6hpsn"]
 [ext_resource type="PackedScene" uid="uid://ryhx8o46er7i" path="res://src/player/2D/madotsuki.tscn" id="2_i7lt2"]
 [ext_resource type="AudioStream" uid="uid://16b7dcgbyc2n" path="res://src/audio/bgm/world_dense-woods-b.WAV" id="3_dwx8a"]
 [ext_resource type="AudioStream" uid="uid://dlfw10qwka7su" path="res://src/audio/amb/amb_rain.ogg" id="3_e4mse"]

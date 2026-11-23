@@ -6,6 +6,6 @@ render_mode blend_mul;
 
 void fragment()
 {
-	if (optional_gradient)	{ COLOR.rgb = texture(gradient, UV).rgb;}
+	COLOR.rgb = texture(gradient, UV).rgb;
 	COLOR.a = 1. - transparency;
 }

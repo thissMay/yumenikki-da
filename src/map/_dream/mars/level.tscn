@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://btgm8okupfro7" path="res://src/systems/region/cam_deadzone.gd" id="4_34rio"]
 [ext_resource type="PackedScene" uid="uid://ryhx8o46er7i" path="res://src/player/2D/madotsuki.tscn" id="4_ew0vm"]
 [ext_resource type="Texture2D" uid="uid://c8k1sxkde80gi" path="res://src/images/panorama/clouds.png" id="4_veq4x"]
-[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera.tscn" id="5_34rio"]
+[ext_resource type="PackedScene" uid="uid://c8bnpo28a373g" path="res://src/systems/camera/camera_2d.tscn" id="5_34rio"]
 [ext_resource type="Texture2D" uid="uid://cviohk1byswuk" path="res://src/images/panorama/saturn.png" id="5_bjp8k"]
 [ext_resource type="Texture2D" uid="uid://bxwp8kdqooi3d" path="res://src/images/panorama/jupiter.png" id="5_ycx3f"]
 [ext_resource type="AudioStream" uid="uid://hrydgrm0n3r" path="res://src/audio/bgm/mars.WAV" id="8_4lalb"]
